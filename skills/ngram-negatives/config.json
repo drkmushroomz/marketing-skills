@@ -1,0 +1,36 @@
+{
+  "mcc_id": "1874174744",
+  "accounts": {
+    "train-with-dave": {
+      "customer_id": "9099081672",
+      "label": "Train with Dave"
+    },
+    "barker-wellness": {
+      "customer_id": "8737823917",
+      "label": "Barker Wellness",
+      "notify": ["U041PPJ6MUJ"]
+    },
+    "grip-studs": {
+      "customer_id": "9373468530",
+      "label": "Grip Studs",
+      "notify": ["U041PPJ6MUJ"]
+    },
+    "zip-line-gear": {
+      "customer_id": "3081970996",
+      "label": "Zip Line Gear",
+      "notify": ["U041PPJ6MUJ"]
+    },
+    "delille": {
+      "customer_id": "7917010846",
+      "label": "DeLille Cellars",
+      "notify": ["U091G0BUTRD"]
+    }
+  },
+  "slack_channel": "C0AMKEKU9ND",
+  "lookback_days": 180,
+  "min_impressions": 10,
+  "min_spend": 0,
+  "max_conversions": 0,
+  "ngram_size": 1,
+  "negative_kw_match_type": "EXACT"
+}

@@ -1,0 +1,19 @@
+{
+  "mcc_id": "1874174744",
+  "accounts": {
+    "train-with-dave": {
+      "customer_id": "9099081672",
+      "label": "Train with Dave",
+      "default_ad_group_id": "193334888799",
+      "exact_bid": 1.50,
+      "broad_bid": 0.75
+    }
+  },
+  "lookback_days": 7,
+  "min_conversions": 1,
+  "slack_channel": "C0AMKEKU9ND",
+  "slack_dm": {
+    "train-with-dave": ["U4DMWG4HX"]
+  },
+  "dry_run": false
+}
