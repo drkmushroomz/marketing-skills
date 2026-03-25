@@ -346,8 +346,16 @@ Jetfuel manages real accounts at scale. Competitors write guides from policy doc
 - Every H2 section must have at least one visual element
 - Use Jetfuel's brand orange (#ff6b35) as the accent color throughout
 - All inline styles must be included (WordPress strips external CSS classes)
-- **Dark-on-dark prevention**: The blog theme can have dark section backgrounds. Every `<table>`, `<tr>`, and `<td>` MUST have explicit `background` and `color` inline styles (e.g., `background:#ffffff; color:#1a1a1a;` on the `<table>`, `color:#1a1a1a;` on every `<td>`). Never rely on inherited text/background colors.
-- **Stat cards must use light backgrounds**: Use `background:#fff; border:2px solid #ff6b35` with `color:#ff6b35` for numbers and `color:#666` for labels. Never use dark card backgrounds — they render as dark-on-dark in the blog theme.
-- **CTA blocks must use light backgrounds**: Use `background:#fff5f0; border:2px solid #ff6b35` with dark text. Never use dark gradient backgrounds for CTAs.
+- **MANDATORY: Dark-on-dark prevention audit.** Before publishing, run a final pass on ALL HTML to enforce these rules. This is not optional.
+  - Every `<th>` MUST have both `background:#1a1a1a;` AND `color:#ffffff;` explicitly on the element
+  - Every `<td>` MUST have both `background:#ffffff;` (or `background:#f9f9f9;` for alternating rows) AND `color:#1a1a1a;` explicitly on the element
+  - Every `<table>` MUST have `background:#ffffff; color:#1a1a1a; border:1px solid #e0e0e0;`
+  - Never use `color:#555` or `color:#666` anywhere. Minimum text contrast: `color:#333333` for body text, `color:#444444` for labels
+  - Stat cards: `background:#fff; border:2px solid #ff6b35; color:#ff6b35` for numbers, `color:#444444` for labels
+  - CTA blocks: `background:#fff5f0; border:2px solid #ff6b35; color:#1a1a1a` for heading, `color:#333333` for body
+  - Callout boxes: explicit `color:#1a1a1a` on body text (not inherited)
+  - Step descriptions: `color:#333333` (not `color:#555`)
+  - FAQ answers: `color:#333333` (not `color:#555`)
+  - The Jetfuel WordPress theme has dark section backgrounds that WILL make low-contrast text invisible. Every single text element must specify its own color. Never rely on inheritance.
 - Flag any images that need to be uploaded to WordPress media library separately
 - The app password should be read from `.claude/me.json` — never hardcode it
