@@ -1,0 +1,72 @@
+{
+  "gsc_property": "sc-domain:jetfuel.agency",
+  "site_domain": "jetfuel.agency",
+  "google_email": "marketing@jetfuel.agency",
+  "lookback_days": 90,
+  "oauth": {
+    "client_id": "YOUR_GOOGLE_CLIENT_ID",
+    "client_secret": "YOUR_GOOGLE_CLIENT_SECRET",
+    "tokens_file": "scripts/gads_tokens.json"
+  },
+  "target_niches": {
+    "parts_ecommerce": {
+      "label": "Parts-Based Ecommerce",
+      "seed_keywords": [
+        "parts ecommerce agency",
+        "auto parts ecommerce marketing",
+        "parts catalog ecommerce",
+        "industrial parts ecommerce",
+        "replacement parts online store",
+        "ecommerce for parts manufacturers",
+        "parts fitment search ecommerce",
+        "automotive ecommerce agency",
+        "parts distributor digital marketing",
+        "ecommerce parts catalog management"
+      ]
+    },
+    "food_bev_cpg": {
+      "label": "Food & Beverage CPG",
+      "seed_keywords": [
+        "food and beverage ecommerce agency",
+        "cpg digital marketing agency",
+        "food brand ecommerce marketing",
+        "beverage ecommerce strategy",
+        "dtc food brand marketing",
+        "food cpg marketing agency",
+        "grocery ecommerce marketing",
+        "food brand digital agency",
+        "beverage brand marketing agency",
+        "cpg ecommerce growth agency"
+      ]
+    },
+    "health_wellness_cpg": {
+      "label": "Health & Wellness CPG",
+      "seed_keywords": [
+        "health and wellness ecommerce agency",
+        "wellness brand marketing agency",
+        "supplement ecommerce marketing",
+        "health cpg digital marketing",
+        "wellness dtc marketing agency",
+        "health brand ecommerce growth",
+        "nutraceutical marketing agency",
+        "wellness cpg ecommerce",
+        "health supplement digital marketing",
+        "organic wellness brand agency"
+      ]
+    }
+  },
+  "services_to_rank": [
+    "paid media",
+    "seo",
+    "email marketing",
+    "social media marketing",
+    "content marketing",
+    "web design",
+    "conversion rate optimization",
+    "influencer marketing",
+    "amazon marketing",
+    "creative services"
+  ],
+  "output_sheet_name": "Jetfuel SEO Opportunities",
+  "_readme": "Config for the SEO opportunities skill. Target niches and seed keywords can be updated here."
+}

@@ -1,51 +1,81 @@
 # Marketing Skills for Claude Code
 
-AI-powered marketing automation skills built for [Claude Code](https://claude.com/claude-code).
+AI-powered marketing automation skills built for [Claude Code](https://claude.com/claude-code). This is the single source of truth — clone this repo into any jetfuel-crew workspace.
 
 ## Skills
 
 ### `/publish-blog`
-Publish Google Docs as WordPress blog posts with:
-- Rich media (stat cards, comparison tables, progress bars, callout boxes, step-by-step visualizations)
-- Table of contents with anchor links
-- Key takeaways box
-- FAQ section with schema markup
-- Auto-generated featured images matching your blog's template
-- SEO metadata (categories, tags, excerpt)
-- Publishes as draft by default
+Google Doc → WordPress draft with rich media, infographic visualizations, TOC, FAQ schema, auto-generated featured image, and LLM competitiveness audit.
 
-**Setup:**
-1. Copy `publish-blog/` to `.claude/ops/publish-blog/`
-2. Copy `publish-blog/command.md` to `.claude/commands/publish-blog.md`
-3. Copy `scripts/` to your project's `scripts/` directory
-4. Add your WordPress app password to `.claude/me.json`:
-   ```json
-   { "wordpress": { "app_password": "your-app-password" } }
-   ```
-5. Update `publish-blog/config.json` with your site URL, categories, and author ID
+### `/seo-opportunities`
+Pulls Google Search Console data, identifies ranking opportunities, content gaps, and quick wins across target niches. Outputs to Google Sheets with weekly top-5 priorities.
 
-**Dependencies:**
+### `/paid-ads`
+Full paid advertising strategy framework — campaign structure, audience targeting, creative best practices, optimization playbook, retargeting strategies. Pulls context from HQ, Slack, Gmail, Drive, and ClickUp before making recommendations.
+
+### `/llm-prompt-research`
+Research and validate LLM prompts a brand should target for AI visibility. Uses Brandi AI / Wellows methodology with real conversational patterns, not keyword strings.
+
+### `/page-cro`
+Page conversion rate optimization — analyze landing pages, identify friction, recommend improvements with A/B test setup.
+
+### `/audience-audit`
+Audience analysis and segmentation for ad targeting and content strategy.
+
+### `/transcribe-podcast`
+Transcribe podcast audio with speaker diarization using faster-whisper (local, no API keys). Outputs to Google Drive.
+
+### `/write-content`
+Write SEO + AIO optimized content for jetfuel.agency.
+
+## Setup
+
+### Install to a new machine:
 ```bash
-pip install Pillow requests
+# From your jetfuel-crew project root:
+
+# Copy skills
+cp -r marketing-skills/skills/* .claude/ops/
+cp -r marketing-skills/skills/* .claude/skills/  # for team-managed skills
+
+# Copy commands
+cp marketing-skills/commands/* .claude/commands/
+
+# Copy scripts
+cp marketing-skills/scripts/* scripts/
+
+# Install dependencies
+pip install Pillow requests faster-whisper google-ads google-auth google-auth-oauthlib google-api-python-client playwright
+python3 -m playwright install chromium
 ```
 
-**Usage:**
-```
-/publish-blog https://docs.google.com/document/d/your-doc-id/edit
-```
-
-## Featured Image Generator
-
-Standalone script to generate blog featured images:
-
-```bash
-python3 scripts/generate_blog_image.py \
-  --title "Your Post Title" \
-  --subtitle "Optional subtitle" \
-  --output featured.png
+### Required config (in `.claude/me.json`):
+```json
+{
+  "wordpress": {
+    "app_password": "your-wp-app-password"
+  }
+}
 ```
 
-Customize by replacing `scripts/stock_bg.jpg` with your own background photo and `scripts/jf_logo_white2.png` with your logo.
+### Required auth:
+- Google OAuth tokens in `scripts/gads_tokens.json` (run `scripts/gsc_auth.py` to generate)
+- WordPress application password (generate in wp-admin → Users → Application Passwords)
+
+## Directory Structure
+
+```
+skills/
+  publish-blog/       — PROMPT.md, config.json
+  seo-opportunities/  — PROMPT.md, config.json
+  paid-ads/           — SKILL.md, references/
+  llm-prompt-research/ — SKILL.md
+  page-cro/           — SKILL.md, references/, evals/
+  audience-audit/     — audience_auditor.py, config.json
+  transcribe-podcast/ — PROMPT.md
+commands/             — Slash command entry points (.md files)
+scripts/              — Python scripts for API access, image gen, publishing
+```
 
 ## License
 

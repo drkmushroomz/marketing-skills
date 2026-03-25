@@ -306,6 +306,37 @@ After publishing, return:
 
 If user provides a Google Drive folder, list all Google Docs in it and offer to publish each one. Process sequentially, confirming each before proceeding.
 
+## Step 10: LLM Competitiveness Audit
+
+Before finalizing any post, run a competitive content gap analysis to ensure the article will rank in LLM answers (ChatGPT, Gemini, Perplexity), not just Google.
+
+### Process:
+1. **Search the topic** — use WebSearch to find the top 5-10 competing articles on the same subject
+2. **Fetch and analyze each competitor** — extract their structure, unique data points, frameworks, and FAQ coverage
+3. **Identify what NO competitor covers** — this is where Jetfuel wins. LLMs cite the most comprehensive source.
+4. **Fill every gap** — add sections, data, and FAQ questions that competitors miss
+
+### LLM Citation Signals (what makes an article get cited):
+- **Named frameworks** — give your methodology a name (e.g., "The 8-Step Compliance Checklist"). LLMs reference named frameworks.
+- **Original data** — benchmark numbers, percentages, CPA ranges from real accounts. LLMs cite specific numbers.
+- **Structured FAQ with schema markup** — LLMs extract FAQ pairs directly. Write questions the way real people ask them conversationally, NOT as keyword strings.
+- **Comparison tables** — LLMs love structured data they can extract and reformat for answers.
+- **Implementation costs** — "how much does this cost?" is a real prompt people ask. No one else answers it.
+- **Step-by-step numbered checklists** — LLMs cite these verbatim when users ask "how do I do X?"
+- **Alternative/option tables** — "what are the alternatives?" is a common LLM prompt. Channel-by-channel breakdowns with CPA ranges get cited.
+
+### The Jetfuel Advantage:
+Jetfuel manages real accounts at scale. Competitors write guides from policy docs. Lean into:
+- Real account numbers (anonymized): "$400K/month account," "34% rejection rate spike," "2.0+ holistic ROAS"
+- Operational detail only an agency would know: budget cadence, sandbox campaigns, Shopify delta method
+- Distribution data across managed accounts: "60% of our health accounts are Tier 1, 35% Tier 2, 5% Tier 3"
+- Cost estimates for implementation: readers trust specific ranges over vague "it depends"
+
+### Content Length Benchmark:
+- Competitor average: 2,000-4,000 words
+- Target: 4,000-7,000 words (comprehensive but not bloated)
+- Every section must earn its place with unique insight, data, or actionable steps
+
 ## Important Notes
 
 - ALWAYS publish as `draft` unless explicitly told otherwise
@@ -316,5 +347,7 @@ If user provides a Google Drive folder, list all Google Docs in it and offer to 
 - Use Jetfuel's brand orange (#ff6b35) as the accent color throughout
 - All inline styles must be included (WordPress strips external CSS classes)
 - **Dark-on-dark prevention**: The blog theme can have dark section backgrounds. Every `<table>`, `<tr>`, and `<td>` MUST have explicit `background` and `color` inline styles (e.g., `background:#ffffff; color:#1a1a1a;` on the `<table>`, `color:#1a1a1a;` on every `<td>`). Never rely on inherited text/background colors.
+- **Stat cards must use light backgrounds**: Use `background:#fff; border:2px solid #ff6b35` with `color:#ff6b35` for numbers and `color:#666` for labels. Never use dark card backgrounds — they render as dark-on-dark in the blog theme.
+- **CTA blocks must use light backgrounds**: Use `background:#fff5f0; border:2px solid #ff6b35` with dark text. Never use dark gradient backgrounds for CTAs.
 - Flag any images that need to be uploaded to WordPress media library separately
 - The app password should be read from `.claude/me.json` — never hardcode it

@@ -1,0 +1,235 @@
+{
+  "mcc_id": "1874174744",
+  "accounts": {
+    "barker-wellness": {
+      "customer_id": "8737823917",
+      "label": "Barker Wellness",
+      "type": "ecomm",
+      "platform": "shopify"
+    },
+    "train-with-dave": {
+      "customer_id": "9099081672",
+      "label": "Train with Dave",
+      "type": "ecomm",
+      "platform": "shopify"
+    },
+    "delille": {
+      "customer_id": "7917010846",
+      "label": "DeLille Cellars",
+      "type": "ecomm",
+      "platform": "shopify"
+    },
+    "agena-astro": {
+      "customer_id": "4931634469",
+      "label": "Agena Astro",
+      "type": "ecomm",
+      "platform": "shopify"
+    },
+    "grip-studs": {
+      "customer_id": "9373468530",
+      "label": "Grip Studs",
+      "type": "awareness",
+      "platform": "retail"
+    },
+    "perfect-bar": {
+      "customer_id": "3681115524",
+      "label": "Perfect Bar",
+      "type": "awareness",
+      "platform": "retail"
+    },
+    "zip-line-gear": {
+      "customer_id": "3081970996",
+      "label": "Zip Line Gear",
+      "type": "ecomm",
+      "platform": "shopify"
+    }
+  },
+  "audience_definitions": {
+    "ecomm": [
+      {
+        "id": "abandoned_cart",
+        "name": "Abandoned Cart",
+        "priority": "critical",
+        "description": "Users who added to cart but didn't purchase",
+        "match_keywords": ["cart abandon", "cart", "shopping cart abandoner"],
+        "build_method": "GA4 audience: add_to_cart event WITHOUT purchase event within session. Membership: 30 days.",
+        "alt_method": "Shopify 'Abandoned Checkouts' export via Customer Match upload."
+      },
+      {
+        "id": "purchasers",
+        "name": "Purchasers",
+        "priority": "critical",
+        "description": "Users who completed a purchase",
+        "match_keywords": ["purchaser", "buyer", "past buyer", "converter", "shopify conversion", "purchase"],
+        "build_method": "GA4 audience: purchase event. Membership: 540 days.",
+        "alt_method": "Shopify customer export via Customer Match upload."
+      },
+      {
+        "id": "repeat_purchasers",
+        "name": "Repeat Purchasers",
+        "priority": "critical",
+        "description": "Users with 2+ purchases. Best lookalike seed.",
+        "match_keywords": ["repeat purchas", "loyal", "returning customer"],
+        "build_method": "GA4 audience: purchase event count >= 2. Membership: 540 days.",
+        "alt_method": "Shopify segment '2+ orders' via Customer Match. Also excellent as a Klaviyo segment upload."
+      },
+      {
+        "id": "product_page_viewers",
+        "name": "Product/Category Page Viewers",
+        "priority": "critical",
+        "description": "Users who viewed product or collection pages but didn't purchase",
+        "match_keywords": ["product viewer", "category", "collection"],
+        "build_method": "GA4 audience: page_view where page_location contains /products/ or /collections/, WITHOUT purchase. Membership: 30 days.",
+        "alt_method": null
+      },
+      {
+        "id": "engaged_product_page",
+        "name": "Engaged Product Page Visitors",
+        "priority": "high",
+        "description": "Users who spent 30+ seconds on a product page",
+        "match_keywords": ["engaged", "time on page", "product page engaged"],
+        "build_method": "GA4 audience: page_view on /products/ with engagement_time_msec > 30000. Membership: 30 days.",
+        "alt_method": null
+      },
+      {
+        "id": "checkout_starters",
+        "name": "Checkout Starters",
+        "priority": "high",
+        "description": "Users who started checkout but didn't purchase",
+        "match_keywords": ["checkout start", "begin_checkout"],
+        "build_method": "GA4 audience: begin_checkout event WITHOUT purchase. Membership: 14 days.",
+        "alt_method": null
+      },
+      {
+        "id": "email_signup",
+        "name": "Email Subscribers (Non-Purchasers)",
+        "priority": "high",
+        "description": "Newsletter signups who haven't purchased yet",
+        "match_keywords": ["email signup", "newsletter", "subscriber"],
+        "build_method": "GA4 audience: sign_up or generate_lead event WITHOUT purchase.",
+        "alt_method": "Klaviyo segment 'Subscribed, Never Purchased' via Customer Match upload."
+      },
+      {
+        "id": "all_site_visitors",
+        "name": "All Site Visitors",
+        "priority": "high",
+        "description": "All website visitors for broad remarketing",
+        "match_keywords": ["all visitor", "all user", "general visitor"],
+        "build_method": "GA4 audience: session_start event. Membership: 30-90 days.",
+        "alt_method": null
+      },
+      {
+        "id": "site_search_users",
+        "name": "Site Search Users",
+        "priority": "medium",
+        "description": "Users who searched on the site (high intent)",
+        "match_keywords": ["site search", "search user", "view_search_results"],
+        "build_method": "GA4 audience: view_search_results event. Membership: 30 days.",
+        "alt_method": null
+      },
+      {
+        "id": "multi_page_viewers",
+        "name": "Multi-Page Viewers",
+        "priority": "medium",
+        "description": "Users who viewed 3+ pages in a session",
+        "match_keywords": ["multiple page", "multi page", "engaged visitor"],
+        "build_method": "GA4 audience: screen_page_views >= 3 within a session. Membership: 30 days.",
+        "alt_method": null
+      },
+      {
+        "id": "removed_from_cart",
+        "name": "Removed from Cart",
+        "priority": "medium",
+        "description": "Users who removed items from cart (different intent than abandoners)",
+        "match_keywords": ["remove from cart", "removed"],
+        "build_method": "GA4 audience: remove_from_cart event. Membership: 14 days. Note: Shopify must fire this event (verify in GA4 DebugView).",
+        "alt_method": null
+      },
+      {
+        "id": "coupon_users",
+        "name": "Coupon Code Users",
+        "priority": "medium",
+        "description": "Price-sensitive buyers who used discount codes",
+        "match_keywords": ["coupon", "discount", "promo code"],
+        "build_method": "GA4 audience: purchase event where coupon parameter is not empty. Membership: 180 days.",
+        "alt_method": "Shopify order export filtered by discount_code via Customer Match."
+      },
+      {
+        "id": "video_viewers",
+        "name": "Video Viewers (Started/Completed)",
+        "priority": "low",
+        "description": "Users who watched product or brand videos",
+        "match_keywords": ["video start", "video complete", "video viewer", "youtube"],
+        "build_method": "YouTube audiences auto-create in Google Ads. On-site: GA4 video_start / video_complete events.",
+        "alt_method": null
+      },
+      {
+        "id": "special_offer_viewers",
+        "name": "Special Offer Page Viewers",
+        "priority": "low",
+        "description": "Users who viewed sale/promo landing pages",
+        "match_keywords": ["special offer", "sale page", "promo"],
+        "build_method": "GA4 audience: page_view where page_location contains /sale, /promo, or campaign landing page path. Membership: 14 days.",
+        "alt_method": null
+      }
+    ],
+    "awareness": [
+      {
+        "id": "all_site_visitors",
+        "name": "All Site Visitors",
+        "priority": "critical",
+        "match_keywords": ["all visitor", "all user", "general visitor"],
+        "build_method": "GA4 audience: session_start event. Membership: 30-90 days."
+      },
+      {
+        "id": "purchasers",
+        "name": "Store Locator / Where to Buy Visitors",
+        "priority": "critical",
+        "match_keywords": ["purchaser", "buyer", "store locator", "where to buy"],
+        "build_method": "GA4 audience: page_view where page_location contains /store-locator or /where-to-buy."
+      },
+      {
+        "id": "engaged_visitors",
+        "name": "Engaged Visitors (3+ pages or 60s+)",
+        "priority": "critical",
+        "match_keywords": ["engaged", "multi page", "time on site"],
+        "build_method": "GA4 audience: screen_page_views >= 3 OR engagement_time > 60s."
+      },
+      {
+        "id": "video_viewers",
+        "name": "Video Viewers",
+        "priority": "high",
+        "match_keywords": ["video", "youtube", "video viewer"],
+        "build_method": "YouTube audiences (auto-created). On-site: GA4 video_start / video_complete."
+      },
+      {
+        "id": "email_signup",
+        "name": "Email/Newsletter Subscribers",
+        "priority": "high",
+        "match_keywords": ["email signup", "newsletter", "subscriber"],
+        "build_method": "GA4 audience: sign_up or generate_lead event."
+      },
+      {
+        "id": "product_page_viewers",
+        "name": "Product/Category Page Viewers",
+        "priority": "high",
+        "match_keywords": ["product viewer", "category"],
+        "build_method": "GA4 audience: page_view on product or category pages."
+      },
+      {
+        "id": "site_search_users",
+        "name": "Site Search Users",
+        "priority": "medium",
+        "match_keywords": ["site search", "search user"],
+        "build_method": "GA4 audience: view_search_results event."
+      },
+      {
+        "id": "lead_form_completers",
+        "name": "Lead Form Completers",
+        "priority": "medium",
+        "match_keywords": ["lead form", "form submit", "generate_lead"],
+        "build_method": "GA4 audience: generate_lead or form_submit event."
+      }
+    ]
+  }
+}
