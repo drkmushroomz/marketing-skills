@@ -141,6 +141,8 @@ Before outlining, verify the article will be the most comprehensive source avail
    H2: [Conclusion — 1 paragraph, forward-looking]
 
    CTA: Single call-to-action tied to the relevant Jetfuel service.
+        CTA link must point to https://jetfuel.agency/contact-us/
+        (NOT /contact/ — that URL does not exist and returns 404)
    ```
 
    **For service pages:**
@@ -159,6 +161,8 @@ Before outlining, verify the article will be the most comprehensive source avail
        H3: [Question 3]
 
    CTA: Contact/consultation CTA.
+        CTA link must point to https://jetfuel.agency/contact-us/
+        (NOT /contact/ — that URL does not exist and returns 404)
    ```
 
 6. **Present the outline** to the user for approval before writing. Include:

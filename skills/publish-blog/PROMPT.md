@@ -36,7 +36,7 @@ Every post follows this editorial template (inspired by Single Grain's long-form
    - Section takeaway or transition
 6. EXPERT TIP / CALLOUT BOXES — scattered throughout where relevant
 7. FAQ SECTION — 3-5 questions with schema markup
-8. CONCLUSION with CTA
+8. CONCLUSION with CTA (link to https://jetfuel.agency/contact-us/ — NOT /contact/)
 9. RELATED POSTS suggestion
 ```
 

@@ -4,7 +4,8 @@
     "api_base": "https://jetfuel.agency/wp-json/wp/v2",
     "username": "edwin",
     "default_author_id": 1,
-    "default_status": "draft"
+    "default_status": "draft",
+    "cta_url": "https://jetfuel.agency/contact-us/"
   },
   "google_email": "edwin@jetfuel.agency",
   "categories": {
