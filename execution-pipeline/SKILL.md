@@ -17,6 +17,20 @@ Adapted from Eric Siu's content_attack_brief.py scoring model, customized for Je
 - Google Search Console access via MCP or Python scripts
 - Optional: output from `/trend-scout` or `/seo-opportunities` as input
 
+## Scripts
+
+The `reference/` directory contains Python scripts that can be run standalone or imported:
+
+- **`content_fingerprint.py`** -- Scans WordPress blog, counts topic frequencies, derives keyword seeds
+  ```bash
+  python3 .claude/skills/execution-pipeline/reference/content_fingerprint.py
+  ```
+- **`competitor_gap.py`** -- Pulls your + competitor organic keywords from Ahrefs, finds gaps
+  ```bash
+  python3 .claude/skills/execution-pipeline/reference/competitor_gap.py
+  ```
+- **`content_attack_brief_ericsiu.py`** -- Eric Siu's reference implementation (full pipeline)
+
 ## Input
 
 Accepts keywords from any source:
