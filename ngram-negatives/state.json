@@ -1,0 +1,258 @@
+{
+  "last_run": "2026-03-23T09:15:09.787268",
+  "pending_approvals": {
+    "thread_ts": "1774282509.650759",
+    "candidates": {
+      "1": {
+        "ngram": "people",
+        "cost": 71.61,
+        "campaign_ids": [
+          23403993828,
+          23472336395,
+          23612214861
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - Conquesting, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "status": "pending"
+      },
+      "2": {
+        "ngram": "reviews",
+        "cost": 58.79,
+        "campaign_ids": [
+          23472336395,
+          23575383776,
+          23403993828,
+          23413316638
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "3": {
+        "ngram": "auri",
+        "cost": 47.12,
+        "campaign_ids": [
+          23403993828,
+          23472336395,
+          23612214861
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - Conquesting, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "status": "pending"
+      },
+      "4": {
+        "ngram": "therawolf",
+        "cost": 25.52,
+        "campaign_ids": [
+          23472336395,
+          23403993828
+        ],
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "status": "pending"
+      },
+      "5": {
+        "ngram": "best",
+        "cost": 23.69,
+        "campaign_ids": [
+          23472336395,
+          23575383776,
+          23403993828,
+          23413316638
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "6": {
+        "ngram": "hustle",
+        "cost": 22.31,
+        "campaign_ids": [
+          23575383776,
+          23413316638
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "7": {
+        "ngram": "nearby",
+        "cost": 22.31,
+        "campaign_ids": [
+          23472336395,
+          23403993828,
+          23413316638
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "status": "pending"
+      },
+      "8": {
+        "ngram": "cbn",
+        "cost": 18.28,
+        "campaign_ids": [
+          23472336395,
+          23575383776,
+          23403993828
+        ],
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "9": {
+        "ngram": "brand",
+        "cost": 14.77,
+        "campaign_ids": [
+          23403993828,
+          23472336395,
+          23413316638,
+          23575383776,
+          23612214861
+        ],
+        "campaigns": "[JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - Conquesting, [JF] - [ROI] - [S] - Branded Keywords, [JF] - [ROI] - [S] - DSA, [JF] - [AW] - [S] - [PR] - Non Branded Keywords",
+        "status": "pending"
+      },
+      "10": {
+        "ngram": "k2",
+        "cost": 14.28,
+        "campaign_ids": [
+          23575383776,
+          23403993828
+        ],
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "11": {
+        "ngram": "energy",
+        "cost": 12.88,
+        "campaign_ids": [
+          23472336395,
+          23575383776,
+          23403993828
+        ],
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "12": {
+        "ngram": "nutrition",
+        "cost": 11.8,
+        "campaign_ids": [
+          23403993828,
+          23472336395,
+          23575383776,
+          23612214861
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - Conquesting, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "13": {
+        "ngram": "elo",
+        "cost": 11.53,
+        "campaign_ids": [
+          23403993828
+        ],
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords",
+        "status": "pending"
+      },
+      "14": {
+        "ngram": "arnica",
+        "cost": 10.75,
+        "campaign_ids": [
+          23472336395,
+          23575383776,
+          23403993828
+        ],
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "15": {
+        "ngram": "getsnoozy",
+        "cost": 10.62,
+        "campaign_ids": [
+          23403993828
+        ],
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords",
+        "status": "pending"
+      },
+      "16": {
+        "ngram": "oil",
+        "cost": 10.32,
+        "campaign_ids": [
+          23472336395,
+          23575383776,
+          23403993828,
+          23413316638
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "17": {
+        "ngram": "pure",
+        "cost": 10.29,
+        "campaign_ids": [
+          23472336395,
+          23575383776,
+          23403993828
+        ],
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "18": {
+        "ngram": "shilajit",
+        "cost": 10.2,
+        "campaign_ids": [
+          23472336395,
+          23403993828
+        ],
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "status": "pending"
+      },
+      "19": {
+        "ngram": "para",
+        "cost": 10.16,
+        "campaign_ids": [
+          23472336395,
+          23575383776,
+          23403993828,
+          23413316638
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      },
+      "20": {
+        "ngram": "cruise",
+        "cost": 9.54,
+        "campaign_ids": [
+          23575383776
+        ],
+        "campaigns": "[JF] - [ROI] - [S] - DSA",
+        "status": "pending"
+      }
+    },
+    "posted_at": "2026-03-23T09:15:09.787290"
+  },
+  "applied": [
+    "near",
+    "support",
+    "hour",
+    "mad",
+    "nutritionist",
+    "oc",
+    "alloy",
+    "women",
+    "people",
+    "reviews",
+    "auri",
+    "therawolf",
+    "best",
+    "hustle",
+    "nearby",
+    "cbn"
+  ],
+  "dismissed": [
+    "butter",
+    "sleep",
+    "kourtney",
+    "plant",
+    "body",
+    "balm",
+    "supplements",
+    "tattoo",
+    "muscle",
+    "cream",
+    "mushrooms",
+    "vitamin"
+  ]
+}

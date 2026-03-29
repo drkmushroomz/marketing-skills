@@ -1,0 +1,40 @@
+{
+  "wordpress": {
+    "site_url": "https://jetfuel.agency",
+    "api_base": "https://jetfuel.agency/wp-json/wp/v2",
+    "username": "edwin",
+    "default_author_id": 1,
+    "default_status": "draft",
+    "cta_url": "https://jetfuel.agency/contact-us/"
+  },
+  "google_email": "edwin@jetfuel.agency",
+  "categories": {
+    "Advanced SEO Techniques": 14,
+    "Bing Ads": 159,
+    "Brand development": 24,
+    "Business advice": 17,
+    "Content Marketing": 154,
+    "CPG": 161,
+    "CRO": 156,
+    "Digital Marketing": 68,
+    "Email Marketing": 162,
+    "Facebook": 63,
+    "Facebook Marketing": 64,
+    "Food & Beverage Industry": 155,
+    "Gmail Advertising": 53,
+    "Google Ads": 160,
+    "Meta Retargeting": 158,
+    "Online marketing": 34,
+    "Paid Social": 67,
+    "Pay Per Click": 46,
+    "Remarketing": 65,
+    "Retention Marketing": 66,
+    "SEO": 20,
+    "Testimonial": 126,
+    "UGC": 157,
+    "Uncategorized": 1,
+    "Website Tips": 107,
+    "YouTube Marketing": 73
+  },
+  "_readme": "App password stored separately. Never commit credentials."
+}
