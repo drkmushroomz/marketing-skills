@@ -3,3 +3,6 @@ __pycache__/
 .env
 *.log
 me.json
+gads_tokens.json
+*_tokens.json
+post_part*.txt
