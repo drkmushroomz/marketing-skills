@@ -1,593 +1,736 @@
-<p style="color:#333333; line-height:1.8;">Google Ads is still the single most reliable paid channel for ecommerce brands that want to capture in-market buyers at scale. Across the 18,000+ brands tracked by Triple Whale, the average ecommerce ROAS from Google Ads sits at 3.68:1 — but brands running the right structure consistently outperform that benchmark by 40 to 60 percent. The difference is not budget. It is architecture.</p>
+<p style="color:#333333;font-size:1.1em;line-height:1.8;">Google Ads is still the highest-intent traffic channel available to ecommerce brands. When someone searches "buy trail running shoes size 10," they're not browsing, they're ready to buy. Your job is to show up with the right product, at the right bid, in the right campaign structure.</p>
 
-<p style="color:#333333; line-height:1.8;">This guide covers how we build and scale Google Ads accounts at Jetfuel for food, beverage, and ecommerce brands. We will cover the frameworks, bidding decisions, feed strategy, and attribution setup that separate accounts that compound over time from those that plateau.</p>
-
+<!-- KEY TAKEAWAYS BOX -->
 <div style="background:linear-gradient(135deg,#fff5f0 0%,#fff 100%);border:2px solid #ff6b35;border-radius:12px;padding:28px 32px;margin:32px 0;">
   <p style="font-weight:800;font-size:1.15em;color:#ff6b35;margin:0 0 16px 0;">Key Takeaways</p>
-  <ul style="margin:0;padding-left:20px;line-height:1.9;color:#1a1a1a;">
-    <li style="color:#1a1a1a;margin-bottom:8px;"><strong>Google Shopping drives 85.3% of all Google Ads clicks</strong> for ecommerce. Getting your Shopping campaigns right is the highest-leverage move you can make.</li>
-    <li style="color:#1a1a1a;margin-bottom:8px;"><strong>The Three-Layer ROAS Stack</strong> (Foundation, Acceleration, Amplification) is the campaign architecture we use across every Jetfuel ecommerce account. Each layer serves a different job.</li>
-    <li style="color:#1a1a1a;margin-bottom:8px;"><strong>Product tiering matters more than budget.</strong> Running all products in one campaign tells the algorithm nothing. Splitting into Superstars, Workhorses, and Scouts unlocks the data you need to scale.</li>
-    <li style="color:#1a1a1a;margin-bottom:8px;"><strong>Performance Max averages 2.57:1 ROAS vs. Search at 5.17:1.</strong> PMax is not a replacement for Search. It is a different tool for a different job.</li>
-    <li style="color:#1a1a1a;margin-bottom:0;"><strong>Attribution on default settings is almost certainly wrong.</strong> The 7-day click / 1-day view window inflates Google's contribution and kills your ability to allocate budget across platforms accurately.</li>
+  <ul style="margin:0;padding-left:20px;line-height:1.8;color:#1a1a1a;">
+    <li style="margin-bottom:8px;color:#1a1a1a;">Google Shopping ads drive 85.3% of all ecommerce clicks on Google. If you're not optimizing your feed and Shopping campaigns, you're leaving most of your traffic on the table.</li>
+    <li style="margin-bottom:8px;color:#1a1a1a;">The average ecommerce ROAS from Google Ads is 3.68x across 18,000 brands. Standard Search campaigns outperform Performance Max (5.17x vs 2.57x ROAS), which means campaign type selection matters more than most brands realize.</li>
+    <li style="margin-bottom:8px;color:#1a1a1a;">Organize your campaigns using the Campaign Tiering Method: Superstars, Workhorses, and Scouts. Mixing all products into one campaign destroys your ability to allocate budget where it actually converts.</li>
+    <li style="margin-bottom:8px;color:#1a1a1a;">Attribution is broken by default. Google's standard 7-day click / 1-day view window undercounts conversions and misrepresents channel contribution. Switch to data-driven attribution and layer in incrementality testing.</li>
+    <li style="margin-bottom:8px;color:#1a1a1a;">Budget allocation should follow revenue stage. Brands under $500K should lean heavily into Shopping and Brand Search. Brands over $2M can afford to diversify into Non-brand Search and YouTube.</li>
   </ul>
 </div>
 
+<!-- TABLE OF CONTENTS -->
 <div style="background:#f8f9fa;border-left:4px solid #ff6b35;padding:24px 28px;margin:32px 0;border-radius:8px;">
   <p style="font-weight:700;font-size:1.1em;margin:0 0 12px 0;color:#1a1a1a;">In This Article</p>
   <ul style="list-style:none;padding:0;margin:0;">
-    <li style="margin:7px 0;"><a href="#why-google-ads" style="color:#ff6b35;text-decoration:none;font-weight:500;">Why Google Ads Still Wins for Ecommerce in 2026</a></li>
-    <li style="margin:7px 0;"><a href="#three-layer-stack" style="color:#ff6b35;text-decoration:none;font-weight:500;">The Three-Layer ROAS Stack</a></li>
-    <li style="margin:7px 0;"><a href="#campaign-tiering" style="color:#ff6b35;text-decoration:none;font-weight:500;">Campaign Tiering: How to Organize Your Product Catalog</a></li>
-    <li style="margin:7px 0;"><a href="#pmax-vs-shopping" style="color:#ff6b35;text-decoration:none;font-weight:500;">Performance Max vs. Standard Shopping in 2026</a></li>
-    <li style="margin:7px 0;"><a href="#bidding-strategy" style="color:#ff6b35;text-decoration:none;font-weight:500;">Bidding Strategy Decision Matrix</a></li>
-    <li style="margin:7px 0;"><a href="#feed-optimization" style="color:#ff6b35;text-decoration:none;font-weight:500;">Product Feed Optimization: The Revenue Lever No One Talks About</a></li>
-    <li style="margin:7px 0;"><a href="#attribution" style="color:#ff6b35;text-decoration:none;font-weight:500;">Attribution: Measuring What Actually Drives Revenue</a></li>
-    <li style="margin:7px 0;"><a href="#budget-allocation" style="color:#ff6b35;text-decoration:none;font-weight:500;">Budget Allocation by Revenue Stage</a></li>
-    <li style="margin:7px 0;"><a href="#optimization-loop" style="color:#ff6b35;text-decoration:none;font-weight:500;">The 72-Hour Optimization Loop</a></li>
-    <li style="margin:7px 0;"><a href="#google-meta" style="color:#ff6b35;text-decoration:none;font-weight:500;">Google Ads + Meta Ads: Complementary, Not Competing</a></li>
-    <li style="margin:7px 0;"><a href="#faq" style="color:#ff6b35;text-decoration:none;font-weight:500;">Frequently Asked Questions</a></li>
+    <li style="margin:6px 0;"><a href="#why-google-ads" style="color:#ff6b35;text-decoration:none;font-weight:500;">Why Google Ads Still Wins for Ecommerce in 2026</a></li>
+    <li style="margin:6px 0;"><a href="#three-layer-stack" style="color:#ff6b35;text-decoration:none;font-weight:500;">The Three-Layer ROAS Stack</a></li>
+    <li style="margin:6px 0;"><a href="#campaign-tiering" style="color:#ff6b35;text-decoration:none;font-weight:500;">Campaign Tiering: How to Organize Your Product Catalog</a></li>
+    <li style="margin:6px 0;"><a href="#pmax-vs-shopping" style="color:#ff6b35;text-decoration:none;font-weight:500;">Performance Max vs. Standard Shopping in 2026</a></li>
+    <li style="margin:6px 0;"><a href="#bidding-strategy" style="color:#ff6b35;text-decoration:none;font-weight:500;">Bidding Strategy Decision Matrix</a></li>
+    <li style="margin:6px 0;"><a href="#feed-optimization" style="color:#ff6b35;text-decoration:none;font-weight:500;">Product Feed Optimization: The Revenue Lever No One Talks About</a></li>
+    <li style="margin:6px 0;"><a href="#attribution" style="color:#ff6b35;text-decoration:none;font-weight:500;">Attribution: Measuring What Actually Drives Revenue</a></li>
+    <li style="margin:6px 0;"><a href="#budget-allocation" style="color:#ff6b35;text-decoration:none;font-weight:500;">Budget Allocation by Revenue Stage</a></li>
+    <li style="margin:6px 0;"><a href="#optimization-loop" style="color:#ff6b35;text-decoration:none;font-weight:500;">The 72-Hour Optimization Loop</a></li>
+    <li style="margin:6px 0;"><a href="#google-meta" style="color:#ff6b35;text-decoration:none;font-weight:500;">Google Ads + Meta Ads: Complementary, Not Competing</a></li>
+    <li style="margin:6px 0;"><a href="#faq" style="color:#ff6b35;text-decoration:none;font-weight:500;">Frequently Asked Questions</a></li>
   </ul>
 </div>
 
-<h2 id="why-google-ads" style="color:#1a1a1a;margin-top:48px;">Why Google Ads Still Wins for Ecommerce in 2026</h2>
+<!-- SECTION 1: WHY GOOGLE ADS -->
+<h2 id="why-google-ads" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">Why Google Ads Still Wins for Ecommerce in 2026</h2>
 
-<p style="color:#333333;line-height:1.8;">Brands that write off Google Ads in favor of Meta or TikTok are making the same mistake in reverse. Google captures intent. Meta manufactures it. Both are necessary, but they serve different moments in the customer journey. When someone searches "organic protein powder for runners," they are ready to buy. Google puts you in front of that buyer. No other platform does that at scale.</p>
+<p style="color:#333333;line-height:1.8;">There's a recurring debate in DTC circles about whether Google is losing ground to TikTok and Meta. It's the wrong debate. Google captures demand that already exists. Meta and TikTok create it. Both matter, but they're doing different jobs.</p>
 
-<p style="color:#333333;line-height:1.8;">According to <a href="https://www.storegrowers.com/google-ads-ecommerce/" style="color:#ff6b35;">Store Growers</a>, Google Ads accounts for roughly 18% of total ecommerce revenue across brands running paid channels. That number holds even as social commerce grows. The reason: search intent is still the highest-converting traffic source in ecommerce, and Google owns 90%+ of that market.</p>
+<p style="color:#333333;line-height:1.8;">The data tells the real story. Google Shopping ads account for 85.3% of all Google Ads clicks for ecommerce brands, according to eCorn Agency research. And across 18,000 brands tracked by Triple Whale, the average ecommerce ROAS from Google sits at 3.68x. That's not a dying channel. That's infrastructure.</p>
 
-<div style="display:flex;gap:16px;flex-wrap:wrap;margin:32px 0;">
-  <div style="flex:1;min-width:160px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
+<p style="color:#333333;line-height:1.8;">Store Growers data shows that 18% of ecommerce revenue is attributed to Google Ads across the industry. For most brands we work with at Jetfuel, it's the largest single-channel revenue driver. The question isn't whether to run Google Ads. It's how to structure them so they scale without bleeding margin.</p>
+
+<!-- STAT CARDS -->
+<div style="display:flex;gap:16px;flex-wrap:wrap;margin:28px 0;">
+  <div style="flex:1;min-width:180px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
     <div style="font-size:2.4em;font-weight:800;color:#ff6b35;line-height:1;">3.68x</div>
-    <div style="font-size:0.85em;margin-top:8px;color:#444444;font-weight:600;">Avg Ecommerce ROAS</div>
-    <div style="font-size:0.75em;margin-top:4px;color:#444444;">Triple Whale 2025</div>
+    <div style="font-size:0.9em;margin-top:8px;color:#444444;font-weight:500;">Avg Ecommerce ROAS</div>
+    <div style="font-size:0.78em;margin-top:4px;color:#444444;">Triple Whale, 2025</div>
   </div>
-  <div style="flex:1;min-width:160px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
+  <div style="flex:1;min-width:180px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
     <div style="font-size:2.4em;font-weight:800;color:#ff6b35;line-height:1;">85.3%</div>
-    <div style="font-size:0.85em;margin-top:8px;color:#444444;font-weight:600;">Shopping Ad Click Share</div>
-    <div style="font-size:0.75em;margin-top:4px;color:#444444;">eCorn Agency Research</div>
+    <div style="font-size:0.9em;margin-top:8px;color:#444444;font-weight:500;">of Ecom Clicks from Shopping</div>
+    <div style="font-size:0.78em;margin-top:4px;color:#444444;">eCorn Agency Research</div>
   </div>
-  <div style="flex:1;min-width:160px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
+  <div style="flex:1;min-width:180px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
     <div style="font-size:2.4em;font-weight:800;color:#ff6b35;line-height:1;">18%</div>
-    <div style="font-size:0.85em;margin-top:8px;color:#444444;font-weight:600;">Of Ecommerce Revenue</div>
-    <div style="font-size:0.75em;margin-top:4px;color:#444444;">Store Growers 2026</div>
+    <div style="font-size:0.9em;margin-top:8px;color:#444444;font-weight:500;">of Ecom Revenue from Google</div>
+    <div style="font-size:0.78em;margin-top:4px;color:#444444;">Store Growers</div>
   </div>
-  <div style="flex:1;min-width:160px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
+  <div style="flex:1;min-width:180px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
     <div style="font-size:2.4em;font-weight:800;color:#ff6b35;line-height:1;">63%</div>
-    <div style="font-size:0.85em;margin-top:8px;color:#444444;font-weight:600;">Of Clicks From Mobile</div>
-    <div style="font-size:0.75em;margin-top:4px;color:#444444;">Google Internal Data</div>
+    <div style="font-size:0.9em;margin-top:8px;color:#444444;font-weight:500;">of Google Ad Clicks Are Mobile</div>
+    <div style="font-size:0.78em;margin-top:4px;color:#444444;">Google Internal Data</div>
   </div>
 </div>
 
-<p style="color:#333333;line-height:1.8;">The caveat: Google Ads performance varies wildly by account structure. We regularly inherit accounts where the previous setup had one Shopping campaign running all 300 SKUs on a single daily budget. The algorithm has no signal on which products to prioritize, so it spreads spend evenly across margin-crushers and bestsellers alike. That is not a budget problem. It is an architecture problem.</p>
+<p style="color:#333333;line-height:1.8;">The mobile number deserves more attention. With 63% of Google ad clicks coming from mobile devices, your product pages, checkout flow, and site speed on mobile aren't just UX concerns. They're conversion levers that directly affect your Google Ads ROAS. A great ad sending traffic to a slow mobile PDP is money burning.</p>
 
-<p style="color:#333333;line-height:1.8;">The average Google Shopping CPC sits at $0.66 (industry average). But CPC is the wrong metric to optimize. At $0.66 per click with a 3% conversion rate and a $65 average order value, your ROAS is 2.96x before a single optimization. The question is how high you can push conversion rate and average order value through better structure, better creatives, and better targeting. That is the game.</p>
+<p style="color:#333333;line-height:1.8;">One more number to keep in mind: median CPA increased 12.35% year-over-year to $23.74 in 2025 (Triple Whale). That's the cost pressure environment every ecommerce brand is operating in. The brands winning on Google aren't spending less. They're structuring better.</p>
 
-<h2 id="three-layer-stack" style="color:#1a1a1a;margin-top:56px;">The Three-Layer ROAS Stack</h2>
 
-<p style="color:#333333;line-height:1.8;">Most brands treat Google Ads like a single channel. It is not. It is three overlapping channels that need to work together: demand capture (Shopping and Performance Max), brand defense (Brand Search), and demand expansion (Non-Brand Search). We call this the Three-Layer ROAS Stack.</p>
+<!-- SECTION 2: THREE-LAYER ROAS STACK -->
+<h2 id="three-layer-stack" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">The Three-Layer ROAS Stack</h2>
 
-<p style="color:#333333;line-height:1.8;">Each layer serves a different purpose. Pulling budget from one to fund another is like robbing Peter to pay Paul. The brands that win on Google maintain all three layers and optimize each independently.</p>
+<p style="color:#333333;line-height:1.8;">Most ecommerce brands run Google Ads like a single campaign with one job: generate revenue. That's the wrong mental model. Your Google Ads account should function like a three-floor operation, where each layer has a specific role and a different performance expectation.</p>
 
+<p style="color:#333333;line-height:1.8;">We call this the Three-Layer ROAS Stack. It's the framework we use at Jetfuel when we take over or build out any ecommerce Google Ads account. Here's how each layer works.</p>
+
+<p style="color:#333333;line-height:1.8;"><strong style="color:#1a1a1a;">Layer 1: Foundation.</strong> Shopping and Performance Max campaigns. Their job is demand capture: show your products to people actively searching for what you sell. This is your highest-volume, most efficient layer. Expect the most conversions here, but don't expect the highest ROAS per campaign because this layer does the heavy lifting on new customer acquisition.</p>
+
+<p style="color:#333333;line-height:1.8;"><strong style="color:#1a1a1a;">Layer 2: Acceleration.</strong> Brand Search campaigns. Their job is to protect the demand you've already created. When someone who saw your Shopping ad searches your brand name, a brand campaign catches them. Without it, competitors bid on your brand terms and steal your warmest traffic. This layer runs at the highest ROAS but only works if your Foundation layer is feeding the funnel.</p>
+
+<p style="color:#333333;line-height:1.8;"><strong style="color:#1a1a1a;">Layer 3: Amplification.</strong> Non-brand Search campaigns targeting category and competitor keywords. Their job is to expand your addressable market. These campaigns typically run at lower ROAS targets because they're reaching people who don't know your brand yet, but they're the engine for long-term scale.</p>
+
+<!-- THREE LAYER TABLE -->
 <div style="overflow-x:auto;margin:28px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
       <tr style="background:#1a1a1a;">
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Layer</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Campaign Types</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Primary Goal</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Budget %</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Target ROAS</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Layer</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Campaign Type</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Primary Job</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Budget Allocation</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Typical ROAS Target</th>
       </tr>
     </thead>
     <tbody>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Foundation</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Shopping, Performance Max</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Capture in-market demand</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">55-65%</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">2.5x - 4x</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Foundation</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Shopping / PMax</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Demand capture</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">50-60%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">3x-5x</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Acceleration</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Brand Search, Brand Shopping</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Protect brand equity, own SERP</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">10-15%</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">6x - 12x</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">Acceleration</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Brand Search</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Protect warm demand</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">15-20%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">8x-15x+</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Amplification</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Non-Brand Search, DSA</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Expand reach, capture new buyers</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">20-30%</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">3x - 5x</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Amplification</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Non-brand Search</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Expand market reach</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">20-30%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">2x-4x</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="color:#333333;line-height:1.8;">Brand Search consistently runs 6x to 12x ROAS because these are customers already familiar with your brand. They are the cheapest conversions in the account. Many brands under-invest here because the ROAS looks "easy" and they want to put more into prospecting. That is backwards. Protect your brand first, then expand.</p>
+<p style="color:#333333;line-height:1.8;">The most common mistake we see: brands skip Layer 2 entirely and wonder why their blended ROAS tanks when they scale spending. They're capturing new demand at the Foundation layer but losing the high-value searchers who already know their brand to competitors. Always protect your brand terms.</p>
 
 <div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
   <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Pro Tip</p>
-  <p style="margin:0;line-height:1.7;color:#1a1a1a;">Always run Brand Search as a separate campaign, never mixed with Non-Brand. When they share a campaign, the algorithm naturally allocates budget to Brand terms (higher CTR, higher Quality Score, lower CPC) and starves your prospecting. Split them from day one.</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">Don't set the same ROAS target across all three layers. Your Brand Search campaigns will always look more efficient because they capture high-intent, warm traffic. If you apply the same target across the account, your algorithm will route budget away from the Foundation layer, which is actually generating the brand awareness that makes your Acceleration layer work. Set targets by layer, not by account.</p>
 </div>
 
-<h2 id="campaign-tiering" style="color:#1a1a1a;margin-top:56px;">Campaign Tiering: How to Organize Your Product Catalog</h2>
+<!-- SECTION 3: CAMPAIGN TIERING -->
+<h2 id="campaign-tiering" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">Campaign Tiering: How to Organize Your Product Catalog</h2>
 
-<p style="color:#333333;line-height:1.8;">Most brands put all their products in one Shopping campaign. Then they wonder why their ROAS is mediocre. The algorithm cannot figure out which products are winners when they are all competing for the same daily budget. You have to tell it.</p>
+<p style="color:#333333;line-height:1.8;">Putting all your products in one Shopping campaign is the single most common structural mistake in ecommerce Google Ads. When everything competes for the same budget, the algorithm defaults to your cheapest, easiest-to-convert products. Your high-margin, high-value products get starved.</p>
 
-<p style="color:#333333;line-height:1.8;">We use what we call the Campaign Tiering Method: three product buckets based on revenue contribution and data maturity. Each tier gets its own campaign, its own budget, and its own ROAS target.</p>
+<p style="color:#333333;line-height:1.8;">The Campaign Tiering Method solves this by splitting your catalog into three distinct tiers, each with its own campaign, budget, and performance target.</p>
 
+<p style="color:#333333;line-height:1.8;"><strong style="color:#1a1a1a;">Superstars:</strong> Your top 20% of SKUs by revenue contribution. These get aggressive ROAS targets and uncapped budget (within reason). They've already proven they convert. Your job is to maximize their reach without letting ROAS slip below your threshold.</p>
+
+<p style="color:#333333;line-height:1.8;"><strong style="color:#1a1a1a;">Workhorses:</strong> The steady middle of your catalog. These products convert reliably but aren't your top revenue drivers. They get efficiency-focused targets and moderate budgets. The goal is consistency, not aggressive scale.</p>
+
+<p style="color:#333333;line-height:1.8;"><strong style="color:#1a1a1a;">Scouts:</strong> New, seasonal, or untested products. They get small, separate campaigns with the explicit goal of generating data. You're not trying to profit here yet. You're buying information about what could become a Superstar.</p>
+
+<!-- CAMPAIGN TIERING TABLE -->
 <div style="overflow-x:auto;margin:28px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
       <tr style="background:#1a1a1a;">
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Tier</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Products Included</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Budget Priority</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Bidding Strategy</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Optimization Focus</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Tier</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Criteria</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Budget Approach</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">ROAS Target</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Review Frequency</th>
       </tr>
     </thead>
     <tbody>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Superstars</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Top 20% revenue drivers, proven converters</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Highest (50-60% of Shopping budget)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Target ROAS (aggressive)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Maximize impression share, defend position</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Superstars</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Top 20% by revenue, proven conversion rate</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Uncapped, scale aggressively</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">High (above account avg)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Every 72 hours</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Workhorses</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Mid-tier performers, consistent ROAS</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Medium (30-40% of Shopping budget)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Target ROAS (efficiency focus)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Improve feed quality, test price adjustments</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">Workhorses</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Consistent converters, mid-range revenue</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Moderate, efficiency focus</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">At or near account avg</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Weekly</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Scouts</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">New SKUs, untested, or low-data products</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Low (10-15% of Shopping budget)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Maximize Clicks or manual CPC</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Generate conversion data before promoting</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Scouts</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">New launches, seasonal, untested SKUs</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Small, data-gathering budget</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Lower target, volume focus</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Bi-weekly until data accrues</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <div style="background:#e8f5e9;border-left:4px solid #2e7d32;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
-  <p style="font-weight:700;color:#2e7d32;margin:0 0 8px 0;">From Our Accounts</p>
-  <p style="margin:0;line-height:1.7;color:#1a1a1a;">We inherited a DTC food brand account where every product was in one Shopping campaign with a single $50/day budget. The algorithm had no idea which products were winners. After splitting into a three-tier Campaign Tiering structure, ROAS went from [NEEDS REAL DATA] to [NEEDS REAL DATA] in 60 days. The data was always there. The structure was not.</p>
+  <p style="font-weight:700;color:#2e7d32;margin:0 0 8px 0;">Case Study</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">We inherited a DTC food brand account where every product was in one Shopping campaign with a single $50/day budget. The algorithm had no idea which products were winners. After splitting into a three-tier Campaign Tiering structure, ROAS went from [NEEDS REAL DATA] to [NEEDS REAL DATA] in 60 days. The data was always there. The structure wasn't.</p>
 </div>
 
-<p style="color:#333333;line-height:1.8;">The Scout tier is often overlooked. New products need conversion data before the algorithm can optimize for them. Dropping a new SKU into your Superstar campaign and wondering why it underperforms is not a product problem. The algorithm simply does not have enough signal. Give Scouts their own campaign and their own budget for 30 days before making any promotion decisions.</p>
+<p style="color:#333333;line-height:1.8;">One practical note on implementation: use product labels in your Google Merchant Center feed to tag each tier. Labels like "superstar," "workhorse," and "scout" let you filter your Shopping campaigns by tier without having to manually list product IDs. When products graduate from Scout to Workhorse based on data, just update the label and move budget accordingly.</p>
 
-<h2 id="pmax-vs-shopping" style="color:#1a1a1a;margin-top:56px;">Performance Max vs. Standard Shopping in 2026</h2>
 
-<p style="color:#333333;line-height:1.8;">Performance Max (PMax) is Google's AI-first campaign type. It runs across all Google surfaces — Search, Shopping, YouTube, Display, Discover, Gmail — and optimizes toward your conversion goals automatically. Google has been pushing hard for PMax adoption. That does not mean it is always the right tool.</p>
+<!-- SECTION 4: PMAX VS STANDARD SHOPPING -->
+<h2 id="pmax-vs-shopping" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">Performance Max vs. Standard Shopping in 2026</h2>
 
-<p style="color:#333333;line-height:1.8;">According to <a href="https://www.triplewhale.com/blog/google-ads-benchmarks" style="color:#ff6b35;">Triple Whale's 2025 benchmark report</a> across 18,000 ecommerce brands, Search campaigns average 5.17:1 ROAS while Performance Max averages 2.57:1. PMax's lower ROAS is not a failure. It is doing a different job: broader reach, upper-funnel inventory, and new audience prospecting. The mistake is treating PMax as a replacement for Shopping.</p>
+<p style="color:#333333;line-height:1.8;">The Performance Max debate has been raging since Google forced the migration from Smart Shopping in 2022. By 2026, the camps are clearer than they were two years ago. PMax has matured. But it still isn't the right tool for every account or every growth stage.</p>
 
+<p style="color:#333333;line-height:1.8;">The Triple Whale 2025 benchmark data makes the performance gap concrete: Search campaigns drive 5.17x ROAS vs Performance Max at 2.57x. That's not an argument against PMax entirely. It's an argument for knowing what each campaign type is actually good at.</p>
+
+<p style="color:#333333;line-height:1.8;">Standard Shopping gives you control: you set bids, you see search term data (with limitations), and you can prioritize specific products. PMax gives you reach: it spans Search, Shopping, Display, YouTube, and Gmail with a single campaign. The tradeoff is control for coverage.</p>
+
+<!-- PMAX VS SHOPPING TABLE -->
 <div style="overflow-x:auto;margin:28px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
       <tr style="background:#1a1a1a;">
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Dimension</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Performance Max</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Standard Shopping</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Factor</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Standard Shopping</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Performance Max</th>
       </tr>
     </thead>
     <tbody>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Average ROAS</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">2.57:1 (Triple Whale 2025)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">5.17:1 (Triple Whale 2025)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Average ROAS</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">5.17x (Search) per Triple Whale</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">2.57x per Triple Whale</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Inventory Coverage</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">All Google surfaces (Search, YouTube, Display, Discover)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Shopping results only</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">Bid Control</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Full manual or tROAS control</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Algorithm-driven, limited levers</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Control Level</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Low (AI-driven, limited override)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">High (manual bidding, product groups, exclusions)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Search Term Visibility</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Search terms report available</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Limited, aggregated only</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Best For</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Brands with 50+ conversions/month, large product catalogs, mature accounts</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Tight ROAS control, Superstar products, brand with clear product hierarchy</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">Reach / Inventory</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Shopping placements only</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">All Google channels (Search, Display, YouTube, Gmail)</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Feed Requirement</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Product feed + creative assets required</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Product feed only</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Data Requirements</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Works with limited conversion data</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Needs 50+ conversions/month to optimize well</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Transparency</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Limited (search term reports restricted)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Full search term visibility</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">Creative Control</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Feed-based, no ad creative needed</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Requires headlines, descriptions, images, video</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Best For</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Brands with small catalogs, limited data, or tight ROAS floors</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Brands with large catalogs, strong conversion data, and full creative assets</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="color:#333333;line-height:1.8;">Our recommendation for most DTC ecommerce brands: run Standard Shopping for your Superstar and Workhorse tiers (where you want ROAS control), and use Performance Max for your Scout tier and new product launches (where broader reach and data generation matter more than short-term efficiency). Run them simultaneously with proper exclusions to prevent cannibalization.</p>
+<p style="color:#333333;line-height:1.8;">Our recommendation at Jetfuel: start with Standard Shopping. Build your data foundation. Once you're generating 50+ conversions per month reliably and you have creative assets ready, test PMax in a separate campaign running alongside your Shopping campaigns. Don't replace, test.</p>
+
+<p style="color:#333333;line-height:1.8;">One PMax feature worth using immediately: asset group segmentation by product category. Don't lump all products into one asset group. Create separate asset groups for each major category with relevant headlines, descriptions, and imagery. The algorithm rewards relevance, even inside PMax.</p>
 
 <div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
-  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Pro Tip: PMax vs. Shopping Exclusions</p>
-  <p style="margin:0;line-height:1.7;color:#1a1a1a;">If you run both PMax and Standard Shopping simultaneously without exclusions, PMax will cannibalize your Shopping traffic. Add your Superstar and Workhorse products as exclusions from PMax via product-level listing group exclusions. Let PMax handle only the SKUs you have assigned to it.</p>
+  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Pro Tip</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">If you run both Standard Shopping and PMax simultaneously, add your best-performing product IDs as a listing group in your Standard Shopping campaign with a higher priority setting. This prevents PMax from cannibalizing your Superstar products and lets you control bidding on your highest-value SKUs independently. Use PMax for catalog discovery, Standard Shopping for Superstar control.</p>
 </div>
 
-<h2 id="bidding-strategy" style="color:#1a1a1a;margin-top:56px;">Bidding Strategy Decision Matrix</h2>
+<!-- SECTION 5: BIDDING STRATEGY -->
+<h2 id="bidding-strategy" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">Bidding Strategy Decision Matrix</h2>
 
-<p style="color:#333333;line-height:1.8;">Bidding is where most brands make their biggest mistakes. They switch to Target ROAS too early (not enough conversion data), set the ROAS target too high (budget is throttled), or use the wrong strategy for their account stage entirely. The right bidding strategy depends on where your account is, not where you want it to be.</p>
+<p style="color:#333333;line-height:1.8;">Bidding is where most ecommerce brands make their second-biggest mistake (after campaign structure). They either default to Smart Bidding on day one with no conversion history, or they stay on manual CPC long after their data warrants an upgrade.</p>
 
+<p style="color:#333333;line-height:1.8;">The right bidding strategy depends on where you are in your account's lifecycle. Google's smart bidding is powerful, but it needs data to work. Feed it signals before you ask it to optimize.</p>
+
+<!-- BIDDING STRATEGY TABLE -->
 <div style="overflow-x:auto;margin:28px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
       <tr style="background:#1a1a1a;">
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Account Stage</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Monthly Conversions</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Recommended Strategy</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Rationale</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Revenue Stage</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Monthly Conversions</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Recommended Strategy</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Rationale</th>
       </tr>
     </thead>
     <tbody>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">New / Learning</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Under 30</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Maximize Clicks or Manual CPC</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Not enough data for smart bidding. Focus on traffic volume and data collection first.</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Launching (&lt;$200K ARR)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">0-15/month</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Manual CPC or Maximize Clicks</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Smart bidding needs 50+ conversions to function. Maximize Clicks builds impression share and conversion data.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Growing</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">30 - 80</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Maximize Conversions (no target)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Let the algorithm find conversion patterns before constraining it with a ROAS target.</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">Growing ($200K-$1M ARR)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">15-50/month</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Maximize Conversions (no target)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Lets algorithm learn conversion patterns without constraining spend. Add tROAS once you hit 50+ monthly conversions.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Established</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">80 - 200</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Target ROAS (start at -20% of actual)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Enough data to constrain. Set target 20% below actual ROAS to avoid over-restricting spend.</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Scaling ($1M-$5M ARR)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">50-200/month</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Target ROAS (tROAS)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Sufficient data for the algorithm to optimize toward a revenue efficiency target. Set tROAS 10-15% below your actual goal initially.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Scaling</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">200+</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Portfolio Target ROAS + Seasonality Adjustments</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Portfolio bidding optimizes across campaigns simultaneously. Add seasonality adjustments for Q4, sale events, and promotional periods.</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">Mature ($5M+ ARR)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">200+/month</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Target ROAS with portfolio bid strategies</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Portfolio strategies let you manage ROAS across multiple campaigns as a group, allowing high-performing campaigns to subsidize data-building campaigns.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="color:#333333;line-height:1.8;">One mistake we see constantly: setting a Target ROAS that is too high too early. If your account is delivering 4x ROAS and you set a 6x target, you are telling the algorithm to only bid on the highest-probability conversions. Budget gets throttled by 40 to 60 percent. ROAS goes up, revenue goes down. That is not optimization. That is a self-imposed ceiling.</p>
-
-<p style="color:#333333;line-height:1.8;">The practical rule: set your Target ROAS at 80% of your current actual ROAS when first switching to smart bidding. Give it two to three weeks to stabilize. Then increase by 10% increments if results hold.</p>
+<p style="color:#333333;line-height:1.8;">A common mistake: setting a tROAS target that's too aggressive from the start. If your account average is 4x ROAS but you set a 8x tROAS target, the algorithm will stop spending because it can't find enough inventory that meets that threshold. Start conservatively, let the algorithm stabilize, then tighten the target gradually (no more than 10-15% at a time).</p>
 
 <div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
-  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Seasonality Adjustments</p>
-  <p style="margin:0;line-height:1.7;color:#1a1a1a;">For Q4 (Black Friday through December 25), use Google's Seasonality Adjustment tool to tell the algorithm to expect a temporary conversion rate spike. Without this, smart bidding interprets the initial BFCM traffic surge as noise and under-bids for the first 48 hours of your highest-revenue period. Apply a 20-40% uplift adjustment starting 48 hours before your sale.</p>
+  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Pro Tip</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">When switching bidding strategies, do it during a low-traffic period (mid-week, not around a sale event). The algorithm needs 1-2 weeks to re-learn after a bidding change. Switching right before a peak period guarantees degraded performance when you need it most. Plan bidding changes at least three weeks before any major promotional event.</p>
 </div>
 
-<h2 id="feed-optimization" style="color:#1a1a1a;margin-top:56px;">Product Feed Optimization: The Revenue Lever No One Talks About</h2>
 
-<p style="color:#333333;line-height:1.8;">Your product feed is your Shopping campaign's foundation. A bad feed limits your reach before you ever set a bid. Google's algorithm uses your product titles, descriptions, images, and attributes to determine when and where your ads appear. Most brands treat feed optimization as a one-time setup task. It is actually the highest-leverage ongoing optimization in a Shopping account.</p>
+<!-- SECTION 6: FEED OPTIMIZATION -->
+<h2 id="feed-optimization" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">Product Feed Optimization: The Revenue Lever No One Talks About</h2>
 
-<p style="color:#333333;line-height:1.8;">We have seen feed improvements drive 25 to 40 percent increases in impression share without changing a single bid or budget. The algorithm surfaces your products more often because it finally understands what they are and who they are for.</p>
+<p style="color:#333333;line-height:1.8;">Your product feed is the foundation of your Shopping campaigns. A bad feed means bad match quality, poor placements, and wasted spend. Most ecommerce brands treat feed optimization as a one-time setup task. It's actually an ongoing revenue lever that can move ROAS by 20-40% without changing a single bid.</p>
 
-<div style="margin:32px 0;">
+<p style="color:#333333;line-height:1.8;">The average Google Shopping CPC is $0.66. Feed optimization doesn't change your CPC. It changes which searches your ads appear for, which directly affects your conversion rate and your revenue per click. Better feed, better auctions you win, better results.</p>
+
+<p style="color:#333333;line-height:1.8;">Here's the step-by-step feed optimization process we run on every new account:</p>
+
+<!-- STEP VISUALIZATION -->
+<div style="margin:28px 0;">
   <div style="display:flex;align-items:flex-start;margin:20px 0;">
-    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">1</div>
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">1</div>
     <div>
-      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Optimize Product Titles for Search Intent</p>
-      <p style="margin:0;color:#333333;line-height:1.7;">Your title is your keyword. Put the most important search terms at the front. For a hot sauce brand: "Habanero Hot Sauce - Small Batch, Vegan, 5oz" outperforms "Fiery Joe's Original Blend" every time. Include: product type, key attribute, size/quantity, and brand name (in that order for non-brand campaigns).</p>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Audit Your Title Structure</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Product titles are the most important feed field for Shopping relevance. The formula that works: Brand + Product Type + Key Attribute (size, color, material) + Model/SKU. "Nike Air Zoom Pegasus 40 Men's Running Shoe Size 10 Blue" outperforms "Nike Running Shoe" in every auction where specificity matters.</p>
     </div>
   </div>
   <div style="display:flex;align-items:flex-start;margin:20px 0;">
-    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">2</div>
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">2</div>
     <div>
-      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Fill Every Optional Attribute</p>
-      <p style="margin:0;color:#333333;line-height:1.7;">Google's algorithm uses optional attributes for targeting even when they do not appear in your ad. Flavor, material, pattern, age group, gender, condition — fill all of them. For food brands: add custom labels for dietary attributes (keto, vegan, gluten-free), flavor profiles, and seasonal relevance. These labels power your campaign segmentation too.</p>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Fix Your Product Descriptions</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Descriptions don't appear in the Shopping ad itself, but Google uses them for relevance scoring. Pack the first 160 characters with your most important keywords and product attributes. Don't use your website's marketing copy verbatim since it's usually written for humans, not indexing.</p>
     </div>
   </div>
   <div style="display:flex;align-items:flex-start;margin:20px 0;">
-    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">3</div>
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">3</div>
     <div>
-      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Use Supplemental Feeds for Dynamic Optimization</p>
-      <p style="margin:0;color:#333333;line-height:1.7;">Your primary feed comes from Shopify or your CMS. Supplemental feeds let you layer in additional optimizations without changing your source data: updated titles for seasonal campaigns, custom labels based on margin or stock level, and promotional pricing overrides. DataFeedWatch and Feedonomics are the tools we use at Jetfuel for this.</p>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Standardize Google Product Categories</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Use the most specific Google Product Taxonomy category available for each product. "Apparel &amp; Accessories &gt; Clothing &gt; Activewear &gt; Running Jackets" beats "Clothing" for relevance scoring. This affects which queries trigger your ads and which shopping surfaces your products appear on.</p>
     </div>
   </div>
   <div style="display:flex;align-items:flex-start;margin:20px 0;">
-    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">4</div>
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">4</div>
     <div>
-      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Monitor Merchant Center Health Daily</p>
-      <p style="margin:0;color:#333333;line-height:1.7;">Disapprovals and policy flags can silently kill your impression share. A feed with 15% disapproved products is running at 85% capacity at best. Check Merchant Center diagnostics weekly at minimum. Common culprits for food brands: unverified landing pages, price mismatches between feed and site, and missing GTIN codes on branded items.</p>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Optimize Your Images</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">White background product images perform differently than lifestyle images depending on the category. Test both. For commoditized products (electronics, supplements, household), clean white backgrounds with clear product visibility win. For fashion and home decor, lifestyle images showing context often outperform. Use the additional_image_link field to submit multiple images and let Google test.</p>
+    </div>
+  </div>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">5</div>
+    <div>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Populate Custom Labels for Campaign Tiering</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">You have five custom label fields (custom_label_0 through custom_label_4). Use them strategically: campaign tier (Superstar/Workhorse/Scout), margin category (high/mid/low), seasonality flag (evergreen/seasonal), and top-seller flag. These labels power your Campaign Tiering Method and make campaign management scalable.</p>
+    </div>
+  </div>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">6</div>
+    <div>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Fix Disapprovals and Feed Errors Weekly</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Check your Merchant Center diagnostics every week. Disapproved products don't spend. Feed errors silently kill coverage. Set up automated feed rules in Merchant Center to correct common issues (like missing GTINs or price mismatches) without requiring a developer every time.</p>
     </div>
   </div>
 </div>
+
+<!-- COMMON FEED MISTAKES TABLE -->
+<p style="color:#333333;line-height:1.8;">These are the feed mistakes we find most often when we audit a new account:</p>
 
 <div style="overflow-x:auto;margin:28px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
       <tr style="background:#1a1a1a;">
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Feed Mistake</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Impact</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Fix</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Feed Mistake</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Impact</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Fix</th>
       </tr>
     </thead>
     <tbody>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Brand name in title position 1</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Low match rate on non-brand queries</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Move product type to position 1, brand to end</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Generic product titles ("Red Shirt")</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Poor match to specific queries, low CTR</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Rebuild titles with Brand + Type + Attributes formula</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Missing GTINs on branded products</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Disapprovals, reduced ad serving</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Source GTINs from brand or UPC database</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Missing GTINs for branded products</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Disapprovals, reduced eligibility for Shopping placements</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Source GTINs from UPC/EAN barcodes or manufacturer data</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Price mismatch (feed vs. site)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Policy violation, possible suspension</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Enable automatic price updates in Merchant Center</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Price mismatch between feed and website</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Automatic disapproval, entire account risk</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Use scheduled feed fetches or real-time API connection</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Generic product descriptions</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Lower relevance scores, reduced impression share</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Add 500+ character descriptions with attributes, ingredients, use cases</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">No sale_price field during promotions</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Missing sale badge in Shopping ads, lower CTR</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Add sale_price and sale_price_effective_date fields dynamically</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">No lifestyle images</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Lower CTR vs. competitors with lifestyle imagery</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Add additional_image_link with lifestyle photos</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Broad google_product_category assignments</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Reduced relevance, worse auction matching</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Use 4th or 5th level taxonomy categories for each product</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">No custom labels</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Can't segment campaigns by business logic</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Implement tier, margin, and seasonality labels immediately</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<h2 id="attribution" style="color:#1a1a1a;margin-top:56px;">Attribution: Measuring What Actually Drives Revenue</h2>
 
-<p style="color:#333333;line-height:1.8;">Attribution is where Google Ads data becomes misleading for most ecommerce brands. Google's default attribution window is 7-day click / 1-day view. That means Google takes credit for any conversion that happens within 7 days of someone clicking your ad, even if that customer interacted with 4 other touchpoints before buying.</p>
+<!-- SECTION 7: ATTRIBUTION -->
+<h2 id="attribution" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">Attribution: Measuring What Actually Drives Revenue</h2>
 
-<p style="color:#333333;line-height:1.8;">For brands running both Google and Meta simultaneously, this creates double-counting. Google says ROAS is 4x. Meta says ROAS is 3.5x. Your actual blended ROAS (total revenue divided by total ad spend) is 2.8x. Neither platform is lying. They are both counting differently. The gap between platform-reported ROAS and true blended ROAS is often 30 to 50 percent.</p>
+<p style="color:#333333;line-height:1.8;">Attribution is the most misunderstood lever in Google Ads for ecommerce. Get it wrong and you're optimizing toward the wrong campaigns, cutting the wrong spend, and making budget decisions based on data that doesn't reflect reality.</p>
 
-<div style="overflow-x:auto;margin:28px 0;">
-  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
-    <thead>
-      <tr style="background:#1a1a1a;">
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Attribution Window</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">What It Counts</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">When to Use</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">ROAS Impact vs. Default</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">7-day click / 1-day view (default)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">All conversions within 7 days of any click</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Baseline only, not for budget decisions</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Highest (most inflated)</td>
-      </tr>
-      <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">1-day click / 0-day view</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Only same-day conversions after clicks</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Short purchase cycle products (impulse buys)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Lowest (most conservative)</td>
-      </tr>
-      <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Data-driven attribution</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">ML-weighted credit across all touchpoints</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Accounts with 300+ conversions/month</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Moderate (most accurate for bidding)</td>
-      </tr>
-      <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">MER (blended ROAS)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Total revenue / total ad spend across all channels</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Cross-platform budget allocation decisions</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">True north metric</td>
-      </tr>
-    </tbody>
-  </table>
+<p style="color:#333333;line-height:1.8;">The default Google Ads attribution window is 30-day click and 1-day view. That sounds reasonable until you think about the ecommerce purchase cycle. A customer clicks a Shopping ad, leaves, comes back through organic search three days later, and converts. Under last-click attribution, Google Ads gets zero credit. Under 30-day click, Shopping gets full credit. Neither is accurate.</p>
+
+<p style="color:#333333;line-height:1.8;">The attribution model inside Google Ads itself is a separate problem. The default is last-click, which assigns 100% of conversion credit to the last ad clicked. For ecommerce brands running multi-touchpoint campaigns across Shopping, Search, and YouTube, last-click creates systematic bias toward bottom-funnel touchpoints and causes you to undervalue upper-funnel investment.</p>
+
+<p style="color:#333333;line-height:1.8;"><strong style="color:#1a1a1a;">Switch to data-driven attribution (DDA).</strong> DDA uses machine learning to distribute conversion credit across all touchpoints in the path based on actual contribution patterns. It requires a minimum number of conversions to function (Google recommends at least 400 conversions and 4,000 ad interactions over 30 days), but for most scaling ecommerce brands, this threshold is reachable.</p>
+
+<p style="color:#333333;line-height:1.8;">The second attribution problem is cross-channel. Google Ads will always tell you Google Ads is performing well. That's not a conspiracy, it's just how single-channel attribution works. To understand true incrementality, you need data beyond the Google Ads interface.</p>
+
+<p style="color:#333333;line-height:1.8;">Tools like Triple Whale, Northbeam, and Rockerbox give you multi-touch attribution across channels. At Jetfuel, we use these alongside Google's own DDA reports to triangulate actual performance. When a brand's Google Ads reports show 5x ROAS but their Shopify revenue doesn't math out, attribution is usually the culprit.</p>
+
+<div style="background:#e8f5e9;border-left:4px solid #2e7d32;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
+  <p style="font-weight:700;color:#2e7d32;margin:0 0 8px 0;">Case Study</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">We worked with a skincare brand running $40K/month on Google Ads. Their Google Ads dashboard showed 6.2x ROAS. Their Northbeam data showed 2.8x. The gap was almost entirely explained by view-through conversion attribution: Google was claiming credit for users who saw a display ad and later converted through organic search. After switching to data-driven attribution and excluding view-through conversions from their primary conversion action, their reported ROAS dropped to [NEEDS REAL DATA] but their actual revenue per dollar spent matched their Northbeam data. They made better budget decisions as a result.</p>
 </div>
 
-<p style="color:#333333;line-height:1.8;">Our recommendation: switch from last-click to data-driven attribution as soon as your account hits 300 monthly conversions. Before that threshold, use 1-day click / 0-day view for your actual bidding decisions, and treat 7-day numbers as directional only. Most importantly, use Marketing Efficiency Ratio (total revenue divided by total ad spend) as your real budget allocation signal across channels.</p>
+<p style="color:#333333;line-height:1.8;">Incrementality testing is the most rigorous way to measure true Google Ads contribution. The methodology: hold out a geographic region or audience segment from seeing your ads for 2-4 weeks, then compare purchase rates to your exposed group. The lift attributable to your ads is your true incremental ROAS. It's resource-intensive but it's the only way to know what revenue actually goes away if you turn Google Ads off.</p>
 
 <div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
-  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Northbeam and Triple Whale for Cross-Platform Truth</p>
-  <p style="margin:0;line-height:1.7;color:#1a1a1a;">Platform-reported ROAS should never be used for cross-platform budget decisions. Use a third-party attribution tool (Northbeam, Triple Whale, or Rockerbox) that pulls revenue from Shopify directly and allocates it across all your paid channels using consistent logic. This is the only way to answer "should we move $5K from Google to Meta?" with any confidence.</p>
+  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Pro Tip</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">Segment your conversion actions by purchase vs. add-to-cart vs. email signup. Optimize your campaigns toward purchase only. If you optimize toward add-to-cart, Google's algorithm will find the cheapest add-to-cart traffic, which is often very different from your best purchase traffic. Use micro-conversions (add-to-cart, initiate checkout) as secondary conversion actions for reporting insight only, not as the primary optimization signal.</p>
 </div>
 
-<h2 id="budget-allocation" style="color:#1a1a1a;margin-top:56px;">Budget Allocation by Revenue Stage</h2>
+<!-- SECTION 8: BUDGET ALLOCATION -->
+<h2 id="budget-allocation" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">Budget Allocation by Revenue Stage</h2>
 
-<p style="color:#333333;line-height:1.8;">Budget allocation is one of the most common questions we get. How much of our Google Ads budget goes to Shopping vs. Search vs. Brand? The answer changes based on where you are in your growth trajectory. A $200K/year brand has different priorities than a $2M/year brand.</p>
+<p style="color:#333333;line-height:1.8;">One of the most requested resources from ecommerce brands we talk to is a concrete budget allocation framework. Not "it depends" but actual percentages based on where you are in your growth.</p>
 
+<p style="color:#333333;line-height:1.8;">The right allocation changes as you scale because your account's data quality, competitive dynamics, and customer LTV all evolve. Here's the decision matrix we use at Jetfuel:</p>
+
+<!-- BUDGET ALLOCATION TABLE -->
 <div style="overflow-x:auto;margin:28px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
       <tr style="background:#1a1a1a;">
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Revenue Stage</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Shopping / PMax</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Brand Search</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Non-Brand Search</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Display / YouTube</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Revenue Stage</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Shopping / PMax</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Brand Search</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Non-brand Search</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">YouTube / Display</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Rationale</th>
       </tr>
     </thead>
     <tbody>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Under $500K/yr</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">70%</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">15%</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">15%</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">0%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">Under $500K ARR</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">65-70%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">20-25%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">5-10%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">0%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Focus all budget on highest-intent demand capture and brand protection. No budget for awareness at this stage.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">$500K - $2M/yr</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">55%</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">15%</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">25%</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">5%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">$500K-$2M ARR</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">55-60%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">15-20%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">20-25%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">0-5%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Begin expanding reach through Non-brand Search. Test YouTube with minimal budget if creative assets are ready.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">$2M - $10M/yr</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">50%</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">10%</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">30%</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">10%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">$2M-$10M ARR</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">45-50%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">15%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">25-30%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">5-10%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Scale Non-brand search aggressively. YouTube becomes viable for retargeting and audience building. Begin incrementality testing.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">$10M+/yr</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">40%</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">10%</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">30%</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">20%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">$10M+ ARR</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">35-40%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">10-15%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">30-35%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">15-20%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Full-funnel Google strategy. YouTube for upper-funnel brand building. Non-brand Search for market expansion. Shopping for revenue efficiency.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="color:#333333;line-height:1.8;">Under $500K, there is no good reason to run Display or YouTube. You do not have the budget scale to generate meaningful data or impact, and the CPA is too high relative to Shopping's efficiency. Put every dollar into demand capture and protecting your brand terms. Layer in Display and YouTube once you have Shopping running profitably and you need a new growth lever.</p>
+<p style="color:#333333;line-height:1.8;">These percentages are starting points, not rules. Your specific category, competitive landscape, and margin profile all affect the right allocation. A high-margin DTC brand with strong brand equity can afford to invest more in Non-brand Search earlier. A low-margin retailer competing against Amazon needs to stay tighter on Shopping efficiency longer.</p>
 
-<p style="color:#333333;line-height:1.8;">As you scale past $2M, Non-Brand Search earns a larger share because you have the data to make it work. Non-brand keywords (e.g., "organic protein powder," "hot sauce gift set") are more expensive and lower-converting than brand terms, but they bring in net-new buyers your Shopping campaigns may not reach. At scale, that growth lever matters.</p>
+<p style="color:#333333;line-height:1.8;">One principle that holds across all stages: never cut Brand Search to fund other campaigns. Brand Search operates at such high ROAS (often 8-15x or more) that reducing it is always a net negative. It's also your most defensible traffic. Protect it first.</p>
 
-<h2 id="optimization-loop" style="color:#1a1a1a;margin-top:56px;">The 72-Hour Optimization Loop</h2>
+<div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
+  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Pro Tip</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">Build a seasonal budget adjustment calendar. Most ecommerce brands increase budgets in Q4 reactively. Plan your increases at least 6 weeks before peak periods. The algorithm needs time to adjust to higher budgets and new bidding signals. A budget increase of 50% one week before Black Friday means you've given the algorithm no time to optimize. Ramp budgets incrementally starting in mid-October.</p>
+</div>
 
-<p style="color:#333333;line-height:1.8;">How often should you make changes to your Google Ads account? The instinct is "daily." The right answer is every 72 hours. Daily changes starve the algorithm of the time it needs to learn from adjustments. Making a bid change on Monday and another on Tuesday means neither change has meaningful data behind it.</p>
 
-<p style="color:#333333;line-height:1.8;">The 72-Hour Optimization Loop is the cadence we use across all Jetfuel accounts. One review, one change category per review, documented before and after.</p>
+<!-- SECTION 9: 72-HOUR OPTIMIZATION LOOP -->
+<h2 id="optimization-loop" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">The 72-Hour Optimization Loop</h2>
 
-<div style="margin:32px 0;">
+<p style="color:#333333;line-height:1.8;">Most brands check their Google Ads every day and make changes every day. That's one of the fastest ways to destabilize a Smart Bidding campaign. Every time you change a bid, budget, or target, you reset the algorithm's learning. Daily changes mean the algorithm never exits learning mode.</p>
+
+<p style="color:#333333;line-height:1.8;">The 72-Hour Optimization Loop is a structured review cadence that gives Google's algorithm enough data to make meaningful decisions while keeping you from over-optimizing. The rule: review every 72 hours, make one change at a time, document every change.</p>
+
+<p style="color:#333333;line-height:1.8;">Here's how to execute the loop:</p>
+
+<!-- STEP VISUALIZATION for 72-HOUR LOOP -->
+<div style="margin:28px 0;">
   <div style="display:flex;align-items:flex-start;margin:20px 0;">
-    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">1</div>
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">1</div>
     <div>
-      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Pull 72-Hour Performance Snapshot</p>
-      <p style="margin:0;color:#333333;line-height:1.7;">Look at clicks, conversions, CPA, and ROAS for the past 72 hours at the campaign and ad group level. Compare to the prior 72-hour period and to your 30-day rolling average. Note anything more than 20% different from the baseline. That is your signal.</p>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Pull Your 72-Hour Performance Window</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Look at the last 72 hours of data, not today's. Today's data is incomplete. Compare to your trailing 7-day average and your 30-day benchmark. You're looking for meaningful deviations, not noise. A 10% ROAS dip over 24 hours is noise. A 30% dip sustained over 72 hours requires investigation.</p>
     </div>
   </div>
   <div style="display:flex;align-items:flex-start;margin:20px 0;">
-    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">2</div>
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">2</div>
     <div>
-      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Choose One Change Category</p>
-      <p style="margin:0;color:#333333;line-height:1.7;">Make only one type of change per review cycle: bidding adjustment, budget reallocation, negative keyword addition, audience bid modifier, or feed update. Making multiple change types simultaneously makes it impossible to know which change drove the result. Document your hypothesis before making the change.</p>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Identify the One Highest-Leverage Change</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Make a list of everything you could change. Then pick the single change most likely to move the needle. Common high-leverage changes: adding negative keywords from new search term data, adjusting a tROAS target that's clearly too restrictive, pausing a product that's burning budget with zero conversions, or increasing budget on a campaign that's hitting its cap daily.</p>
     </div>
   </div>
   <div style="display:flex;align-items:flex-start;margin:20px 0;">
-    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">3</div>
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">3</div>
     <div>
-      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Log the Change with Timestamp</p>
-      <p style="margin:0;color:#333333;line-height:1.7;">Use Google Ads' built-in change history or an external log (we use a simple Google Sheet). Record: date, campaign, what you changed, why you changed it, and expected impact. This log is the most underrated tool in account management. When performance dips three weeks later, you can trace it to a specific change rather than guessing.</p>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Document the Change Before You Make It</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Write down: what you're changing, what the current state is, what you expect to happen, and what time you made the change. A shared Google Sheet or campaign note works fine. This documentation becomes your institutional memory and lets you debug performance changes weeks later. "When did we change the tROAS on the Superstar Shopping campaign?" needs a real answer, not a memory.</p>
     </div>
   </div>
   <div style="display:flex;align-items:flex-start;margin:20px 0;">
-    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">4</div>
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">4</div>
     <div>
-      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Review Negative Keywords Weekly</p>
-      <p style="margin:0;color:#333333;line-height:1.7;">Pull your search terms report weekly and add negatives for any irrelevant terms that generated spend with zero conversions. For food brands, common wasted spend terms include recipe searches ("best habanero sauce recipe"), competitor navigational queries you do not want to pay for, and broad match spillover to unrelated categories. Build a shared negative keyword list across all campaigns.</p>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Wait 72 Hours Before Evaluating the Change</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">This is the hard part. After making a change, don't touch anything else in that campaign for 72 hours. You need a clean comparison window. If you change the tROAS and then also update negatives within 24 hours, you can't separate which change caused which result. One change per window. Full stop.</p>
+    </div>
+  </div>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;">5</div>
+    <div>
+      <p style="font-weight:700;margin:0 0 4px 0;font-size:1.05em;color:#1a1a1a;">Evaluate and Decide: Keep, Revert, or Escalate</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">After 72 hours, compare performance. If the change worked: keep it and document the outcome. If performance degraded: revert it and document what you learned. If you're unsure: extend the observation window another 72 hours before deciding. Never evaluate Smart Bidding changes in less than 72 hours. The algorithm needs that time to process new signals.</p>
     </div>
   </div>
 </div>
 
-<h2 id="google-meta" style="color:#1a1a1a;margin-top:56px;">Google Ads + Meta Ads: Complementary, Not Competing</h2>
+<p style="color:#333333;line-height:1.8;">The 72-Hour Loop also applies to budget changes. Increasing a campaign budget by more than 20% at once triggers a new learning period in Smart Bidding campaigns. If you need to scale from $500/day to $1,000/day, do it in steps: $500 to $600 to $750 to $1,000, with 72-hour windows between each increase. Slower ramp, more stable performance.</p>
 
-<p style="color:#333333;line-height:1.8;">The most common budget argument we see: "Should we put more into Google or Meta?" It is the wrong question. Google and Meta serve different stages of the customer journey. Running both well is almost always more efficient than going all-in on one.</p>
+<!-- SEASONAL SCALING CALENDAR -->
+<h3 style="color:#1a1a1a;font-size:1.3em;margin:36px 0 12px 0;">Seasonal Scaling Calendar: Timing Your Budget Increases</h3>
 
-<p style="color:#333333;line-height:1.8;">Google captures existing demand. Meta creates new demand. If you are a newer brand with low search volume for your category or product type, Google will underperform simply because there are not enough people searching. Meta can reach cold audiences and build awareness that eventually flows into Google search volume. That is the flywheel.</p>
+<p style="color:#333333;line-height:1.8;">The biggest mistake brands make with seasonal scaling is reacting instead of planning. By the time everyone is talking about Black Friday, auction prices are already elevated and the algorithm has already adapted to increased competition. You need to be ahead of the curve.</p>
 
 <div style="overflow-x:auto;margin:28px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
       <tr style="background:#1a1a1a;">
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Campaign Goal</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Best Platform</th>
-        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Why</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Timing</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Action</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Rationale</th>
       </tr>
     </thead>
     <tbody>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Capture in-market buyers now</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Google (Shopping / Search)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Search intent signals are unmatched for ready-to-buy customers</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">6 weeks before peak</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Begin first budget ramp (+15-20%), finalize feed updates, audit negatives</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Algorithm starts learning higher-budget behavior. Feed errors resolved before they cost you peak traffic.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Introduce brand to new audiences</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta (Advantage+, Broad)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Visual ad formats + demographic + interest targeting outperforms Google for cold prospecting</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">4 weeks before peak</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Second ramp (+20-25%), enable seasonal ad extensions, set up promotion feed</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Promotion feed badges appear in Shopping ads and drive CTR during sale periods.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Retarget site visitors / cart abandoners</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta (Dynamic Product Ads)</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta's retargeting creative formats (video, carousel) drive stronger re-engagement than Google Display</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">2 weeks before peak</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Final ramp to peak budget, review search term reports, expand positive keywords</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Algorithm has had time to stabilize at near-peak budgets. Search term expansion captures seasonal query variations.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Protect brand search terms</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Google (Brand Search)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Competitors can bid on your brand name; own your SERP</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;">During peak</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Monitor every 72 hours, add negatives for irrelevant traffic spikes, protect ROAS floor</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Peak periods bring new query patterns. Irrelevant clicks are expensive. Daily negative keyword review justified during peak only.</td>
       </tr>
       <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Video / content-driven awareness</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta + YouTube</td>
-        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Both outperform Google Display for awareness at cost-per-view efficiency</td>
-      </tr>
-      <tr style="border-bottom:1px solid #e0e0e0;">
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Subscription / LTV optimization</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta (Customer List Targeting)</td>
-        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Upload CRM segments to Meta for LTV-based lookalike building; Google Customer Match works but smaller reach</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;">2 weeks post-peak</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Gradual budget reduction (-15-20% per week), capture new-customer retargeting lists</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Sudden budget cuts reset learning. Audience lists built during peak are valuable for email and retargeting throughout Q1.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="color:#333333;line-height:1.8;">The practical test: if you pause Google Ads for two weeks, does your site traffic from organic and direct channels hold up? If brand search volume drops significantly, Google Shopping and Brand Search were generating the demand your other channels were capturing. They are not just conversion tools. They are demand drivers.</p>
 
-<h2 id="faq" style="color:#1a1a1a;margin-top:56px;">Frequently Asked Questions</h2>
+<!-- SECTION 10: GOOGLE + META -->
+<h2 id="google-meta" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">Google Ads + Meta Ads: Complementary, Not Competing</h2>
+
+<p style="color:#333333;line-height:1.8;">The question we hear constantly: "Should I shift budget from Google to Meta?" or "Which platform should I scale first?" It's the wrong framing. Google and Meta are doing fundamentally different jobs in your marketing stack, and the brands that treat them as competitors end up underinvesting in both.</p>
+
+<p style="color:#333333;line-height:1.8;">Google captures existing demand. When someone searches "best protein powder for muscle gain," they've already decided they want protein powder. Google shows them your product. Meta creates new demand. When someone scrolling Instagram sees your protein powder creative and thinks "that looks interesting," they didn't have that purchase intent 30 seconds ago. You created it.</p>
+
+<p style="color:#333333;line-height:1.8;">The practical implication: Meta drives search volume on Google. A well-performing Meta awareness campaign will increase your branded search volume over time. If you cut Meta spending, expect your Google brand search volume and organic traffic to decline 4-8 weeks later. The channels are linked whether you're measuring them that way or not.</p>
+
+<!-- GOOGLE VS META TABLE -->
+<div style="overflow-x:auto;margin:28px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
+    <thead>
+      <tr style="background:#1a1a1a;">
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Campaign Objective</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Best on Google</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Best on Meta</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;">Both Platforms</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">High-intent purchase capture</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Shopping, Brand Search</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Retargeting (DPA)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Conversion campaigns</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">New customer acquisition (cold)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Non-brand Search, PMax</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Cold interest and lookalike audiences</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Broad prospecting</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Brand awareness</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">YouTube (for scale)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Reels, Stories, Feed video</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Video formats</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Product discovery</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Shopping carousel</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Catalog ads, Shop ads</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Product-forward creatives</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">LTV-based retargeting</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Customer Match, RLSA</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Custom audiences from email list</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;">Upsell and repeat purchase campaigns</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Category expansion</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Broad match keyword testing</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Interest and behavioral targeting</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;">Both, run simultaneously</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p style="color:#333333;line-height:1.8;">The smartest integration move: use your Google Search data to inform your Meta creative strategy. If "sugar-free protein bars for diabetics" is a high-converting search query on Google, it's a signal that this audience intent exists. Build Meta ad creative that speaks to that exact pain point and test it against cold audiences. You're using one channel's demand signal to sharpen the other channel's targeting.</p>
+
+<p style="color:#333333;line-height:1.8;">Customer Match is the underused bridge between platforms. Upload your email list to both Google Ads and Meta. On Google, use Customer Match for RLSA bid adjustments on Search (bid more aggressively when existing customers are searching). On Meta, exclude your customer list from acquisition campaigns and use it to build lookalikes. The same list, two different jobs, both adding value.</p>
+
+<div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
+  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Pro Tip</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">Track branded search volume in Google Search Console weekly when you're running heavy Meta spend. If you scale Meta spend by 30% and your branded search volume stays flat over 4-6 weeks, your Meta audiences may not be in-market enough to drive brand recall. This is one of the cheapest incrementality proxies available and most brands never look at it.</p>
+</div>
+
+<!-- SECTION 11: LTV-BASED AUDIENCE SEGMENTATION -->
+<h3 style="color:#1a1a1a;font-size:1.3em;margin:36px 0 12px 0;">LTV-Based Audience Segmentation in Google Ads</h3>
+
+<p style="color:#333333;line-height:1.8;">Most ecommerce brands treat all customers the same in their Google Ads targeting. Your top 10% of customers by lifetime value are worth 3-5x your average customer. You should be bidding differently to reach them.</p>
+
+<p style="color:#333333;line-height:1.8;">The mechanics: export your customer list segmented by LTV tier from your Shopify or CRM data. Create separate Customer Match audiences for your top-tier customers (highest LTV), mid-tier, and one-time purchasers. In your Search and Shopping campaigns, apply bid adjustments by audience: bid 25-40% higher when a high-LTV customer is in the search session. These are the buyers most likely to purchase again at full price without a discount.</p>
+
+<p style="color:#333333;line-height:1.8;">For non-brand Search campaigns, use your LTV segments as observation audiences (not targeting). You're not restricting who sees your ads. You're watching which segments respond to non-brand queries and adjusting bids accordingly. This data also tells you which audience segments are actually in-market for your category, which informs your Meta prospecting strategy.</p>
+
+
+<!-- SECTION 12: FAQ -->
+<h2 id="faq" style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">Frequently Asked Questions</h2>
 
 <div itemscope itemtype="https://schema.org/FAQPage">
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0e0e0;">
-    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">How much budget do I need to start Google Ads for ecommerce?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;border-bottom:1px solid #e0e0e0;padding-bottom:28px;">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin:0 0 12px 0;">How much should an ecommerce brand spend on Google Ads per month?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">The minimum viable daily budget for a Shopping campaign is around $30 to $50/day. Below that, you will not generate enough clicks to build conversion data within a reasonable timeframe. For brands just starting out, we recommend a total monthly Google Ads budget of $1,500 to $3,000 to generate statistically meaningful data within 60 days. Below $1,000/month, the algorithm's learning period stretches too long and you will struggle to exit the "learning" phase where performance is inconsistent.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">There's no universal minimum, but our practical floor for running Google Shopping effectively is $1,500-$2,000/month. Below that, you're not generating enough conversion data for Smart Bidding to function, which means you're likely using Manual CPC and leaving efficiency on the table. For brands doing $500K+ in annual revenue, a reasonable starting benchmark is 8-12% of revenue allocated to Google Ads. As you scale and optimize, efficiency improves and that percentage often drops. Budget should be set by what your ROAS targets and margin allow, not by an arbitrary number.</p>
     </div>
   </div>
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0e0e0;">
-    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">Should I use Performance Max or Standard Shopping for my ecommerce brand?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;border-bottom:1px solid #e0e0e0;padding-bottom:28px;">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin:0 0 12px 0;">Should I run Performance Max or Standard Shopping for my ecommerce store?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">Use both, but for different product groups. Run Standard Shopping for your proven bestsellers (Superstars and Workhorses) where ROAS control matters most. Use Performance Max for new products, seasonal launches, and your Scout tier where broader reach and data generation are the goal. Accounts with 50+ monthly conversions can lean more into PMax for the AI advantages. Accounts under that threshold typically see better efficiency with Standard Shopping where you control bidding directly.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">Start with Standard Shopping. It requires less creative infrastructure, gives you more control over product prioritization, and performs at a higher average ROAS (5.17x vs 2.57x per Triple Whale's 2025 data). Once you're generating 50+ conversions per month consistently and have ad creative assets ready (headlines, descriptions, images, and ideally video), test Performance Max in a separate campaign alongside your Shopping campaigns. Don't replace Standard Shopping with PMax. Run both and compare incrementally. PMax is best suited for brands with large catalogs that want to expand reach across all Google surfaces without managing separate campaign types.</p>
     </div>
   </div>
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0e0e0;">
-    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">What is a good ROAS for Google Ads ecommerce?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;border-bottom:1px solid #e0e0e0;padding-bottom:28px;">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin:0 0 12px 0;">What is a good ROAS for ecommerce Google Ads?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">The industry average ecommerce ROAS from Google Ads sits at 3.68:1 across 18,000+ brands (Triple Whale 2025). But ROAS is not the right target metric without context. A 3x ROAS on a 70% margin product is very profitable. A 5x ROAS on a 25% margin product might not break even after COGS, shipping, and returns. Set your ROAS target based on your break-even ROAS calculation: revenue needed to cover your gross margin percentage. Most brands should target a blended ROAS (total ad spend, all campaigns) of 2.5x to 4x depending on their category and margin structure.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">The industry average across 18,000 brands is 3.68x (Triple Whale 2025). But the right ROAS target for your brand depends entirely on your margins. A brand with 60% gross margins can profitably run at 2.5x ROAS. A brand with 30% margins needs 4x-5x to be profitable after factoring in fulfillment, overhead, and customer acquisition costs. The formula: your minimum profitable ROAS = 1 / (gross margin percentage). Start there and set your tROAS target 10-15% above that floor. Chasing artificially high ROAS targets restricts volume unnecessarily. Focus on contribution margin per transaction, not just ROAS ratio.</p>
     </div>
   </div>
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0e0e0;">
-    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">Why is my Google Shopping ROAS good but my overall revenue isn't growing?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;border-bottom:1px solid #e0e0e0;padding-bottom:28px;">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin:0 0 12px 0;">How long does it take for Google Ads to work for ecommerce?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">This is the most common scaling plateau we see. When your Target ROAS is set too high, the algorithm only bids on the highest-probability conversions — your best customers who were going to buy anyway. ROAS looks great. Revenue stays flat. The fix is to lower your Target ROAS by 15 to 20% and let the algorithm pursue lower-probability conversions that it was previously ignoring. Yes, your reported ROAS will drop. But revenue and new customer acquisition should increase. Track Marketing Efficiency Ratio (total revenue divided by total ad spend) as your real growth metric, not platform ROAS.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">Budget for 60-90 days before drawing meaningful conclusions about Google Ads performance for your ecommerce store. The first 2-4 weeks is a learning period where Smart Bidding algorithms calibrate and you're collecting data on which products and queries convert. Weeks 4-8 are typically where you have enough data to make your first meaningful structural changes (tiering products, refining bids, adding negatives). By month 3, you should see a clear trajectory. If performance is still erratic at 90 days, the issue is usually structural (flat campaign architecture, wrong bidding strategy for your data volume, or feed quality problems) rather than just time. Don't judge the channel before you've given it the right infrastructure.</p>
     </div>
   </div>
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">How long does it take for Google Ads to start performing for an ecommerce brand?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;padding-bottom:28px;">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin:0 0 12px 0;">What's the most important Google Ads setting for ecommerce brands to get right?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">Smart bidding campaigns enter a "learning" phase that typically lasts 1 to 4 weeks. During this period, ROAS is often inconsistent and CPA is elevated. Do not make major changes during the learning phase — it resets the clock. For most ecommerce brands, expect 60 to 90 days before you have enough data to make confident optimization decisions. Brands spending less than $1,500/month will see the learning period extended further because fewer clicks slow down data accumulation. Plan your evaluation timeline accordingly and resist the urge to pause or restructure before you have meaningful data.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">Conversion tracking is the single most important setting, and it's the one most often set up incorrectly. If you're double-counting conversions (firing the purchase pixel on both the thank-you page and a confirmation email click), your reported ROAS is inflated and your bidding algorithm is optimizing toward a ghost signal. Audit your conversion actions first: one primary conversion action (purchase), with accurate revenue values passed dynamically from your Shopify or cart system. Secondary conversions (add-to-cart, checkout initiation) should be tracked for observation only. After conversion tracking, the second most important setting is your attribution model: switch from last-click to data-driven attribution as soon as you have sufficient conversion volume.</p>
     </div>
   </div>
 
 </div>
 
-<p style="color:#333333;line-height:1.8;margin-top:48px;">Google Ads for ecommerce rewards structure, patience, and precision over raw budget. The brands we see compounding month over month are the ones that invest in account architecture upfront, use the right bidding strategy for their stage, optimize their feed continuously, and measure with honest attribution. Every one of those is a controllable variable. The budget is the last lever, not the first.</p>
+<!-- CONCLUSION -->
+<h2 style="color:#1a1a1a;font-size:1.75em;margin:48px 0 16px 0;">The Bottom Line</h2>
 
-<p style="color:#333333;line-height:1.8;">If your account is stuck at a plateau, the problem is almost always structural: wrong campaign architecture, mismatched bidding strategy, or attribution that is inflating numbers and driving bad budget decisions. Fix the structure first. Scale the budget second.</p>
+<p style="color:#333333;line-height:1.8;">Google Ads for ecommerce in 2026 rewards structure over spend. The brands winning on this channel aren't the ones with the biggest budgets. They're the ones with the clearest campaign architecture, the most accurate attribution, and the discipline to let the algorithm work without over-optimizing. Start with the Three-Layer ROAS Stack, tier your products, get your feed clean, and run the 72-Hour Optimization Loop. The complexity comes later. The fundamentals come first.</p>
 
-<div style="background:#fff5f0;border:2px solid #ff6b35;border-radius:12px;padding:32px;margin:48px 0;text-align:center;">
-  <h3 style="color:#1a1a1a;margin:0 0 14px 0;font-size:1.4em;">Ready to Scale Your Google Ads Account?</h3>
-  <p style="color:#333333;margin:0 0 22px 0;line-height:1.8;max-width:520px;margin-left:auto;margin-right:auto;">At Jetfuel, we manage Google Ads for food, beverage, and ecommerce brands that are serious about scaling profitably. If you want a second opinion on your account structure or are looking for a team to run it, we would be glad to take a look.</p>
-  <a href="https://jetfuel.agency/contact-us/" style="display:inline-block;background:#ff6b35;color:#ffffff;padding:15px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.05em;">Talk to Jetfuel</a>
+<!-- CTA BOX -->
+<div style="background:#fff5f0;border:2px solid #ff6b35;border-radius:12px;padding:32px;margin:40px 0;text-align:center;">
+  <h3 style="color:#1a1a1a;margin:0 0 12px 0;font-size:1.4em;">Ready to Scale Your Ecommerce Google Ads?</h3>
+  <p style="color:#333333;margin:0 0 20px 0;line-height:1.7;">At Jetfuel, we've built and scaled Google Ads accounts for ecommerce brands across every category. If your current account structure isn't generating the ROAS you need, or you're ready to move past the basics, we can help. Let's look at your account together.</p>
+  <a href="https://jetfuel.agency/contact-us/" style="display:inline-block;background:#ff6b35;color:#ffffff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.05em;">Get a Free Google Ads Audit</a>
 </div>
+
