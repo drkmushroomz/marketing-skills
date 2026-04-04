@@ -1,596 +1,593 @@
-<!-- KEY TAKEAWAYS BOX -->
-<div class="jf-key-takeaways" style="background:linear-gradient(135deg, #fff5f0 0%, #fff 100%); border:2px solid #ff6b35; border-radius:12px; padding:28px 32px; margin:32px 0;">
-  <p style="font-weight:800; font-size:1.15em; color:#ff6b35; margin:0 0 16px 0;">Key Takeaways</p>
-  <ul style="margin:0; padding-left:20px; line-height:1.9; color:#1a1a1a;">
-    <li style="color:#1a1a1a; margin-bottom:8px;"><strong>Email flows beat campaigns 22x.</strong> According to BS&amp;Co benchmarks, automated flows generate $0.94 per recipient vs. $0.04 for broadcast campaigns. Most F&amp;B brands still under-invest in flows.</li>
-    <li style="color:#1a1a1a; margin-bottom:8px;"><strong>The F&amp;B Personalization Stack has four layers.</strong> Behavioral, dietary, occasion, and location data are the four signals that separate high-performing F&amp;B email programs from generic ones.</li>
-    <li style="color:#1a1a1a; margin-bottom:8px;"><strong>Klaviyo dominates for DTC F&amp;B brands.</strong> But the platform only works as well as your segmentation. Bad data in, bad emails out.</li>
-    <li style="color:#1a1a1a; margin-bottom:8px;"><strong>84% of customers expect personalization</strong> from the brands they buy from. Generic email blasts are not just low-performing. They are actively eroding trust.</li>
-    <li style="color:#1a1a1a; margin-bottom:0;"><strong>Compliance is not optional.</strong> GDPR, CAN-SPAM, and CCPA create real risk for F&amp;B brands collecting dietary and health preference data. A privacy-first strategy is also a conversion strategy.</li>
+<p style="color:#333333; line-height:1.8;">Google Ads is still the single most reliable paid channel for ecommerce brands that want to capture in-market buyers at scale. Across the 18,000+ brands tracked by Triple Whale, the average ecommerce ROAS from Google Ads sits at 3.68:1 — but brands running the right structure consistently outperform that benchmark by 40 to 60 percent. The difference is not budget. It is architecture.</p>
+
+<p style="color:#333333; line-height:1.8;">This guide covers how we build and scale Google Ads accounts at Jetfuel for food, beverage, and ecommerce brands. We will cover the frameworks, bidding decisions, feed strategy, and attribution setup that separate accounts that compound over time from those that plateau.</p>
+
+<div style="background:linear-gradient(135deg,#fff5f0 0%,#fff 100%);border:2px solid #ff6b35;border-radius:12px;padding:28px 32px;margin:32px 0;">
+  <p style="font-weight:800;font-size:1.15em;color:#ff6b35;margin:0 0 16px 0;">Key Takeaways</p>
+  <ul style="margin:0;padding-left:20px;line-height:1.9;color:#1a1a1a;">
+    <li style="color:#1a1a1a;margin-bottom:8px;"><strong>Google Shopping drives 85.3% of all Google Ads clicks</strong> for ecommerce. Getting your Shopping campaigns right is the highest-leverage move you can make.</li>
+    <li style="color:#1a1a1a;margin-bottom:8px;"><strong>The Three-Layer ROAS Stack</strong> (Foundation, Acceleration, Amplification) is the campaign architecture we use across every Jetfuel ecommerce account. Each layer serves a different job.</li>
+    <li style="color:#1a1a1a;margin-bottom:8px;"><strong>Product tiering matters more than budget.</strong> Running all products in one campaign tells the algorithm nothing. Splitting into Superstars, Workhorses, and Scouts unlocks the data you need to scale.</li>
+    <li style="color:#1a1a1a;margin-bottom:8px;"><strong>Performance Max averages 2.57:1 ROAS vs. Search at 5.17:1.</strong> PMax is not a replacement for Search. It is a different tool for a different job.</li>
+    <li style="color:#1a1a1a;margin-bottom:0;"><strong>Attribution on default settings is almost certainly wrong.</strong> The 7-day click / 1-day view window inflates Google's contribution and kills your ability to allocate budget across platforms accurately.</li>
   </ul>
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<div class="jf-toc" style="background:#f8f9fa; border-left:4px solid #ff6b35; padding:24px 28px; margin:32px 0; border-radius:8px;">
-  <p style="font-weight:700; font-size:1.1em; margin:0 0 12px 0; color:#1a1a1a;">In This Article</p>
-  <ul style="list-style:none; padding:0; margin:0;">
-    <li style="margin:7px 0;"><a href="#why-personalization-matters" style="color:#ff6b35; text-decoration:none; font-weight:500;">Why Email Personalization Hits Different for F&amp;B Brands</a></li>
-    <li style="margin:7px 0;"><a href="#fb-personalization-stack" style="color:#ff6b35; text-decoration:none; font-weight:500;">The F&amp;B Personalization Stack: Four Data Layers That Drive Revenue</a></li>
-    <li style="margin:7px 0;"><a href="#segmentation-strategies" style="color:#ff6b35; text-decoration:none; font-weight:500;">Segmentation Strategies That Work for Food Brands</a></li>
-    <li style="margin:7px 0;"><a href="#flows-vs-campaigns" style="color:#ff6b35; text-decoration:none; font-weight:500;">Flows vs. Campaigns: The 22x Revenue Gap</a></li>
-    <li style="margin:7px 0;"><a href="#vertical-playbooks" style="color:#ff6b35; text-decoration:none; font-weight:500;">Vertical Playbooks: DTC, CPG, and Restaurant Brands</a></li>
-    <li style="margin:7px 0;"><a href="#ai-personalization" style="color:#ff6b35; text-decoration:none; font-weight:500;">AI-Powered Personalization: What Works in 2026</a></li>
-    <li style="margin:7px 0;"><a href="#platform-comparison" style="color:#ff6b35; text-decoration:none; font-weight:500;">Platform Comparison: Klaviyo vs. Mailchimp vs. Omnisend</a></li>
-    <li style="margin:7px 0;"><a href="#roi-measurement" style="color:#ff6b35; text-decoration:none; font-weight:500;">ROI Measurement: The 5 Metrics That Actually Matter</a></li>
-    <li style="margin:7px 0;"><a href="#privacy-compliance" style="color:#ff6b35; text-decoration:none; font-weight:500;">Privacy-First Personalization: Compliance Without Killing Conversion</a></li>
-    <li style="margin:7px 0;"><a href="#30-day-roadmap" style="color:#ff6b35; text-decoration:none; font-weight:500;">Your 30-Day Implementation Roadmap</a></li>
-    <li style="margin:7px 0;"><a href="#faq" style="color:#ff6b35; text-decoration:none; font-weight:500;">Frequently Asked Questions</a></li>
+<div style="background:#f8f9fa;border-left:4px solid #ff6b35;padding:24px 28px;margin:32px 0;border-radius:8px;">
+  <p style="font-weight:700;font-size:1.1em;margin:0 0 12px 0;color:#1a1a1a;">In This Article</p>
+  <ul style="list-style:none;padding:0;margin:0;">
+    <li style="margin:7px 0;"><a href="#why-google-ads" style="color:#ff6b35;text-decoration:none;font-weight:500;">Why Google Ads Still Wins for Ecommerce in 2026</a></li>
+    <li style="margin:7px 0;"><a href="#three-layer-stack" style="color:#ff6b35;text-decoration:none;font-weight:500;">The Three-Layer ROAS Stack</a></li>
+    <li style="margin:7px 0;"><a href="#campaign-tiering" style="color:#ff6b35;text-decoration:none;font-weight:500;">Campaign Tiering: How to Organize Your Product Catalog</a></li>
+    <li style="margin:7px 0;"><a href="#pmax-vs-shopping" style="color:#ff6b35;text-decoration:none;font-weight:500;">Performance Max vs. Standard Shopping in 2026</a></li>
+    <li style="margin:7px 0;"><a href="#bidding-strategy" style="color:#ff6b35;text-decoration:none;font-weight:500;">Bidding Strategy Decision Matrix</a></li>
+    <li style="margin:7px 0;"><a href="#feed-optimization" style="color:#ff6b35;text-decoration:none;font-weight:500;">Product Feed Optimization: The Revenue Lever No One Talks About</a></li>
+    <li style="margin:7px 0;"><a href="#attribution" style="color:#ff6b35;text-decoration:none;font-weight:500;">Attribution: Measuring What Actually Drives Revenue</a></li>
+    <li style="margin:7px 0;"><a href="#budget-allocation" style="color:#ff6b35;text-decoration:none;font-weight:500;">Budget Allocation by Revenue Stage</a></li>
+    <li style="margin:7px 0;"><a href="#optimization-loop" style="color:#ff6b35;text-decoration:none;font-weight:500;">The 72-Hour Optimization Loop</a></li>
+    <li style="margin:7px 0;"><a href="#google-meta" style="color:#ff6b35;text-decoration:none;font-weight:500;">Google Ads + Meta Ads: Complementary, Not Competing</a></li>
+    <li style="margin:7px 0;"><a href="#faq" style="color:#ff6b35;text-decoration:none;font-weight:500;">Frequently Asked Questions</a></li>
   </ul>
 </div>
 
-<p style="color:#333333; line-height:1.8;">Most F&amp;B brands treat email as a broadcast channel. Send a promo, watch the clicks, repeat. That approach worked in 2018. In 2026, it is a revenue leak. Customers expect brands to know what they buy, what they avoid, and when to reach them. The food and beverage brands growing their email revenue right now are doing something different: they have built personalization into the structure of every message, not just the subject line.</p>
+<h2 id="why-google-ads" style="color:#1a1a1a;margin-top:48px;">Why Google Ads Still Wins for Ecommerce in 2026</h2>
 
-<p style="color:#333333; line-height:1.8;">This guide covers what we have learned managing email programs for food and beverage brands at Jetfuel, backed by current platform data and third-party benchmarks. The goal is a practical resource you can use to audit your existing program and identify the highest-leverage upgrades.</p>
+<p style="color:#333333;line-height:1.8;">Brands that write off Google Ads in favor of Meta or TikTok are making the same mistake in reverse. Google captures intent. Meta manufactures it. Both are necessary, but they serve different moments in the customer journey. When someone searches "organic protein powder for runners," they are ready to buy. Google puts you in front of that buyer. No other platform does that at scale.</p>
 
-<h2 id="why-personalization-matters" style="color:#1a1a1a; margin-top:48px;">Why Email Personalization Hits Different for F&amp;B Brands</h2>
+<p style="color:#333333;line-height:1.8;">According to <a href="https://www.storegrowers.com/google-ads-ecommerce/" style="color:#ff6b35;">Store Growers</a>, Google Ads accounts for roughly 18% of total ecommerce revenue across brands running paid channels. That number holds even as social commerce grows. The reason: search intent is still the highest-converting traffic source in ecommerce, and Google owns 90%+ of that market.</p>
 
-<p style="color:#333333; line-height:1.8;">Email personalization is not new. But F&amp;B has a personalization advantage that most verticals do not: purchase intent is tied to deep personal signals. Dietary restrictions, flavor preferences, cooking occasions, health goals. A wellness supplement buyer is not the same as a gourmet snack buyer. Even within the same brand, one customer wants weekly deals and another wants recipe inspiration.</p>
-
-<p style="color:#333333; line-height:1.8;">When you tap into those signals, the results are significant. According to <a href="https://www.demandsage.com/email-marketing-statistics/" style="color:#ff6b35;">Demandsage's 2026 email marketing data</a>, personalized email generates a 122% median ROI lift over non-personalized campaigns. Personalized subject lines drive 26% higher open rates (<a href="https://www.litmus.com/blog/infographic-the-roi-of-email-marketing" style="color:#ff6b35;">Litmus</a>). And tailored campaigns generate up to 6x higher transaction rates versus generic broadcasts.</p>
-
-<!-- STAT CARDS -->
-<div style="display:flex; gap:16px; flex-wrap:wrap; margin:32px 0;">
-  <div style="flex:1; min-width:180px; background:#fff; border:2px solid #ff6b35; border-radius:12px; padding:24px; text-align:center;">
-    <div style="font-size:2.4em; font-weight:800; color:#ff6b35; line-height:1;">122%</div>
-    <div style="font-size:0.85em; margin-top:8px; color:#444444; font-weight:600;">Median ROI lift from personalized email</div>
-    <div style="font-size:0.75em; margin-top:4px; color:#444444;">Source: Demandsage 2026</div>
+<div style="display:flex;gap:16px;flex-wrap:wrap;margin:32px 0;">
+  <div style="flex:1;min-width:160px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
+    <div style="font-size:2.4em;font-weight:800;color:#ff6b35;line-height:1;">3.68x</div>
+    <div style="font-size:0.85em;margin-top:8px;color:#444444;font-weight:600;">Avg Ecommerce ROAS</div>
+    <div style="font-size:0.75em;margin-top:4px;color:#444444;">Triple Whale 2025</div>
   </div>
-  <div style="flex:1; min-width:180px; background:#fff; border:2px solid #ff6b35; border-radius:12px; padding:24px; text-align:center;">
-    <div style="font-size:2.4em; font-weight:800; color:#ff6b35; line-height:1;">22x</div>
-    <div style="font-size:0.85em; margin-top:8px; color:#444444; font-weight:600;">More revenue per recipient: flows vs. campaigns</div>
-    <div style="font-size:0.75em; margin-top:4px; color:#444444;">Source: BS&amp;Co Benchmarks 2026</div>
+  <div style="flex:1;min-width:160px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
+    <div style="font-size:2.4em;font-weight:800;color:#ff6b35;line-height:1;">85.3%</div>
+    <div style="font-size:0.85em;margin-top:8px;color:#444444;font-weight:600;">Shopping Ad Click Share</div>
+    <div style="font-size:0.75em;margin-top:4px;color:#444444;">eCorn Agency Research</div>
   </div>
-  <div style="flex:1; min-width:180px; background:#fff; border:2px solid #ff6b35; border-radius:12px; padding:24px; text-align:center;">
-    <div style="font-size:2.4em; font-weight:800; color:#ff6b35; line-height:1;">84%</div>
-    <div style="font-size:0.85em; margin-top:8px; color:#444444; font-weight:600;">Of customers expect brands to personalize</div>
-    <div style="font-size:0.75em; margin-top:4px; color:#444444;">Source: Attentive 2026</div>
+  <div style="flex:1;min-width:160px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
+    <div style="font-size:2.4em;font-weight:800;color:#ff6b35;line-height:1;">18%</div>
+    <div style="font-size:0.85em;margin-top:8px;color:#444444;font-weight:600;">Of Ecommerce Revenue</div>
+    <div style="font-size:0.75em;margin-top:4px;color:#444444;">Store Growers 2026</div>
   </div>
-  <div style="flex:1; min-width:180px; background:#fff; border:2px solid #ff6b35; border-radius:12px; padding:24px; text-align:center;">
-    <div style="font-size:2.4em; font-weight:800; color:#ff6b35; line-height:1;">31.2%</div>
-    <div style="font-size:0.85em; margin-top:8px; color:#444444; font-weight:600;">Average F&amp;B email open rate benchmark</div>
-    <div style="font-size:0.75em; margin-top:4px; color:#444444;">Source: The Missing Ingredient 2026</div>
+  <div style="flex:1;min-width:160px;background:#fff;border:2px solid #ff6b35;border-radius:12px;padding:24px;text-align:center;">
+    <div style="font-size:2.4em;font-weight:800;color:#ff6b35;line-height:1;">63%</div>
+    <div style="font-size:0.85em;margin-top:8px;color:#444444;font-weight:600;">Of Clicks From Mobile</div>
+    <div style="font-size:0.75em;margin-top:4px;color:#444444;">Google Internal Data</div>
   </div>
 </div>
 
-<p style="color:#333333; line-height:1.8;">The F&amp;B category also has natural personalization triggers competitors in other verticals do not: seasonal availability, perishability, geographic distribution, and deep lifestyle alignment. A skincare brand can segment by skin type. A hot sauce brand can segment by heat tolerance, cooking frequency, recipe type, and regional cuisine preference. The data richness is there. Most brands just are not using it yet.</p>
+<p style="color:#333333;line-height:1.8;">The caveat: Google Ads performance varies wildly by account structure. We regularly inherit accounts where the previous setup had one Shopping campaign running all 300 SKUs on a single daily budget. The algorithm has no signal on which products to prioritize, so it spreads spend evenly across margin-crushers and bestsellers alike. That is not a budget problem. It is an architecture problem.</p>
 
-<h2 id="fb-personalization-stack" style="color:#1a1a1a; margin-top:48px;">The F&amp;B Personalization Stack: Four Data Layers That Drive Revenue</h2>
+<p style="color:#333333;line-height:1.8;">The average Google Shopping CPC sits at $0.66 (industry average). But CPC is the wrong metric to optimize. At $0.66 per click with a 3% conversion rate and a $65 average order value, your ROAS is 2.96x before a single optimization. The question is how high you can push conversion rate and average order value through better structure, better creatives, and better targeting. That is the game.</p>
 
-<p style="color:#333333; line-height:1.8;">At Jetfuel, we think about email personalization for food brands in four layers. Each layer adds signal. Each layer makes your emails more relevant. Together, they form what we call the F&amp;B Personalization Stack.</p>
+<h2 id="three-layer-stack" style="color:#1a1a1a;margin-top:56px;">The Three-Layer ROAS Stack</h2>
 
-<!-- STEP VISUALIZATION -->
-<div style="margin:32px 0;">
-  <div style="display:flex; align-items:flex-start; margin:20px 0;">
-    <div style="min-width:52px; height:52px; background:#ff6b35; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2em; margin-right:18px; flex-shrink:0;">1</div>
-    <div>
-      <p style="font-weight:700; margin:0 0 6px 0; font-size:1.05em; color:#1a1a1a;">Behavioral Data</p>
-      <p style="margin:0; color:#333333; line-height:1.7;">Purchase history, browse history, cart abandonment, email engagement, and repeat purchase frequency. This is the foundation. If you do not have behavioral data flowing into your ESP, nothing else matters. Most brands have this in Shopify or their POS and are not syncing it cleanly into Klaviyo.</p>
-    </div>
-  </div>
-  <div style="display:flex; align-items:flex-start; margin:20px 0;">
-    <div style="min-width:52px; height:52px; background:#ff6b35; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2em; margin-right:18px; flex-shrink:0;">2</div>
-    <div>
-      <p style="font-weight:700; margin:0 0 6px 0; font-size:1.05em; color:#1a1a1a;">Dietary and Preference Signals</p>
-      <p style="margin:0; color:#333333; line-height:1.7;">Allergen flags, dietary lifestyle (vegan, keto, gluten-free), flavor affinity (spicy, sweet, savory), and health goals. You can collect this at signup via a preference center or infer it from product purchase patterns. A customer who has bought your keto line three times does not need to tell you they are keto. Use what you know.</p>
-    </div>
-  </div>
-  <div style="display:flex; align-items:flex-start; margin:20px 0;">
-    <div style="min-width:52px; height:52px; background:#ff6b35; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2em; margin-right:18px; flex-shrink:0;">3</div>
-    <div>
-      <p style="font-weight:700; margin:0 0 6px 0; font-size:1.05em; color:#1a1a1a;">Occasion and Lifecycle Stage</p>
-      <p style="margin:0; color:#333333; line-height:1.7;">Is this a weeknight cooking customer or a weekend entertaining customer? Are they in their first 30 days or 18 months into their subscription? Occasion-based personalization is where the recipe content angle shines. "Three weeknight dinners using ingredients you bought last week" performs better than a generic newsletter because it is earned by the context.</p>
-    </div>
-  </div>
-  <div style="display:flex; align-items:flex-start; margin:20px 0;">
-    <div style="min-width:52px; height:52px; background:#ff6b35; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2em; margin-right:18px; flex-shrink:0;">4</div>
-    <div>
-      <p style="font-weight:700; margin:0 0 6px 0; font-size:1.05em; color:#1a1a1a;">Location and Availability</p>
-      <p style="margin:0; color:#333333; line-height:1.7;">Regional availability, seasonal product launches, local store promotions, and shipping window variations. For CPG brands selling through retail, this layer is critical. Sending a "buy online" CTA to a customer in a market where you have strong in-store distribution is a missed opportunity to drive trial at retail.</p>
-    </div>
-  </div>
-</div>
+<p style="color:#333333;line-height:1.8;">Most brands treat Google Ads like a single channel. It is not. It is three overlapping channels that need to work together: demand capture (Shopping and Performance Max), brand defense (Brand Search), and demand expansion (Non-Brand Search). We call this the Three-Layer ROAS Stack.</p>
 
-<div style="background:#f0f7ff; border-left:4px solid #1976d2; border-radius:0 8px 8px 0; padding:20px 24px; margin:28px 0;">
-  <p style="font-weight:700; color:#1976d2; margin:0 0 8px 0;">Pro Tip</p>
-  <p style="margin:0; line-height:1.7; color:#1a1a1a;">You do not need all four layers on day one. Start with Layer 1 (behavioral) and Layer 3 (lifecycle stage). Those two alone will outperform most broadcast programs. Add dietary signals in month two once your behavioral data is clean and flowing correctly.</p>
-</div>
+<p style="color:#333333;line-height:1.8;">Each layer serves a different purpose. Pulling budget from one to fund another is like robbing Peter to pay Paul. The brands that win on Google maintain all three layers and optimize each independently.</p>
 
-<h2 id="segmentation-strategies" style="color:#1a1a1a; margin-top:48px;">Segmentation Strategies That Work for Food Brands</h2>
-
-<p style="color:#333333; line-height:1.8;">Segmentation is not about splitting your list into smaller buckets. It is about sending the right message to each bucket. F&amp;B brands have access to more natural segmentation signals than most verticals. Here is how to use them.</p>
-
-<p style="color:#333333; line-height:1.8;">The most reliable segmentation for F&amp;B starts with purchase behavior: what someone bought, how often, and when they last ordered. A customer who bought three times in the last 90 days needs a different message than someone who has not ordered in six months. These are not subtle differences. The first needs loyalty reinforcement and cross-sell. The second needs a reactivation offer with urgency.</p>
-
-<!-- COMPARISON TABLE: Segmentation Types -->
-<div style="overflow-x:auto; margin:28px 0;">
-  <table style="width:100%; border-collapse:collapse; font-size:0.95em; border-radius:8px; overflow:hidden; background:#ffffff; color:#1a1a1a; border:1px solid #e0e0e0;">
+<div style="overflow-x:auto;margin:28px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
-      <tr style="background:#1a1a1a; color:#ffffff;">
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Segment Type</th>
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Signal</th>
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Best Email Type</th>
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Expected Lift</th>
+      <tr style="background:#1a1a1a;">
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Layer</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Campaign Types</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Primary Goal</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Budget %</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Target ROAS</th>
       </tr>
     </thead>
     <tbody>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Active buyers (90 days)</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">3+ orders, recent engagement</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Loyalty perks, cross-sell, new product launches</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Highest CTR of any segment</td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Foundation</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Shopping, Performance Max</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Capture in-market demand</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">55-65%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">2.5x - 4x</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">At-risk / lapsing</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">No order in 60-120 days</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">Win-back with incentive, survey to understand churn</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">20-35% reactivation on best offers</td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Acceleration</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Brand Search, Brand Shopping</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Protect brand equity, own SERP</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">10-15%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">6x - 12x</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">First-time buyers</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">1 order, subscribed under 30 days</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Onboarding flow: usage tips, recipe content, social proof</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Critical for reducing early churn</td>
-      </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">Dietary-aligned</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">Product category signals (keto, vegan, etc.)</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">Category-specific content, lifestyle-relevant new products</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">Higher relevance = lower unsubscribes</td>
-      </tr>
-      <tr style="background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">High-LTV VIPs</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Top 10% by revenue, high frequency</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Early access, exclusive products, personal outreach</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Protects your most valuable cohort</td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Amplification</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Non-Brand Search, DSA</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Expand reach, capture new buyers</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">20-30%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">3x - 5x</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="color:#333333; line-height:1.8;">One pattern we see consistently: brands build segments but do not update them. Klaviyo segments are dynamic by default. Build them once, let them self-update, and review the segment sizes monthly. A shrinking active-buyer segment is an early warning signal worth catching before it shows up in your revenue dashboard.</p>
+<p style="color:#333333;line-height:1.8;">Brand Search consistently runs 6x to 12x ROAS because these are customers already familiar with your brand. They are the cheapest conversions in the account. Many brands under-invest here because the ROAS looks "easy" and they want to put more into prospecting. That is backwards. Protect your brand first, then expand.</p>
 
-<div style="background:#e8f5e9; border-left:4px solid #2e7d32; border-radius:0 8px 8px 0; padding:20px 24px; margin:28px 0;">
-  <p style="font-weight:700; color:#2e7d32; margin:0 0 8px 0;">Real Account Example</p>
-  <p style="margin:0; line-height:1.7; color:#1a1a1a;">We took over an email program for a DTC baked goods brand where every segment was built off a single field: total lifetime spend. They had high-LTV customers in the "VIP" segment who had not ordered in 14 months. The VIP label was masking a retention problem. After rebuilding segments to combine LTV with recency, the "true VIP" segment shrank 40% but conversion on VIP flows went up [NEEDS REAL DATA]. The smaller, cleaner segment outperformed the bloated one by a significant margin.</p>
+<div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
+  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Pro Tip</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">Always run Brand Search as a separate campaign, never mixed with Non-Brand. When they share a campaign, the algorithm naturally allocates budget to Brand terms (higher CTR, higher Quality Score, lower CPC) and starves your prospecting. Split them from day one.</p>
 </div>
 
-<h2 id="flows-vs-campaigns" style="color:#1a1a1a; margin-top:48px;">Flows vs. Campaigns: The 22x Revenue Gap F&amp;B Brands Need to Know</h2>
+<h2 id="campaign-tiering" style="color:#1a1a1a;margin-top:56px;">Campaign Tiering: How to Organize Your Product Catalog</h2>
 
-<p style="color:#333333; line-height:1.8;">This is the most underappreciated insight in F&amp;B email marketing right now. According to <a href="https://bsandco.us/blog-post/ecommerce-email-marketing-benchmarks-february-2026" style="color:#ff6b35;">BS&amp;Co's February 2026 ecommerce benchmarks</a>, automated email flows generate $0.94 per recipient versus $0.04 per recipient for broadcast campaigns. That is a 22x difference in revenue efficiency. The implication is direct: every hour you spend crafting a one-time promotional email is time you are not spending building flows that work 24/7.</p>
+<p style="color:#333333;line-height:1.8;">Most brands put all their products in one Shopping campaign. Then they wonder why their ROAS is mediocre. The algorithm cannot figure out which products are winners when they are all competing for the same daily budget. You have to tell it.</p>
 
-<p style="color:#333333; line-height:1.8;">Most F&amp;B brands we audit have their flows in "good enough" condition: a basic welcome flow, maybe an abandoned cart sequence, and a post-purchase thank you. The brands generating serious email revenue have 8-12 active flows, each targeting a specific behavioral trigger.</p>
+<p style="color:#333333;line-height:1.8;">We use what we call the Campaign Tiering Method: three product buckets based on revenue contribution and data maturity. Each tier gets its own campaign, its own budget, and its own ROAS target.</p>
 
-<!-- FLOW ARCHITECTURE TABLE -->
-<div style="overflow-x:auto; margin:28px 0;">
-  <table style="width:100%; border-collapse:collapse; font-size:0.95em; border-radius:8px; overflow:hidden; background:#ffffff; color:#1a1a1a; border:1px solid #e0e0e0;">
+<div style="overflow-x:auto;margin:28px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
-      <tr style="background:#1a1a1a; color:#ffffff;">
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Flow Name</th>
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Trigger</th>
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Emails</th>
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Priority</th>
+      <tr style="background:#1a1a1a;">
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Tier</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Products Included</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Budget Priority</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Bidding Strategy</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Optimization Focus</th>
       </tr>
     </thead>
     <tbody>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Welcome Series</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">New subscriber signup</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">4-6 over 14 days</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Critical</span></td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Superstars</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Top 20% revenue drivers, proven converters</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Highest (50-60% of Shopping budget)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Target ROAS (aggressive)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Maximize impression share, defend position</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">Abandoned Cart</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">Cart abandoned, no purchase</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">3 over 48 hours</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Critical</span></td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Workhorses</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Mid-tier performers, consistent ROAS</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Medium (30-40% of Shopping budget)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Target ROAS (efficiency focus)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Improve feed quality, test price adjustments</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Post-Purchase (New)</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">First order confirmed</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">4-5 over 21 days</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Critical</span></td>
-      </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">Replenishment Reminder</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">Based on avg. repurchase cycle</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">2-3 per cycle</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;"><span style="background:#fff3e0; color:#e65100; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">High</span></td>
-      </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Win-Back</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">90+ days no purchase</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">3-4 over 30 days</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;"><span style="background:#fff3e0; color:#e65100; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">High</span></td>
-      </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">Browse Abandonment</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">Product viewed, no add to cart</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">2 over 24 hours</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;"><span style="background:#fff3e0; color:#e65100; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">High</span></td>
-      </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">VIP / Loyalty</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Milestone spend or order count</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Ongoing, event-driven</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;"><span style="background:#e3f2fd; color:#1565c0; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Medium</span></td>
-      </tr>
-      <tr style="background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">Sunset / Unsubscribe</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">180+ days no open/click</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">2 re-permission emails</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;"><span style="background:#e3f2fd; color:#1565c0; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Medium</span></td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Scouts</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">New SKUs, untested, or low-data products</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Low (10-15% of Shopping budget)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Maximize Clicks or manual CPC</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Generate conversion data before promoting</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="color:#333333; line-height:1.8;">The Klaviyo welcome flow deserves special attention. According to <a href="https://www.klaviyo.com/products/email-marketing/benchmarks" style="color:#ff6b35;">Klaviyo's 2026 benchmarks</a>, the average open rate for welcome emails is 83.63%. That is the highest open rate of any email type, by a wide margin. If your welcome flow is two emails and a 10% off coupon, you are wasting the most engaged moment in a customer's entire lifecycle with your brand.</p>
-
-<div style="background:#f0f7ff; border-left:4px solid #1976d2; border-radius:0 8px 8px 0; padding:20px 24px; margin:28px 0;">
-  <p style="font-weight:700; color:#1976d2; margin:0 0 8px 0;">Pro Tip: The Welcome Flow for F&amp;B</p>
-  <p style="margin:0; line-height:1.7; color:#1a1a1a;">Email 1: Welcome + preference capture (ask about dietary needs, flavor preferences). Email 2 (Day 2): Best-seller social proof, no discount. Email 3 (Day 5): Recipe content personalized to what they bought or browsed. Email 4 (Day 10): Discount email with urgency. Email 5 (Day 14): Final nudge with customer reviews. Most brands skip straight to the discount. Earning trust first means the discount converts at a higher rate when you do offer it.</p>
+<div style="background:#e8f5e9;border-left:4px solid #2e7d32;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
+  <p style="font-weight:700;color:#2e7d32;margin:0 0 8px 0;">From Our Accounts</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">We inherited a DTC food brand account where every product was in one Shopping campaign with a single $50/day budget. The algorithm had no idea which products were winners. After splitting into a three-tier Campaign Tiering structure, ROAS went from [NEEDS REAL DATA] to [NEEDS REAL DATA] in 60 days. The data was always there. The structure was not.</p>
 </div>
 
-<h2 id="vertical-playbooks" style="color:#1a1a1a; margin-top:48px;">Vertical Playbooks: DTC, CPG, and Restaurant Brands</h2>
+<p style="color:#333333;line-height:1.8;">The Scout tier is often overlooked. New products need conversion data before the algorithm can optimize for them. Dropping a new SKU into your Superstar campaign and wondering why it underperforms is not a product problem. The algorithm simply does not have enough signal. Give Scouts their own campaign and their own budget for 30 days before making any promotion decisions.</p>
 
-<p style="color:#333333; line-height:1.8;">Email personalization strategy is not one-size-fits-all, even within F&amp;B. A DTC supplement brand, a CPG snack company selling through retail, and a restaurant chain are working with different data, different purchase cycles, and different email goals.</p>
+<h2 id="pmax-vs-shopping" style="color:#1a1a1a;margin-top:56px;">Performance Max vs. Standard Shopping in 2026</h2>
 
-<div style="background:#e8f5e9; border-left:4px solid #2e7d32; border-radius:0 8px 8px 0; padding:20px 24px; margin:28px 0;">
-  <p style="font-weight:700; color:#2e7d32; margin:0 0 8px 0;">DTC Food and Beverage Brands</p>
-  <p style="margin:0; line-height:1.7; color:#1a1a1a;"><strong style="color:#1a1a1a;">Primary goal:</strong> Repeat purchase and subscription conversion. DTC has full behavioral data from your own store. Use it. The biggest opportunity is the replenishment flow: calculate average days between first and second order for your top SKUs and trigger the replenishment email 3 days before that window closes. Subscription upgrade offers placed inside the replenishment flow consistently outperform standalone subscription campaigns.</p>
-</div>
+<p style="color:#333333;line-height:1.8;">Performance Max (PMax) is Google's AI-first campaign type. It runs across all Google surfaces — Search, Shopping, YouTube, Display, Discover, Gmail — and optimizes toward your conversion goals automatically. Google has been pushing hard for PMax adoption. That does not mean it is always the right tool.</p>
 
-<div style="background:#f3e5f5; border-left:4px solid #7b1fa2; border-radius:0 8px 8px 0; padding:20px 24px; margin:28px 0;">
-  <p style="font-weight:700; color:#7b1fa2; margin:0 0 8px 0;">CPG Brands Selling Through Retail</p>
-  <p style="margin:0; line-height:1.7; color:#1a1a1a;"><strong style="color:#1a1a1a;">Primary goal:</strong> Brand loyalty and retail trial. You do not always control the transaction, but you can control the relationship. Email strategy for CPG retail brands focuses on recipe content (drives purchase intent before the store trip), new product launches (drive trial at the shelf), and loyalty programs tied to your DTC channel. Geo-targeting matters: if you are in 4,000 Target stores but only 200 Kroger locations, tailor your "where to find us" content by customer ZIP code.</p>
-</div>
+<p style="color:#333333;line-height:1.8;">According to <a href="https://www.triplewhale.com/blog/google-ads-benchmarks" style="color:#ff6b35;">Triple Whale's 2025 benchmark report</a> across 18,000 ecommerce brands, Search campaigns average 5.17:1 ROAS while Performance Max averages 2.57:1. PMax's lower ROAS is not a failure. It is doing a different job: broader reach, upper-funnel inventory, and new audience prospecting. The mistake is treating PMax as a replacement for Shopping.</p>
 
-<div style="background:#e8f5e9; border-left:4px solid #2e7d32; border-radius:0 8px 8px 0; padding:20px 24px; margin:28px 0;">
-  <p style="font-weight:700; color:#2e7d32; margin:0 0 8px 0;">Restaurant and QSR Brands</p>
-  <p style="margin:0; line-height:1.7; color:#1a1a1a;"><strong style="color:#1a1a1a;">Primary goal:</strong> Visit frequency and average check size. Restaurants are sitting on loyalty program data that most are not using well. The highest-performing restaurant email programs pair behavioral loyalty data (visit frequency, preferred location, usual order) with occasion-based triggers: "You haven't visited in 3 weeks, here's a reason to come back." Limited time offer emails timed to peak ordering windows (Thursday-Friday for weekend dining) consistently outperform generic weekly sends.</p>
-</div>
-
-<h2 id="ai-personalization" style="color:#1a1a1a; margin-top:48px;">AI-Powered Personalization: What Works in 2026</h2>
-
-<p style="color:#333333; line-height:1.8;">AI in email marketing is past the hype stage. It is now table stakes for competitive programs. According to <a href="https://www.demandsage.com/email-marketing-statistics/" style="color:#ff6b35;">Demandsage's 2026 data</a>, 95% of marketers using generative AI for email creation find it effective, with 54% rating it "very effective." And <a href="https://www.envive.ai/post/ai-personalization-in-ecommerce-lift-statistics" style="color:#ff6b35;">Envive's research on AI personalization</a> shows a 41% revenue lift on average from AI-driven product recommendations.</p>
-
-<p style="color:#333333; line-height:1.8;">The practical question is not whether to use AI. It is where AI adds genuine lift versus where it adds noise. For F&amp;B brands, we see clear performance improvements in three areas.</p>
-
-<!-- RATING BARS -->
-<div style="margin:28px 0;">
-  <div style="margin:16px 0;">
-    <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-      <span style="font-weight:600; font-size:0.95em; color:#1a1a1a;">Product recommendation engines (AI picks "you may also like")</span>
-      <span style="font-weight:700; color:#ff6b35;">9/10</span>
-    </div>
-    <div style="background:#f0f0f0; border-radius:8px; height:10px; overflow:hidden;">
-      <div style="background:linear-gradient(90deg, #ff6b35, #ff8f65); width:90%; height:100%; border-radius:8px;"></div>
-    </div>
-  </div>
-  <div style="margin:16px 0;">
-    <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-      <span style="font-weight:600; font-size:0.95em; color:#1a1a1a;">Send-time optimization (AI determines best time per individual)</span>
-      <span style="font-weight:700; color:#ff6b35;">8/10</span>
-    </div>
-    <div style="background:#f0f0f0; border-radius:8px; height:10px; overflow:hidden;">
-      <div style="background:linear-gradient(90deg, #ff6b35, #ff8f65); width:80%; height:100%; border-radius:8px;"></div>
-    </div>
-  </div>
-  <div style="margin:16px 0;">
-    <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-      <span style="font-weight:600; font-size:0.95em; color:#1a1a1a;">Subject line generation and A/B test optimization</span>
-      <span style="font-weight:700; color:#ff6b35;">8/10</span>
-    </div>
-    <div style="background:#f0f0f0; border-radius:8px; height:10px; overflow:hidden;">
-      <div style="background:linear-gradient(90deg, #ff6b35, #ff8f65); width:80%; height:100%; border-radius:8px;"></div>
-    </div>
-  </div>
-  <div style="margin:16px 0;">
-    <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-      <span style="font-weight:600; font-size:0.95em; color:#1a1a1a;">Predictive churn detection (flag at-risk customers before they lapse)</span>
-      <span style="font-weight:700; color:#ff6b35;">7/10</span>
-    </div>
-    <div style="background:#f0f0f0; border-radius:8px; height:10px; overflow:hidden;">
-      <div style="background:linear-gradient(90deg, #ff6b35, #ff8f65); width:70%; height:100%; border-radius:8px;"></div>
-    </div>
-  </div>
-  <div style="margin:16px 0;">
-    <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-      <span style="font-weight:600; font-size:0.95em; color:#1a1a1a;">Fully AI-generated email body copy (still needs human review)</span>
-      <span style="font-weight:700; color:#ff6b35;">5/10</span>
-    </div>
-    <div style="background:#f0f0f0; border-radius:8px; height:10px; overflow:hidden;">
-      <div style="background:linear-gradient(90deg, #ff6b35, #ff8f65); width:50%; height:100%; border-radius:8px;"></div>
-    </div>
-  </div>
-</div>
-
-<p style="color:#333333; line-height:1.8;">Klaviyo's predictive analytics feature is worth running on every account. It calculates predicted next order date, predicted lifetime value, and churn risk for every customer. These predictions are not perfect. But they are good enough to build flows around. A churn-risk flow triggered by Klaviyo's predictive model will consistently outperform a generic 90-day no-purchase win-back.</p>
-
-<h2 id="platform-comparison" style="color:#1a1a1a; margin-top:48px;">Platform Comparison: Klaviyo vs. Mailchimp vs. Omnisend for F&amp;B Brands</h2>
-
-<p style="color:#333333; line-height:1.8;">The right ESP depends on your business model, data complexity, and growth stage. For most DTC F&amp;B brands, Klaviyo is the default choice and for good reason. But it is not the right answer for everyone. Here is how the three major platforms compare on the dimensions that matter most for food and beverage brands.</p>
-
-<div style="overflow-x:auto; margin:28px 0;">
-  <table style="width:100%; border-collapse:collapse; font-size:0.92em; border-radius:8px; overflow:hidden; background:#ffffff; color:#1a1a1a; border:1px solid #e0e0e0;">
+<div style="overflow-x:auto;margin:28px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
-      <tr style="background:#1a1a1a; color:#ffffff;">
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Feature</th>
-        <th style="padding:14px 18px; text-align:center; font-weight:600; color:#ffffff; background:#1a1a1a;">Klaviyo</th>
-        <th style="padding:14px 18px; text-align:center; font-weight:600; color:#ffffff; background:#1a1a1a;">Mailchimp</th>
-        <th style="padding:14px 18px; text-align:center; font-weight:600; color:#ffffff; background:#1a1a1a;">Omnisend</th>
+      <tr style="background:#1a1a1a;">
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Dimension</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Performance Max</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Standard Shopping</th>
       </tr>
     </thead>
     <tbody>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Shopify integration depth</td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Best in class</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="background:#fff3e0; color:#e65100; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Basic</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Strong</span></td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Average ROAS</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">2.57:1 (Triple Whale 2025)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">5.17:1 (Triple Whale 2025)</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">Predictive analytics</td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#f9f9f9;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Built-in (predictive LTV, churn)</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#f9f9f9;"><span style="background:#fce4ec; color:#c62828; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Not available</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#f9f9f9;"><span style="background:#fff3e0; color:#e65100; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Limited</span></td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Inventory Coverage</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">All Google surfaces (Search, YouTube, Display, Discover)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Shopping results only</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Flow/automation complexity</td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Advanced (conditional splits, A/B)</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="background:#fff3e0; color:#e65100; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Moderate</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Strong</span></td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Control Level</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Low (AI-driven, limited override)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">High (manual bidding, product groups, exclusions)</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">SMS + email combined</td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#f9f9f9;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Native (added cost)</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#f9f9f9;"><span style="background:#fce4ec; color:#c62828; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">SMS add-on only</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#f9f9f9;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Native (strong SMS features)</span></td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Best For</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Brands with 50+ conversions/month, large product catalogs, mature accounts</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Tight ROAS control, Superstar products, brand with clear product hierarchy</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Pricing (up to 10K contacts)</td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="color:#1a1a1a;">~$150/month</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="color:#1a1a1a;">~$135/month</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="color:#1a1a1a;">~$115/month</span></td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Feed Requirement</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Product feed + creative assets required</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Product feed only</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">Best for</td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#f9f9f9;"><span style="color:#1a1a1a;">DTC Shopify brands, $500K+ revenue</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#f9f9f9;"><span style="color:#1a1a1a;">Early-stage brands, simple programs</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#f9f9f9;"><span style="color:#1a1a1a;">SMS-first brands, growing DTC</span></td>
-      </tr>
-      <tr style="background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Learning curve</td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="background:#fff3e0; color:#e65100; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">High (worth it)</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Low</span></td>
-        <td style="color:#1a1a1a; padding:12px 18px; text-align:center; background:#ffffff;"><span style="background:#e8f5e9; color:#2e7d32; padding:3px 10px; border-radius:20px; font-size:0.85em; font-weight:600;">Medium</span></td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Transparency</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Limited (search term reports restricted)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Full search term visibility</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="color:#333333; line-height:1.8;">The platform switch question comes up often in our audits. If you are on Mailchimp and doing more than $800K in annual DTC revenue, the move to Klaviyo is almost always worth it. The data infrastructure difference is real. Klaviyo's customer profiles aggregate every touchpoint: website visits, email opens, purchases, predicted next order date. Mailchimp does not have that at the same depth.</p>
+<p style="color:#333333;line-height:1.8;">Our recommendation for most DTC ecommerce brands: run Standard Shopping for your Superstar and Workhorse tiers (where you want ROAS control), and use Performance Max for your Scout tier and new product launches (where broader reach and data generation matter more than short-term efficiency). Run them simultaneously with proper exclusions to prevent cannibalization.</p>
 
-<div style="background:#f0f7ff; border-left:4px solid #1976d2; border-radius:0 8px 8px 0; padding:20px 24px; margin:28px 0;">
-  <p style="font-weight:700; color:#1976d2; margin:0 0 8px 0;">Platform Migration Note</p>
-  <p style="margin:0; line-height:1.7; color:#1a1a1a;">Migrating from Mailchimp to Klaviyo takes 2-4 weeks done properly. The most common mistake is moving the entire list without cleaning suppression data first. You end up importing unsubscribes and spam reports, which immediately damages your sender reputation on the new platform. Clean the list before you migrate, not after.</p>
+<div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
+  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Pro Tip: PMax vs. Shopping Exclusions</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">If you run both PMax and Standard Shopping simultaneously without exclusions, PMax will cannibalize your Shopping traffic. Add your Superstar and Workhorse products as exclusions from PMax via product-level listing group exclusions. Let PMax handle only the SKUs you have assigned to it.</p>
 </div>
 
-<h2 id="roi-measurement" style="color:#1a1a1a; margin-top:48px;">ROI Measurement: The 5 Metrics F&amp;B Email Programs Actually Need</h2>
+<h2 id="bidding-strategy" style="color:#1a1a1a;margin-top:56px;">Bidding Strategy Decision Matrix</h2>
 
-<p style="color:#333333; line-height:1.8;">Open rate is not an ROI metric. Neither is click rate, on its own. The brands building profitable email programs are measuring the metrics that connect email performance to revenue outcomes. Here are the five that matter.</p>
+<p style="color:#333333;line-height:1.8;">Bidding is where most brands make their biggest mistakes. They switch to Target ROAS too early (not enough conversion data), set the ROAS target too high (budget is throttled), or use the wrong strategy for their account stage entirely. The right bidding strategy depends on where your account is, not where you want it to be.</p>
+
+<div style="overflow-x:auto;margin:28px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
+    <thead>
+      <tr style="background:#1a1a1a;">
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Account Stage</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Monthly Conversions</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Recommended Strategy</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Rationale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">New / Learning</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Under 30</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Maximize Clicks or Manual CPC</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Not enough data for smart bidding. Focus on traffic volume and data collection first.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Growing</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">30 - 80</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Maximize Conversions (no target)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Let the algorithm find conversion patterns before constraining it with a ROAS target.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Established</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">80 - 200</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Target ROAS (start at -20% of actual)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Enough data to constrain. Set target 20% below actual ROAS to avoid over-restricting spend.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Scaling</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">200+</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Portfolio Target ROAS + Seasonality Adjustments</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Portfolio bidding optimizes across campaigns simultaneously. Add seasonality adjustments for Q4, sale events, and promotional periods.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p style="color:#333333;line-height:1.8;">One mistake we see constantly: setting a Target ROAS that is too high too early. If your account is delivering 4x ROAS and you set a 6x target, you are telling the algorithm to only bid on the highest-probability conversions. Budget gets throttled by 40 to 60 percent. ROAS goes up, revenue goes down. That is not optimization. That is a self-imposed ceiling.</p>
+
+<p style="color:#333333;line-height:1.8;">The practical rule: set your Target ROAS at 80% of your current actual ROAS when first switching to smart bidding. Give it two to three weeks to stabilize. Then increase by 10% increments if results hold.</p>
+
+<div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
+  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Seasonality Adjustments</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">For Q4 (Black Friday through December 25), use Google's Seasonality Adjustment tool to tell the algorithm to expect a temporary conversion rate spike. Without this, smart bidding interprets the initial BFCM traffic surge as noise and under-bids for the first 48 hours of your highest-revenue period. Apply a 20-40% uplift adjustment starting 48 hours before your sale.</p>
+</div>
+
+<h2 id="feed-optimization" style="color:#1a1a1a;margin-top:56px;">Product Feed Optimization: The Revenue Lever No One Talks About</h2>
+
+<p style="color:#333333;line-height:1.8;">Your product feed is your Shopping campaign's foundation. A bad feed limits your reach before you ever set a bid. Google's algorithm uses your product titles, descriptions, images, and attributes to determine when and where your ads appear. Most brands treat feed optimization as a one-time setup task. It is actually the highest-leverage ongoing optimization in a Shopping account.</p>
+
+<p style="color:#333333;line-height:1.8;">We have seen feed improvements drive 25 to 40 percent increases in impression share without changing a single bid or budget. The algorithm surfaces your products more often because it finally understands what they are and who they are for.</p>
 
 <div style="margin:32px 0;">
-  <div style="display:flex; align-items:flex-start; margin:20px 0;">
-    <div style="min-width:52px; height:52px; background:#ff6b35; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2em; margin-right:18px; flex-shrink:0;">1</div>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">1</div>
     <div>
-      <p style="font-weight:700; margin:0 0 6px 0; font-size:1.05em; color:#1a1a1a;">Revenue per Recipient (RPR)</p>
-      <p style="margin:0; color:#333333; line-height:1.7;">Total email-attributed revenue divided by total emails delivered. This is the primary efficiency metric. Track it separately for flows and campaigns. The benchmark gap (flows at $0.94 vs. campaigns at $0.04) means your RPR will be heavily influenced by what percentage of your email revenue is flow-driven vs. campaign-driven. A healthy program targets 50%+ of email revenue from flows.</p>
+      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Optimize Product Titles for Search Intent</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Your title is your keyword. Put the most important search terms at the front. For a hot sauce brand: "Habanero Hot Sauce - Small Batch, Vegan, 5oz" outperforms "Fiery Joe's Original Blend" every time. Include: product type, key attribute, size/quantity, and brand name (in that order for non-brand campaigns).</p>
     </div>
   </div>
-  <div style="display:flex; align-items:flex-start; margin:20px 0;">
-    <div style="min-width:52px; height:52px; background:#ff6b35; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2em; margin-right:18px; flex-shrink:0;">2</div>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">2</div>
     <div>
-      <p style="font-weight:700; margin:0 0 6px 0; font-size:1.05em; color:#1a1a1a;">List Growth Rate (Net)</p>
-      <p style="margin:0; color:#333333; line-height:1.7;">New subscribers minus unsubscribes and suppressions, expressed as a percentage of total list. A flat or declining list means your acquisition is not keeping up with churn. F&amp;B brands with strong organic acquisition (recipe traffic, social media) tend to have healthier list growth rates than pure paid-acquisition brands.</p>
+      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Fill Every Optional Attribute</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Google's algorithm uses optional attributes for targeting even when they do not appear in your ad. Flavor, material, pattern, age group, gender, condition — fill all of them. For food brands: add custom labels for dietary attributes (keto, vegan, gluten-free), flavor profiles, and seasonal relevance. These labels power your campaign segmentation too.</p>
     </div>
   </div>
-  <div style="display:flex; align-items:flex-start; margin:20px 0;">
-    <div style="min-width:52px; height:52px; background:#ff6b35; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2em; margin-right:18px; flex-shrink:0;">3</div>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">3</div>
     <div>
-      <p style="font-weight:700; margin:0 0 6px 0; font-size:1.05em; color:#1a1a1a;">Email-Attributed LTV</p>
-      <p style="margin:0; color:#333333; line-height:1.7;">Lifetime value of customers who are active email subscribers versus non-subscribers. In our experience managing F&amp;B accounts, email subscribers consistently have higher LTV, but the gap varies widely depending on how well the email program is actually functioning. This metric gives you the business case for investing in email quality.</p>
+      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Use Supplemental Feeds for Dynamic Optimization</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Your primary feed comes from Shopify or your CMS. Supplemental feeds let you layer in additional optimizations without changing your source data: updated titles for seasonal campaigns, custom labels based on margin or stock level, and promotional pricing overrides. DataFeedWatch and Feedonomics are the tools we use at Jetfuel for this.</p>
     </div>
   </div>
-  <div style="display:flex; align-items:flex-start; margin:20px 0;">
-    <div style="min-width:52px; height:52px; background:#ff6b35; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2em; margin-right:18px; flex-shrink:0;">4</div>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">4</div>
     <div>
-      <p style="font-weight:700; margin:0 0 6px 0; font-size:1.05em; color:#1a1a1a;">Second Purchase Rate (from First-Time Buyers)</p>
-      <p style="margin:0; color:#333333; line-height:1.7;">Of customers who bought once in the last 90 days, what percentage placed a second order? This is the clearest measure of your post-purchase flow effectiveness. F&amp;B has a natural repurchase dynamic. If your second-purchase rate is below 25% for a consumable product, the post-purchase email sequence is not doing its job.</p>
-    </div>
-  </div>
-  <div style="display:flex; align-items:flex-start; margin:20px 0;">
-    <div style="min-width:52px; height:52px; background:#ff6b35; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.2em; margin-right:18px; flex-shrink:0;">5</div>
-    <div>
-      <p style="font-weight:700; margin:0 0 6px 0; font-size:1.05em; color:#1a1a1a;">Deliverability Health Score</p>
-      <p style="margin:0; color:#333333; line-height:1.7;">Open rate, spam complaint rate (below 0.1%), and bounce rate (below 2%) combined. Deliverability is the upstream constraint on all other metrics. If your emails are not reaching inboxes, your revenue numbers are understated and your optimization is working off a skewed dataset. Run a deliverability audit quarterly using a tool like GlockApps or Litmus's Spam Testing.</p>
+      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Monitor Merchant Center Health Daily</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Disapprovals and policy flags can silently kill your impression share. A feed with 15% disapproved products is running at 85% capacity at best. Check Merchant Center diagnostics weekly at minimum. Common culprits for food brands: unverified landing pages, price mismatches between feed and site, and missing GTIN codes on branded items.</p>
     </div>
   </div>
 </div>
 
-<h2 id="privacy-compliance" style="color:#1a1a1a; margin-top:48px;">Privacy-First Personalization: Compliance Without Killing Conversion</h2>
-
-<p style="color:#333333; line-height:1.8;">F&amp;B brands collecting dietary preferences, health goals, and allergen data are operating in a more regulated space than most marketers realize. GDPR applies to any EU subscriber. CCPA applies to California residents. CAN-SPAM applies across the US. And collecting health-adjacent data (dietary restrictions, medical conditions that influence food choices) adds additional sensitivity under some regional regulations.</p>
-
-<p style="color:#333333; line-height:1.8;">The good news: privacy-first practices are also conversion practices. Customers who explicitly tell you their preferences are your most engaged subscribers. The preference center is not just a compliance checkbox. It is one of the best personalization tools you have.</p>
-
-<div style="overflow-x:auto; margin:28px 0;">
-  <table style="width:100%; border-collapse:collapse; font-size:0.95em; border-radius:8px; overflow:hidden; background:#ffffff; color:#1a1a1a; border:1px solid #e0e0e0;">
+<div style="overflow-x:auto;margin:28px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
     <thead>
-      <tr style="background:#1a1a1a; color:#ffffff;">
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Practice</th>
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Why It Matters</th>
-        <th style="padding:14px 18px; text-align:left; font-weight:600; color:#ffffff; background:#1a1a1a;">Implementation</th>
+      <tr style="background:#1a1a1a;">
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Feed Mistake</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Impact</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Fix</th>
       </tr>
     </thead>
     <tbody>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Explicit opt-in for dietary data</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Health-adjacent data requires higher consent standard</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Separate checkbox at signup; not pre-checked</td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Brand name in title position 1</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Low match rate on non-brand queries</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Move product type to position 1, brand to end</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">Preference center</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">Reduces unsubscribes, improves data quality</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">Hosted in Klaviyo; let customers update frequency and content type</td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Missing GTINs on branded products</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Disapprovals, reduced ad serving</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Source GTINs from brand or UPC database</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Data minimization</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Only collect what you will actually use in personalization</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">Audit your signup forms quarterly; remove unused fields</td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Price mismatch (feed vs. site)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Policy violation, possible suspension</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Enable automatic price updates in Merchant Center</td>
       </tr>
-      <tr style="border-bottom:1px solid #e0e0e0; background:#f9f9f9;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#f9f9f9;">Clear unsubscribe path</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">CAN-SPAM compliance; also reduces spam complaints</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#f9f9f9;">One-click unsubscribe; honor within 10 business days</td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Generic product descriptions</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Lower relevance scores, reduced impression share</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Add 500+ character descriptions with attributes, ingredients, use cases</td>
       </tr>
-      <tr style="background:#ffffff;">
-        <td style="color:#1a1a1a; padding:12px 18px; font-weight:600; background:#ffffff;">Third-party data transparency</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">GDPR requires disclosure of all data processors</td>
-        <td style="color:#1a1a1a; padding:12px 18px; background:#ffffff;">List Klaviyo, any CDP, and analytics tools in your privacy policy</td>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">No lifestyle images</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Lower CTR vs. competitors with lifestyle imagery</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Add additional_image_link with lifestyle photos</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<p style="color:#333333; line-height:1.8;">One underused tactic: turn the preference center into a personalization welcome moment. Instead of a generic "manage your email preferences" page, frame it as "Tell us what you love and we will send you more of it." Brands that do this see higher preference center completion rates and lower unsubscribe rates. The framing is everything.</p>
+<h2 id="attribution" style="color:#1a1a1a;margin-top:56px;">Attribution: Measuring What Actually Drives Revenue</h2>
 
-<h2 id="30-day-roadmap" style="color:#1a1a1a; margin-top:48px;">Your 30-Day Implementation Roadmap</h2>
+<p style="color:#333333;line-height:1.8;">Attribution is where Google Ads data becomes misleading for most ecommerce brands. Google's default attribution window is 7-day click / 1-day view. That means Google takes credit for any conversion that happens within 7 days of someone clicking your ad, even if that customer interacted with 4 other touchpoints before buying.</p>
 
-<p style="color:#333333; line-height:1.8;">Most F&amp;B brands we work with do not need a complete overhaul. They need a prioritized sequence. Here is the 30-day roadmap we run with new email accounts.</p>
+<p style="color:#333333;line-height:1.8;">For brands running both Google and Meta simultaneously, this creates double-counting. Google says ROAS is 4x. Meta says ROAS is 3.5x. Your actual blended ROAS (total revenue divided by total ad spend) is 2.8x. Neither platform is lying. They are both counting differently. The gap between platform-reported ROAS and true blended ROAS is often 30 to 50 percent.</p>
 
-<div style="margin:32px 0; background:#f8f9fa; border-radius:12px; padding:28px 32px;">
-  <p style="font-weight:800; font-size:1.1em; color:#ff6b35; margin:0 0 20px 0;">Week 1: Audit and Architecture</p>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D1</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Pull deliverability report: check open rate, spam complaint rate, bounce rate. Flag any domain reputation issues in Google Postmaster Tools before touching flows.</p>
+<div style="overflow-x:auto;margin:28px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
+    <thead>
+      <tr style="background:#1a1a1a;">
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Attribution Window</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">What It Counts</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">When to Use</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">ROAS Impact vs. Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">7-day click / 1-day view (default)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">All conversions within 7 days of any click</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Baseline only, not for budget decisions</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Highest (most inflated)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">1-day click / 0-day view</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Only same-day conversions after clicks</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Short purchase cycle products (impulse buys)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Lowest (most conservative)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Data-driven attribution</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">ML-weighted credit across all touchpoints</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Accounts with 300+ conversions/month</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Moderate (most accurate for bidding)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">MER (blended ROAS)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Total revenue / total ad spend across all channels</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Cross-platform budget allocation decisions</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">True north metric</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p style="color:#333333;line-height:1.8;">Our recommendation: switch from last-click to data-driven attribution as soon as your account hits 300 monthly conversions. Before that threshold, use 1-day click / 0-day view for your actual bidding decisions, and treat 7-day numbers as directional only. Most importantly, use Marketing Efficiency Ratio (total revenue divided by total ad spend) as your real budget allocation signal across channels.</p>
+
+<div style="background:#f0f7ff;border-left:4px solid #1976d2;border-radius:0 8px 8px 0;padding:20px 24px;margin:28px 0;">
+  <p style="font-weight:700;color:#1976d2;margin:0 0 8px 0;">Northbeam and Triple Whale for Cross-Platform Truth</p>
+  <p style="margin:0;line-height:1.7;color:#1a1a1a;">Platform-reported ROAS should never be used for cross-platform budget decisions. Use a third-party attribution tool (Northbeam, Triple Whale, or Rockerbox) that pulls revenue from Shopify directly and allocates it across all your paid channels using consistent logic. This is the only way to answer "should we move $5K from Google to Meta?" with any confidence.</p>
+</div>
+
+<h2 id="budget-allocation" style="color:#1a1a1a;margin-top:56px;">Budget Allocation by Revenue Stage</h2>
+
+<p style="color:#333333;line-height:1.8;">Budget allocation is one of the most common questions we get. How much of our Google Ads budget goes to Shopping vs. Search vs. Brand? The answer changes based on where you are in your growth trajectory. A $200K/year brand has different priorities than a $2M/year brand.</p>
+
+<div style="overflow-x:auto;margin:28px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
+    <thead>
+      <tr style="background:#1a1a1a;">
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Revenue Stage</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Shopping / PMax</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Brand Search</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Non-Brand Search</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Display / YouTube</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">Under $500K/yr</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">70%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">15%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">15%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">0%</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">$500K - $2M/yr</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">55%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">15%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">25%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">5%</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">$2M - $10M/yr</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">50%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">10%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">30%</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">10%</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:700;border:1px solid #e0e0e0;">$10M+/yr</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">40%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">10%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">30%</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">20%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p style="color:#333333;line-height:1.8;">Under $500K, there is no good reason to run Display or YouTube. You do not have the budget scale to generate meaningful data or impact, and the CPA is too high relative to Shopping's efficiency. Put every dollar into demand capture and protecting your brand terms. Layer in Display and YouTube once you have Shopping running profitably and you need a new growth lever.</p>
+
+<p style="color:#333333;line-height:1.8;">As you scale past $2M, Non-Brand Search earns a larger share because you have the data to make it work. Non-brand keywords (e.g., "organic protein powder," "hot sauce gift set") are more expensive and lower-converting than brand terms, but they bring in net-new buyers your Shopping campaigns may not reach. At scale, that growth lever matters.</p>
+
+<h2 id="optimization-loop" style="color:#1a1a1a;margin-top:56px;">The 72-Hour Optimization Loop</h2>
+
+<p style="color:#333333;line-height:1.8;">How often should you make changes to your Google Ads account? The instinct is "daily." The right answer is every 72 hours. Daily changes starve the algorithm of the time it needs to learn from adjustments. Making a bid change on Monday and another on Tuesday means neither change has meaningful data behind it.</p>
+
+<p style="color:#333333;line-height:1.8;">The 72-Hour Optimization Loop is the cadence we use across all Jetfuel accounts. One review, one change category per review, documented before and after.</p>
+
+<div style="margin:32px 0;">
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">1</div>
+    <div>
+      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Pull 72-Hour Performance Snapshot</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Look at clicks, conversions, CPA, and ROAS for the past 72 hours at the campaign and ad group level. Compare to the prior 72-hour period and to your 30-day rolling average. Note anything more than 20% different from the baseline. That is your signal.</p>
+    </div>
   </div>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D2</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Audit all active flows. Map trigger, email count, delay timing, and RPR for each. Identify which flows exist, which are missing from the priority list above, and which have not been updated in over 6 months.</p>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">2</div>
+    <div>
+      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Choose One Change Category</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Make only one type of change per review cycle: bidding adjustment, budget reallocation, negative keyword addition, audience bid modifier, or feed update. Making multiple change types simultaneously makes it impossible to know which change drove the result. Document your hypothesis before making the change.</p>
+    </div>
   </div>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D3</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Audit segmentation: are segments dynamic? Is behavioral data syncing from your store correctly? Check that Shopify order events are flowing into Klaviyo profiles in real time.</p>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">3</div>
+    <div>
+      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Log the Change with Timestamp</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Use Google Ads' built-in change history or an external log (we use a simple Google Sheet). Record: date, campaign, what you changed, why you changed it, and expected impact. This log is the most underrated tool in account management. When performance dips three weeks later, you can trace it to a specific change rather than guessing.</p>
+    </div>
   </div>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D4-5</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Identify your top 3 segments by revenue contribution. These become the priority lanes for personalization investment. Build a one-page segment map: name, trigger criteria, size, current email experience, and target experience.</p>
+  <div style="display:flex;align-items:flex-start;margin:20px 0;">
+    <div style="min-width:48px;height:48px;background:#ff6b35;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2em;margin-right:16px;flex-shrink:0;">4</div>
+    <div>
+      <p style="font-weight:700;margin:0 0 6px 0;font-size:1.05em;color:#1a1a1a;">Review Negative Keywords Weekly</p>
+      <p style="margin:0;color:#333333;line-height:1.7;">Pull your search terms report weekly and add negatives for any irrelevant terms that generated spend with zero conversions. For food brands, common wasted spend terms include recipe searches ("best habanero sauce recipe"), competitor navigational queries you do not want to pay for, and broad match spillover to unrelated categories. Build a shared negative keyword list across all campaigns.</p>
+    </div>
   </div>
 </div>
 
-<div style="margin:32px 0; background:#f8f9fa; border-radius:12px; padding:28px 32px;">
-  <p style="font-weight:800; font-size:1.1em; color:#ff6b35; margin:0 0 20px 0;">Week 2: Welcome and Post-Purchase Flows</p>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D8</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Rewrite welcome flow Email 1. Lead with brand story and preference capture, not a discount. Add a conditional split: if the subscriber came from a specific product page, show them that product's content. If from a recipe, lead with recipe content.</p>
-  </div>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D9-10</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Build or rebuild the post-purchase flow for first-time buyers. Email 1 (order confirmation): personalized by product. Email 2 (Day 3): usage tips for the specific product purchased. Email 3 (Day 10): related products cross-sell. Email 4 (Day 21): repurchase prompt with social proof.</p>
-  </div>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D11-12</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Add A/B tests to the welcome flow Email 1 subject line. Test: discount-first vs. no-discount. Let the test run for at least 500 recipients per variant before calling a winner.</p>
-  </div>
+<h2 id="google-meta" style="color:#1a1a1a;margin-top:56px;">Google Ads + Meta Ads: Complementary, Not Competing</h2>
+
+<p style="color:#333333;line-height:1.8;">The most common budget argument we see: "Should we put more into Google or Meta?" It is the wrong question. Google and Meta serve different stages of the customer journey. Running both well is almost always more efficient than going all-in on one.</p>
+
+<p style="color:#333333;line-height:1.8;">Google captures existing demand. Meta creates new demand. If you are a newer brand with low search volume for your category or product type, Google will underperform simply because there are not enough people searching. Meta can reach cold audiences and build awareness that eventually flows into Google search volume. That is the flywheel.</p>
+
+<div style="overflow-x:auto;margin:28px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95em;background:#ffffff;color:#1a1a1a;border:1px solid #e0e0e0;">
+    <thead>
+      <tr style="background:#1a1a1a;">
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Campaign Goal</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Best Platform</th>
+        <th style="background:#1a1a1a;color:#ffffff;padding:14px 18px;text-align:left;font-weight:600;border:1px solid #333;">Why</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Capture in-market buyers now</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Google (Shopping / Search)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Search intent signals are unmatched for ready-to-buy customers</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Introduce brand to new audiences</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta (Advantage+, Broad)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Visual ad formats + demographic + interest targeting outperforms Google for cold prospecting</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Retarget site visitors / cart abandoners</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta (Dynamic Product Ads)</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta's retargeting creative formats (video, carousel) drive stronger re-engagement than Google Display</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Protect brand search terms</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Google (Brand Search)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Competitors can bid on your brand name; own your SERP</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Video / content-driven awareness</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta + YouTube</td>
+        <td style="background:#ffffff;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Both outperform Google Display for awareness at cost-per-view efficiency</td>
+      </tr>
+      <tr style="border-bottom:1px solid #e0e0e0;">
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;font-weight:600;border:1px solid #e0e0e0;">Subscription / LTV optimization</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Meta (Customer List Targeting)</td>
+        <td style="background:#f9f9f9;color:#1a1a1a;padding:12px 18px;border:1px solid #e0e0e0;">Upload CRM segments to Meta for LTV-based lookalike building; Google Customer Match works but smaller reach</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<div style="margin:32px 0; background:#f8f9fa; border-radius:12px; padding:28px 32px;">
-  <p style="font-weight:800; font-size:1.1em; color:#ff6b35; margin:0 0 20px 0;">Week 3: Replenishment and Win-Back</p>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D15</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Calculate your average days-to-second-purchase for your top 3 SKUs. Set replenishment flow triggers at (average - 7 days). This is the single most ROI-positive flow setup for consumable F&amp;B products.</p>
-  </div>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D17-18</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Build a 3-email win-back flow for customers 90+ days without a purchase. Email 1: "We miss you" + reminder of what they bought. Email 2 (Day 7): 10-15% offer with urgency. Email 3 (Day 14): last-chance before sunset. Add a conditional split to suppress VIP customers from the discount emails and instead use a personal-touch message.</p>
-  </div>
-</div>
+<p style="color:#333333;line-height:1.8;">The practical test: if you pause Google Ads for two weeks, does your site traffic from organic and direct channels hold up? If brand search volume drops significantly, Google Shopping and Brand Search were generating the demand your other channels were capturing. They are not just conversion tools. They are demand drivers.</p>
 
-<div style="margin:32px 0; background:#f8f9fa; border-radius:12px; padding:28px 32px;">
-  <p style="font-weight:800; font-size:1.1em; color:#ff6b35; margin:0 0 20px 0;">Week 4: Campaign Cadence and Measurement Setup</p>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D22</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Set up your 5-metric dashboard: RPR (flows vs. campaigns separately), list growth rate, second purchase rate, email-attributed LTV, and deliverability health. If you cannot see all five in one place, email strategy decisions are being made in the dark.</p>
-  </div>
-  <div style="display:flex; align-items:flex-start; margin:14px 0;">
-    <div style="min-width:36px; height:36px; background:#1a1a1a; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; margin-right:14px; flex-shrink:0;">D25-28</div>
-    <p style="margin:0; color:#333333; line-height:1.7;">Set campaign frequency by segment. Active buyers: 2-3x per week is fine if content is personalized. Lapsed customers: no more than 1x per week until reactivated. The biggest deliverability mistake F&amp;B brands make is sending at the same frequency to everyone regardless of engagement level.</p>
-  </div>
-</div>
+<h2 id="faq" style="color:#1a1a1a;margin-top:56px;">Frequently Asked Questions</h2>
 
-<!-- FAQ SECTION -->
 <div itemscope itemtype="https://schema.org/FAQPage">
-  <h2 id="faq" style="color:#1a1a1a; margin-top:48px;">Frequently Asked Questions</h2>
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="border-bottom:1px solid #e0e0e0; padding:24px 0;">
-    <h3 itemprop="name" style="color:#1a1a1a; font-size:1.1em; margin:0 0 12px 0;">What is the best email platform for food and beverage DTC brands?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0e0e0;">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">How much budget do I need to start Google Ads for ecommerce?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333; line-height:1.7; margin:0;">Klaviyo is the strongest choice for DTC F&amp;B brands doing over $500K in annual revenue. The Shopify integration is deep, predictive analytics are built-in, and the flow architecture supports the complexity that high-performing personalization programs require. For earlier-stage brands or those focused heavily on SMS alongside email, Omnisend is worth evaluating. Mailchimp works for simple programs but lacks the behavioral data depth that serious F&amp;B personalization requires.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">The minimum viable daily budget for a Shopping campaign is around $30 to $50/day. Below that, you will not generate enough clicks to build conversion data within a reasonable timeframe. For brands just starting out, we recommend a total monthly Google Ads budget of $1,500 to $3,000 to generate statistically meaningful data within 60 days. Below $1,000/month, the algorithm's learning period stretches too long and you will struggle to exit the "learning" phase where performance is inconsistent.</p>
     </div>
   </div>
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="border-bottom:1px solid #e0e0e0; padding:24px 0;">
-    <h3 itemprop="name" style="color:#1a1a1a; font-size:1.1em; margin:0 0 12px 0;">How many emails per week should a food brand send?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0e0e0;">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">Should I use Performance Max or Standard Shopping for my ecommerce brand?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333; line-height:1.7; margin:0;">It depends on the segment and content quality. Active, highly engaged buyers can handle 2-3 emails per week if the content is personalized and relevant. Lapsed customers should get no more than 1 per week until reactivated. The mistake most brands make is applying one frequency rule to the entire list. Segment-based frequency capping in Klaviyo prevents over-sending to disengaged subscribers, which protects deliverability. The right frequency is the frequency your subscribers open and click at, not the maximum they will tolerate before unsubscribing.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">Use both, but for different product groups. Run Standard Shopping for your proven bestsellers (Superstars and Workhorses) where ROAS control matters most. Use Performance Max for new products, seasonal launches, and your Scout tier where broader reach and data generation are the goal. Accounts with 50+ monthly conversions can lean more into PMax for the AI advantages. Accounts under that threshold typically see better efficiency with Standard Shopping where you control bidding directly.</p>
     </div>
   </div>
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="border-bottom:1px solid #e0e0e0; padding:24px 0;">
-    <h3 itemprop="name" style="color:#1a1a1a; font-size:1.1em; margin:0 0 12px 0;">What are the most important email flows for a food and beverage brand?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0e0e0;">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">What is a good ROAS for Google Ads ecommerce?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333; line-height:1.7; margin:0;">The three non-negotiable flows are: welcome series (83.63% average open rate on Email 1 per Klaviyo's 2026 benchmarks), abandoned cart (3-email sequence over 48 hours), and post-purchase for first-time buyers. Beyond these, the replenishment flow is the highest-ROI flow for consumable F&amp;B products. Calculate your average days-to-second-purchase per SKU and trigger the replenishment email 7 days before that window closes. This single flow consistently moves the needle more than any campaign optimization for brands selling repeat-purchase products.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">The industry average ecommerce ROAS from Google Ads sits at 3.68:1 across 18,000+ brands (Triple Whale 2025). But ROAS is not the right target metric without context. A 3x ROAS on a 70% margin product is very profitable. A 5x ROAS on a 25% margin product might not break even after COGS, shipping, and returns. Set your ROAS target based on your break-even ROAS calculation: revenue needed to cover your gross margin percentage. Most brands should target a blended ROAS (total ad spend, all campaigns) of 2.5x to 4x depending on their category and margin structure.</p>
     </div>
   </div>
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="border-bottom:1px solid #e0e0e0; padding:24px 0;">
-    <h3 itemprop="name" style="color:#1a1a1a; font-size:1.1em; margin:0 0 12px 0;">How do I collect dietary preference data without annoying subscribers?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #e0e0e0;">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">Why is my Google Shopping ROAS good but my overall revenue isn't growing?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333; line-height:1.7; margin:0;">Frame the preference center as a benefit to the subscriber, not an administrative form. "Tell us what you love and we'll send you more of it" performs better than "Manage your email preferences." Collect preferences at two points: during signup (simple: 2-3 checkboxes maximum) and via a post-first-purchase survey email in the onboarding flow. For dietary data specifically, make it optional and lead with the benefit ("so we never recommend products with ingredients you avoid"). Voluntary data is also higher quality. A subscriber who chose to tell you they are vegan will respond better to vegan content than someone whose preference was inferred from a single purchase.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">This is the most common scaling plateau we see. When your Target ROAS is set too high, the algorithm only bids on the highest-probability conversions — your best customers who were going to buy anyway. ROAS looks great. Revenue stays flat. The fix is to lower your Target ROAS by 15 to 20% and let the algorithm pursue lower-probability conversions that it was previously ignoring. Yes, your reported ROAS will drop. But revenue and new customer acquisition should increase. Track Marketing Efficiency Ratio (total revenue divided by total ad spend) as your real growth metric, not platform ROAS.</p>
     </div>
   </div>
 
-  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="padding:24px 0;">
-    <h3 itemprop="name" style="color:#1a1a1a; font-size:1.1em; margin:0 0 12px 0;">What is a good email open rate for a food and beverage brand?</h3>
+  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+    <h3 itemprop="name" style="color:#1a1a1a;font-size:1.15em;margin-bottom:12px;">How long does it take for Google Ads to start performing for an ecommerce brand?</h3>
     <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-      <p itemprop="text" style="color:#333333; line-height:1.7; margin:0;">The F&amp;B industry benchmark is a 31.2% average open rate according to 2026 data from The Missing Ingredient. For welcome emails specifically, the benchmark is 83.63% (Klaviyo 2026 benchmarks). Segmented campaigns to engaged subscribers typically outperform list-wide sends by 15-25 percentage points. If your open rates are below 20% on list-wide sends, the issue is usually a combination of list hygiene (too many disengaged subscribers inflating the denominator) and a lack of segmentation. Fix the list health first, then optimize content.</p>
+      <p itemprop="text" style="color:#333333;line-height:1.8;margin:0;">Smart bidding campaigns enter a "learning" phase that typically lasts 1 to 4 weeks. During this period, ROAS is often inconsistent and CPA is elevated. Do not make major changes during the learning phase — it resets the clock. For most ecommerce brands, expect 60 to 90 days before you have enough data to make confident optimization decisions. Brands spending less than $1,500/month will see the learning period extended further because fewer clicks slow down data accumulation. Plan your evaluation timeline accordingly and resist the urge to pause or restructure before you have meaningful data.</p>
     </div>
   </div>
+
 </div>
 
-<!-- CONCLUSION -->
-<h2 style="color:#1a1a1a; margin-top:48px;">The Difference Between Sending Emails and Running an Email Program</h2>
+<p style="color:#333333;line-height:1.8;margin-top:48px;">Google Ads for ecommerce rewards structure, patience, and precision over raw budget. The brands we see compounding month over month are the ones that invest in account architecture upfront, use the right bidding strategy for their stage, optimize their feed continuously, and measure with honest attribution. Every one of those is a controllable variable. The budget is the last lever, not the first.</p>
 
-<p style="color:#333333; line-height:1.8;">Most F&amp;B brands are sending emails. The brands growing consistently are running email programs. The difference is in the infrastructure: clean behavioral data, dynamic segmentation, automated flows that handle the high-value moments in the customer lifecycle, and measurement that connects email activity to actual revenue outcomes.</p>
+<p style="color:#333333;line-height:1.8;">If your account is stuck at a plateau, the problem is almost always structural: wrong campaign architecture, mismatched bidding strategy, or attribution that is inflating numbers and driving bad budget decisions. Fix the structure first. Scale the budget second.</p>
 
-<p style="color:#333333; line-height:1.8;">The 22x revenue gap between flows and campaigns is not a Klaviyo quirk. It is the math of relevance. Automated flows are personalized by definition because they are triggered by what someone actually did. Campaigns require you to decide in advance who gets what. Most brands do not have the team bandwidth to do that personalization work at campaign level, which is exactly why investing in flow architecture first is the right call.</p>
-
-<p style="color:#333333; line-height:1.8;">The F&amp;B Personalization Stack we use with clients is not a complicated framework. Four data layers, applied consistently across a set of well-architected flows, will outperform the most elaborate broadcast calendar every time. Start with what you have. Build the welcome flow right. Get the post-purchase flow working. Then add complexity as you prove what works.</p>
-
-<!-- CTA BOX -->
-<div style="background:#fff5f0; border:2px solid #ff6b35; border-radius:12px; padding:32px; margin:48px 0; text-align:center;">
-  <h3 style="color:#1a1a1a; margin:0 0 12px 0; font-size:1.3em;">Want Us to Audit Your Email Program?</h3>
-  <p style="color:#333333; margin:0 0 24px 0; line-height:1.7;">We work with food and beverage brands to build email programs that drive real revenue growth. If you want to know what your flows are leaving on the table, we can show you.</p>
-  <a href="https://jetfuel.agency/contact-us/" style="display:inline-block; background:#ff6b35; color:#ffffff; padding:14px 32px; border-radius:8px; text-decoration:none; font-weight:700; font-size:1em;">Get a Free Email Audit</a>
+<div style="background:#fff5f0;border:2px solid #ff6b35;border-radius:12px;padding:32px;margin:48px 0;text-align:center;">
+  <h3 style="color:#1a1a1a;margin:0 0 14px 0;font-size:1.4em;">Ready to Scale Your Google Ads Account?</h3>
+  <p style="color:#333333;margin:0 0 22px 0;line-height:1.8;max-width:520px;margin-left:auto;margin-right:auto;">At Jetfuel, we manage Google Ads for food, beverage, and ecommerce brands that are serious about scaling profitably. If you want a second opinion on your account structure or are looking for a team to run it, we would be glad to take a look.</p>
+  <a href="https://jetfuel.agency/contact-us/" style="display:inline-block;background:#ff6b35;color:#ffffff;padding:15px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.05em;">Talk to Jetfuel</a>
 </div>
-
