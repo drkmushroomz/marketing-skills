@@ -15,8 +15,6 @@ The user may specify:
 - A **content type**: `blog`, `service-page`, or `explainer`. Default: `blog`.
 - A **target keyword** (e.g., "meta health ad restrictions 2026"). Optional — will be inferred from the topic if omitted.
 - `--draft` to save as a Google Doc draft instead of outputting inline. Default: output inline.
-- `--publish` to format as WordPress HTML and publish as a draft via `scripts/wp_publish.py`. Generates featured image via `scripts/generate_blog_image.py` and uploads to media library.
-- `--update <url>` to update an existing post rather than create new. Read the existing post first, identify gaps using the 22-Point Checklist, then produce upgrade content.
 
 ## Steps
 
@@ -80,43 +78,6 @@ The user may specify:
    - **Never fabricate or hallucinate a stat.** If you can't find a source URL that loads, don't include it. "We've seen across our portfolio" with real anonymized Jetfuel data is better than a made-up industry benchmark.
    - WebFetch at least 2 of the top-ranking competitor articles to understand their depth, structure, and what data they cite. The Jetfuel article should match or exceed their specificity.
 
-### Phase 0.5: Competitive Depth Audit (Best-on-the-Internet Standard)
-
-Before outlining, verify the article will be the most comprehensive source available. This is the difference between generic content and content that earns AI citations.
-
-6. **SERP Weakness Analysis:**
-   - WebFetch the top 3-5 ranking articles for the target keyword
-   - Score each competitor on a 1-5 SERP Weakness Scale:
-     - Score 5: forums, Reddit, Quora, thin/outdated content (easy win)
-     - Score 4: small blogs, low-DA sites, no schema, thin content
-     - Score 3: mix of strong and weak competitors
-     - Score 2: mostly strong domains but generic or outdated content
-     - Score 1: all strong domains with comprehensive, fresh content (find a niche angle)
-   - Extract what competitors cover AND what they miss. The gaps are where Jetfuel wins.
-   - LLMs cite the most comprehensive source. Every gap left unfilled is a citation lost.
-
-7. **Tactical depth requirements:**
-   Every article must include at least 3 of these elements that competitors lack:
-   - **Named frameworks** with steps (e.g., "The Sandbox Method," "SERP Weakness Score"). LLMs reference named frameworks.
-   - **Decision matrices** with specific scenarios (e.g., "Attribution by vertical," "Platform selection by revenue stage")
-   - **Operational playbooks** that map out exactly how to do the thing, not just what to do (e.g., "Day 1 morning: X. Day 1 afternoon: Y. Day 2: Z.")
-   - **Original data or benchmarks** from Jetfuel accounts (anonymized, with [VERIFY] tags)
-   - **Tool-specific workflows** showing the exact buttons to click, settings to change, APIs to call
-   - **Cost/pricing information** that readers actually want but nobody provides ("What does this cost? What's the budget split?")
-   - **Comparison tables** for any X vs Y content. Tables are the #1 content format for AI extraction.
-   - **Anti-patterns / common mistakes** with specific diagnostic criteria (not vague warnings)
-
-8. **22-Point Content Checklist (Orbit Media standard):**
-   Score the planned article against this checklist before writing. Target 18+/22.
-
-   **SEO (5):** Title tag (<55ch, keyphrase first), H1 (topic+keyphrase), keyphrase density (2-3x/1000 words), semantic coverage (PAA answers, subtopics), meta description (<155ch)
-
-   **Human Psychology (11):** Secondary headline (number/benefit), H2 subheads, lists, short paragraphs (<4 lines), formatting (bold/italics/blockquotes), internal links (blog + service page + FROM older posts), contributor quotes, examples with evidence, length/detail, CTA, author box
-
-   **Additional Media (6):** Featured image, supportive visuals at every scroll depth, video, audio, social sharing quotes, downloadable asset
-
-   Posts scoring below 18/22 need more depth before publishing.
-
 ### Phase 1: Outline
 
 5. **Build the content outline** using this architecture (adapt section names to the topic, but follow this flow):
@@ -141,8 +102,6 @@ Before outlining, verify the article will be the most comprehensive source avail
    H2: [Conclusion — 1 paragraph, forward-looking]
 
    CTA: Single call-to-action tied to the relevant Jetfuel service.
-        CTA link must point to https://jetfuel.agency/contact-us/
-        (NOT /contact/ — that URL does not exist and returns 404)
    ```
 
    **For service pages:**
@@ -161,8 +120,6 @@ Before outlining, verify the article will be the most comprehensive source avail
        H3: [Question 3]
 
    CTA: Contact/consultation CTA.
-        CTA link must point to https://jetfuel.agency/contact-us/
-        (NOT /contact/ — that URL does not exist and returns 404)
    ```
 
 6. **Present the outline** to the user for approval before writing. Include:
@@ -292,63 +249,6 @@ Before outlining, verify the article will be the most comprehensive source avail
    - Title: the H1
    - Write the full content using `batch_update_doc`
    - Share the Doc link with the user
-
-### Phase 5: WordPress Publishing (if `--publish` flag)
-
-11. **Build WordPress-ready HTML** using the publish-blog template:
-    - Key Takeaways box at top (3-5 bullets, orange border, gradient background)
-    - Table of Contents with anchor links to every H2
-    - Rich visual elements for every major section:
-      - Stat Highlight Cards for impressive numbers (white bg, orange border, large numbers)
-      - Comparison Tables with dark headers (#1a1a1a), alternating rows, explicit colors on every cell
-      - Step-by-step visualizations with numbered circles for how-to content
-      - Callout boxes: blue for Pro Tips, yellow for warnings, green for case studies, purple for key insights
-    - FAQ section with FAQPage schema markup (itemscope/itemtype attributes)
-    - Single CTA box at the bottom (orange border, centered button)
-    - **Dark-on-dark prevention (mandatory):** Every text element must have explicit `color` inline. Never inherit. Minimum: `#333333` for body, `#444444` for labels, `#1a1a1a` for headings. Never use `#555` or `#666`.
-
-12. **Generate featured image:**
-    ```bash
-    python scripts/generate_blog_image.py --title "Post Title" --subtitle "SUBTITLE" --output scripts/featured_image.png
-    ```
-
-13. **Publish as draft:**
-    ```bash
-    python scripts/wp_publish.py --title "Title" --content-file content.html --slug "slug" \
-      --categories "68,67" --tags "tag1,tag2" --excerpt "Meta description" \
-      --status draft --author 1 --password "{from me.json}"
-    ```
-
-14. **Upload featured image** and set on post via WordPress REST API.
-
-15. **Return edit link and preview link** to the user.
-
-### Phase 6: AI Visibility Optimization (GEO/AEO/AIO)
-
-Every article should be optimized for AI citation, not just traditional search rankings.
-
-**GEO (Generative Engine Optimization):**
-- Opening paragraph must be a self-contained, quotable answer an LLM can extract verbatim
-- Named frameworks get cited. Name your methodology and make it referenceable.
-- Comparison tables are the #1 citation format. LLMs extract tables reliably.
-- Statistics with source links increase AI visibility by 22% (Digital Bloom, 2025)
-
-**AEO (Answer Engine Optimization):**
-- FAQ section with H3 question headings targets People Also Ask and voice assistants
-- Question-style headings throughout match how users prompt AI
-- Each H2 section should be independently extractable (makes sense out of context)
-
-**AIO (AI Optimization):**
-- Entity trust signals: consistent brand description across the web, external references, schema markup
-- Schema markup is non-negotiable: FAQ, Article, HowTo, Organization, Product
-- FAQ schema was a direct driver of ChatGPT visibility in our testing
-- Comparison pages are the highest-impact content type for AI visibility
-
-**Content depth standard for AI citation:**
-- If 10+ articles already cover the topic, find a narrower angle only Jetfuel can speak to
-- Include operational playbooks (not just "what to do" but "how we do it, step by step, with timelines")
-- Original data from Jetfuel accounts (anonymized) beats external stats for LLM citation
-- The article must be the most comprehensive source available on its specific angle
 
 ## Important Rules
 
