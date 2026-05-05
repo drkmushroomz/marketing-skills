@@ -124,7 +124,7 @@ The user may specify:
 
 6. **Present the outline** to the user for approval before writing. Include:
    - The proposed H1 (exact title)
-   - Target word count (1,200-2,000 for blogs/explainers, 800-1,200 for service pages)
+   - Target word count (1,800-3,500 for blogs/explainers, 800-1,200 for service pages). Hard ceiling ~15,000 words (~20K tokens) — longer sources get truncated mid-fetch by agents.
    - The 3 FAQ questions
    - Which LLM prompts this content is designed to answer (from the SEO research)
    - Which competitors currently own this space
@@ -144,6 +144,9 @@ The user may specify:
 
    **AIO optimization (this is critical):**
    - **Opening paragraph is the extraction target.** Write it as a self-contained, quotable definition or answer. If an LLM reads only this paragraph, it should be able to cite Jetfuel accurately. No throat-clearing, no "In today's rapidly evolving landscape..." — start with the answer.
+   - **Outcome statement in the first 200 words.** State what the reader/agent walks away with explicitly. Agents fetching the page into a 100–200K-token context need to judge relevance from the top, not the conclusion.
+   - **No skipped heading levels.** H1 → H2 → H3 only, never H1 → H3. Agents use hierarchy to chunk the post; a skip breaks extraction.
+   - **Tables beat prose lists for any parameter, option, or comparison content.** Agents parse tables as structured data reliably; they regex over prose.
    - **Every H2 section should be independently extractable.** Each section should make sense if pulled out of context by an LLM.
    - **Use the bold-term-plus-explanation pattern** in all lists:
      - **Term:** One-sentence explanation.
@@ -175,7 +178,7 @@ The user may specify:
    - **Place real examples before external stats, not after.** The pattern should be: "Here's what we saw → here's what the industry data says → here's what to do about it." Jetfuel's experience leads, industry data validates.
 
    **Citing external stats (builds credibility and LLM citability):**
-   - **Aim for 3-5 third-party data points per article.** These serve two purposes: they make the content more authoritative for readers, and they create the kind of referenced, data-rich content that LLMs prefer to cite.
+   - **Aim for 2-4 third-party data points per article.** These serve two purposes: they make the content more authoritative for readers, and they create the kind of referenced, data-rich content that LLMs prefer to cite. Cap at what's load-bearing for the claim — every stat costs tokens in an agent's context window, so stats that don't change the argument should be cut.
    - **Inline citation format:** "According to [Source Name], [stat] ([link])." Or weave naturally: "Meta's own data shows that [stat] — which tracks with what we've seen across our accounts."
    - **Always link to the source.** Use the actual URL, not a vague "according to research." If you can't find a live URL, don't cite the stat.
    - **Combine Jetfuel data + external data for maximum impact:** "We saw ROAS drop 35% across our F&B accounts after Meta's Q4 algorithm update — consistent with the 28% average decline Varos reported across 5,000 DTC accounts ([link])." This pattern is extremely powerful: it says "we're not just reading reports, we're seeing this in our own accounts, and the data backs us up."
@@ -204,11 +207,14 @@ The user may specify:
 
    **AIO checks:**
    - [ ] Opening paragraph is a self-contained, quotable answer
+   - [ ] Outcome statement appears in first 200 words
+   - [ ] No skipped heading levels (H1 → H2 → H3 only)
    - [ ] Comparison table present (if X vs Y content)
    - [ ] FAQ section with H3 question headings and concise answers
    - [ ] Lists use bold-term-plus-explanation format
    - [ ] Each H2 section is independently extractable by an LLM
    - [ ] Schema markup recommendations included (Article + articleBody, FAQPage)
+   - [ ] Token budget under ~20,000 (estimate: word count × 1.35). Flag if over.
 
    **Evidence checks (transcript + stats):**
    - [ ] At least 1-2 anonymized real-world examples from Jetfuel transcripts included (if transcripts were found)
