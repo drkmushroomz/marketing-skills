@@ -6,15 +6,13 @@ description: >-
 
 # Google Ads Account Audit
 
-Part of [Agent Skills™](https://github.com/itallstartedwithaidea/agent-skills) by [googleadsagent.ai™](https://googleadsagent.ai)
-
 ## Description
 
 The Google Ads Account Audit skill executes a comprehensive, pattern-driven analysis of any Google Ads account using a proprietary 1,000-pattern knowledge base. This is the most thorough automated audit available, covering all 20 audit categories: Campaign Structure, Bidding, Keywords, Ad Copy, Performance Max, Shopping, Audiences, Conversions, Budget, Quality Score, Search Terms, Display, Video/YouTube, Remarketing, Reporting, Account Structure, Landing Pages, Competitive Strategy, Automation, and Policy Compliance.
 
 Each pattern in the knowledge base encodes a specific anti-pattern, threshold, or best practice violation derived from auditing thousands of Google Ads accounts across industries. The audit engine evaluates account data against these patterns, generates severity-scored findings, and produces prioritized recommendations with estimated impact. Findings are grouped by category and ranked by potential revenue impact, giving advertisers a clear roadmap for improvement.
 
-The audit integrates directly with the Buddy™ Agent platform, enabling continuous monitoring rather than point-in-time snapshots. When deployed as a recurring audit, the skill tracks pattern resolution over time, measures improvement velocity, and alerts on regression. This transforms the traditional audit from a one-off consulting deliverable into an always-on optimization layer.
+When deployed as a recurring audit, the skill tracks pattern resolution over time, measures improvement velocity, and alerts on regression. This transforms the traditional audit from a one-off consulting deliverable into an always-on optimization layer.
 
 ## Use When
 
@@ -164,14 +162,6 @@ export const auditPatterns = [
 ];
 ```
 
-## Integration with Buddy™ Agent
-
-The Google Ads Audit skill is the foundational diagnostic tool in the Buddy™ Agent platform. When a user connects their Google Ads account, Buddy™ automatically triggers an initial full audit across all 20 categories. Results populate the Buddy™ dashboard with severity-coded findings and a prioritized action queue.
-
-Buddy™ uses audit findings to drive its proactive recommendation engine. Critical findings trigger immediate Slack/email notifications. High-severity findings are queued for the user's next session. The audit re-runs on a configurable schedule (daily, weekly, or monthly) to track resolution progress and detect new issues.
-
-The audit skill feeds into downstream skills: keyword findings trigger the Keyword Research skill, ad copy findings trigger Ad Copy Generation, and Quality Score findings trigger the Quality Score Optimization skill.
-
 ## Best Practices
 
 1. Run a full audit before making any account changes to establish a baseline
@@ -200,11 +190,3 @@ The audit skill feeds into downstream skills: keyword findings trigger the Keywo
 - [Ad Copy Generation](../ad-copy-generation/) - Ad copy audit findings trigger new ad variant generation
 - [Quality Score Optimization](../quality-score-optimization/) - Quality Score findings drive targeted QS improvement workflows
 - [Parallel Agent Orchestration](../../ai-agent-engineering/parallel-agent-orchestration/) - Full account audits across 20 categories benefit from parallel subagent execution
-
-## Keywords
-
-google ads audit, ppc audit, account health check, campaign review, google ads optimization, ad account analysis, ppc analysis, google ads best practices, campaign audit checklist, wasted spend analysis, google ads diagnostics, performance review, account structure audit, bidding audit, keyword audit
-
----
-
-© 2026 [googleadsagent.ai™](https://googleadsagent.ai) | [Agent Skills™](https://github.com/itallstartedwithaidea/agent-skills) | MIT License
