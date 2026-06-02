@@ -1,20 +1,6 @@
-# AI Sales Playbook — Value-Based Pricing & Deal Upselling
+# Jetfuel Sales Playbook — Value-Based Pricing & Deal Upselling
 
-## Preamble (runs on skill start)
-
-```bash
-# Version check (silent if up to date)
-python3 telemetry/version_check.py 2>/dev/null || true
-
-# Telemetry opt-in (first run only, then remembers your choice)
-python3 telemetry/telemetry_init.py 2>/dev/null || true
-```
-
-> **Privacy:** This skill logs usage locally to `~/.ai-marketing-skills/analytics/`. Remote telemetry is opt-in only. No code, file paths, or repo content is ever collected. See `telemetry/README.md`.
-
----
-
-Framework for value-based pricing that moves deals from $10K/mo → $40-100K/mo. Pre-call briefings, tiered package generation, post-call analysis, and a pattern library for training sales teams on proven pricing techniques.
+Framework for value-based pricing on JF prospect calls. Pre-call briefings, tiered package generation, post-call analysis, and a pattern library for training reps on proven pricing techniques. Designed to move proposals from baseline retainer to premium tier without discounting.
 
 ## When to Use
 

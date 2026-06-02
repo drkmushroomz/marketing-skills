@@ -8,7 +8,8 @@
     "barker-wellness": {
       "customer_id": "8737823917",
       "label": "Barker Wellness",
-      "notify": ["U041PPJ6MUJ"]
+      "notify": ["U041PPJ6MUJ"],
+      "lookback_days": 7
     },
     "grip-studs": {
       "customer_id": "9373468530",
@@ -24,6 +25,16 @@
       "customer_id": "7917010846",
       "label": "DeLille Cellars",
       "notify": ["U091G0BUTRD"]
+    },
+    "hampton-water": {
+      "customer_id": "2006547901",
+      "label": "Hampton Water",
+      "notify": ["U041PPJ6MUJ"]
+    },
+    "jinx": {
+      "customer_id": "5841094176",
+      "label": "JINX",
+      "notify": ["U041PPJ6MUJ"]
     }
   },
   "slack_channel": "C0AMKEKU9ND",

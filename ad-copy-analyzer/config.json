@@ -1,0 +1,21 @@
+{
+  "mcc_id": "1874174744",
+  "accounts": {
+    "barker-wellness": {
+      "customer_id": "8737823917",
+      "label": "Barker Wellness"
+    },
+    "train-with-dave": {
+      "customer_id": "9099081672",
+      "label": "Train with Dave"
+    },
+    "delille": {
+      "customer_id": "7917010846",
+      "label": "DeLille Cellars"
+    }
+  },
+  "lookback_days": 90,
+  "min_impressions": 100,
+  "min_clicks": 5,
+  "top_n_ads": 20
+}

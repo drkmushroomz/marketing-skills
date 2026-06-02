@@ -5,13 +5,22 @@ Content Fingerprint — Scan published blog content to derive keyword seeds.
 Pulls all published posts from the WordPress REST API, analyzes topic
 frequencies, and outputs weighted keyword seeds for the execution pipeline.
 
-Usage:
-    python content_fingerprint.py
-    python content_fingerprint.py --domain jetfuel.agency
-    python content_fingerprint.py --json  # Output JSON instead of table
+NOTE: jetfuel.agency migrated off WordPress to Statamic in May 2026 — this
+script no longer applies to jetfuel.agency. For jetfuel content
+fingerprinting, fetch entries via the `statamic` MCP (action=list,
+collection=blog) instead. This helper is kept for the execution-pipeline
+skill's broader use across other WordPress-based clients (e.g. TWD pre-migration).
+
+Default WP_DOMAIN should be overridden per-run for non-jetfuel clients;
+running with the default will fail since the jetfuel WP REST endpoint
+returns 404 post-migration.
+
+Usage (for any WP-based client other than jetfuel):
+    python content_fingerprint.py --domain example.com
+    python content_fingerprint.py --domain example.com --json
 
 Environment variables:
-    WP_DOMAIN    — WordPress domain (default: jetfuel.agency)
+    WP_DOMAIN    — WordPress domain (set per client; default is stale)
     WP_USER      — WordPress username (optional, for auth)
     WP_APP_PASS  — WordPress application password (optional)
     OUTPUT_DIR   — Where to save output (default: ./output)
@@ -37,7 +46,7 @@ if sys.platform == "win32":
 OUTPUT_DIR = Path(os.environ.get("OUTPUT_DIR", "./output"))
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-WP_DOMAIN = os.environ.get("WP_DOMAIN", "jetfuel.agency")
+WP_DOMAIN = os.environ.get("WP_DOMAIN", "")  # NO default — jetfuel migrated off WP May 2026; set per client
 WP_USER = os.environ.get("WP_USER", "")
 WP_APP_PASS = os.environ.get("WP_APP_PASS", "")
 

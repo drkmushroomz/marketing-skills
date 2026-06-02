@@ -18,7 +18,7 @@ The user may specify:
 ## Setup
 
 1. Read `.claude/me.md` for user identity. If missing, STOP and tell user to run `./setup.sh`.
-2. Read `.claude/me.json` for WordPress credentials and user preferences.
+2. Read `.claude/me.json` for user preferences. The blog lives on **Statamic** (jetfuel.agency migrated off WordPress May 2026) — auth is carried by the `statamic` MCP connection. No app passwords, no REST API.
 3. Read config from `.claude/ops/content-gaps/config.json`.
 4. Get today's date via shell command (`date`). GSC data has a ~3-day lag.
 
@@ -26,22 +26,22 @@ The user may specify:
 
 The blog inventory is the foundation. You need to know what exists before you can find gaps.
 
-### 1A. Pull all published blog posts from WordPress REST API
+### 1A. Pull all published blog entries from Statamic
 
-Use curl to fetch all published posts from the WordPress API:
+Use the native `mcp__statamic__statamic-entries` tool with `action=list`, `collection=blog`. Paginate via the tool's offset/limit params until all entries are retrieved. Filter to `status=published` (the live ones).
 
-```bash
-curl -s "https://jetfuel.agency/wp-json/wp/v2/posts?per_page=100&page=1&status=publish&_fields=id,title,slug,excerpt,date,modified,link,categories,tags" \
-  -u "edwin:{app_password from me.json}"
+```
+mcp__statamic__statamic-entries(action=list, collection=blog, status=published, limit=100, offset=0)
 ```
 
-Paginate until you have all posts (check response headers for `X-WP-TotalPages`).
+Do NOT use curl, the WordPress REST API, or write a Python HTTP client. The Statamic MCP handles auth.
 
-For each post, capture:
+For each entry, capture:
 - **ID, title, slug, URL**
-- **Publish date and last modified date**
-- **Excerpt** (this is the meta description in most cases)
-- **Categories and tags**
+- **Publish date (`date` field) and last modified (`updated_at`)**
+- **`seo_description` field** (the meta description)
+- **Categories and tags** (taxonomy term slugs)
+- **Word/token count if exposed in the blueprint** (helpful for agent-fetch budgeting)
 
 ### 1B. Fetch and analyze each blog post's content
 
@@ -59,10 +59,10 @@ Prompt: "Extract: 1) The H1 title, 2) All H2 headings, 3) Approximate word count
 Build a content inventory with these fields per post:
 | Field | Source |
 |-------|--------|
-| URL | WordPress API |
+| URL | Statamic MCP |
 | Title (H1) | WebFetch |
-| Publish date | WordPress API |
-| Last modified | WordPress API |
+| Publish date | Statamic MCP |
+| Last modified | Statamic MCP |
 | Word count (approx) | WebFetch |
 | H2 headings | WebFetch |
 | Has FAQ schema | WebFetch |

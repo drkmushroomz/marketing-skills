@@ -17,6 +17,8 @@ Before providing recommendations, identify:
 
 ## CRO Analysis Framework
 
+> **E-commerce, checkout, product, or mobile page?** Ground your analysis in documented usability research, not just heuristics. See [references/baymard-guidelines.md](references/baymard-guidelines.md) for Baymard Institute's guideline sets (checkout, homepage/category, product lists, mobile) plus citable benchmarks (70% cart abandonment, the four abandonment drivers, ≤8 form fields, etc.). Triage findings by severity: Harmful (causes abandonment) → Disruptive → Interruption.
+
 Analyze the page across these dimensions, in order of impact:
 
 ### 1. Value Proposition Clarity (Highest Impact)
@@ -75,6 +77,8 @@ Analyze the page across these dimensions, in order of impact:
 
 **Placement:** Near CTAs and after benefit claims
 
+**E-commerce note:** Reinforce sensitive payment fields with visible security cues — 89% of sites fail this and half of test subjects had security doubts at payment. See Baymard checkout guidelines.
+
 ### 6. Objection Handling
 
 **Common objections to address:**
@@ -88,12 +92,14 @@ Analyze the page across these dimensions, in order of impact:
 ### 7. Friction Points
 
 **Look for:**
-- Too many form fields
+- Too many form fields (most checkouts need ≤8; average is 11.3)
 - Unclear next steps
 - Confusing navigation
 - Required information that shouldn't be required
-- Mobile experience issues
+- Mobile experience issues (tap targets <7×7mm, labels not above fields, dead-end pages)
 - Long load times
+
+**For checkout/form-heavy pages**, run the page against the Baymard checkout and data-input guidelines in [references/baymard-guidelines.md](references/baymard-guidelines.md) — single name field, inline validation, preserve input on error, guest checkout, opt-in newsletter, show total before card entry.
 
 ---
 
@@ -141,6 +147,13 @@ For key elements (headlines, CTAs), provide 2-3 alternatives with rationale.
 - Contextual CTAs matching content topic
 - Inline CTAs at natural stopping points
 
+### E-Commerce CRO (product, category, cart, checkout, mobile)
+- Work from documented research, not just heuristics — see [references/baymard-guidelines.md](references/baymard-guidelines.md).
+- **Product/category pages:** clear scope, findable filtering (not just sorting), unambiguous thumbnails, complete list-item info, hierarchy breadcrumbs.
+- **Cart/checkout:** guest checkout (prominent), all-in total before card entry, no surprise fees, ≤8 fields, single name field, inline validation, preserve input on error, opt-in newsletter.
+- **Mobile:** ≥7×7mm tap targets, ≥11pt font, labels above fields, correct keyboard layouts, in-page escape routes, full-site footer link.
+- Always design against the four abandonment drivers: extra costs (39%), slow delivery (21%), card distrust (19%), forced account (19%).
+
 ---
 
 ## Experiment Ideas
@@ -153,6 +166,8 @@ When recommending experiments, consider tests for:
 - Navigation and UX
 
 **For comprehensive experiment ideas by page type**: See [references/experiments.md](references/experiments.md)
+
+**For research-backed e-commerce/checkout/mobile guidelines and citable benchmarks**: See [references/baymard-guidelines.md](references/baymard-guidelines.md)
 
 ---
 

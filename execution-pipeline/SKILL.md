@@ -9,8 +9,6 @@ metadata:
 
 Score keywords using an Impact x Confidence model and route them to the right execution tier: fully automated (Claude writes), semi-auto (Claude drafts, human edits), or team-led (human writes, Claude assists).
 
-Adapted from Eric Siu's content_attack_brief.py scoring model, customized for Jetfuel's workflow.
-
 ## Prerequisites
 
 - `.env` with `AHREFS_TOKEN` (strongly recommended for KD + volume data)
@@ -29,7 +27,7 @@ The `reference/` directory contains Python scripts that can be run standalone or
   ```bash
   python3 .claude/skills/execution-pipeline/reference/competitor_gap.py
   ```
-- **`content_attack_brief_ericsiu.py`** -- Eric Siu's reference implementation (full pipeline)
+- **`content_attack_brief.py`** -- Reference implementation (full end-to-end pipeline)
 
 ## Input
 

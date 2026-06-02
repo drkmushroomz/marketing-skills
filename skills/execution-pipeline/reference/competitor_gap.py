@@ -7,7 +7,7 @@ cross-references them, and surfaces gaps sorted by opportunity.
 
 Usage:
     python competitor_gap.py
-    python competitor_gap.py --competitors=singlegrain.com,webfx.com
+    python competitor_gap.py --competitors=webfx.com,tinuiti.com
     python competitor_gap.py --json
 
 Environment variables:
@@ -42,11 +42,11 @@ AHREFS_BASE = "https://api.ahrefs.com/v3"
 YOUR_DOMAIN = os.environ.get("YOUR_DOMAIN", "jetfuel.agency")
 
 DEFAULT_COMPETITORS = [
-    "singlegrain.com",
     "webfx.com",
     "hawksem.com",
     "tinuiti.com",
     "commonthreadco.com",
+    "powerdigitalmarketing.com",
 ]
 
 _comp_env = os.environ.get("COMPETITORS", "")

@@ -392,8 +392,9 @@ def cmd_mine(args):
     print(f"Connecting to Google Ads for {label} ({customer_id})...")
     client = get_google_ads_client(env, config)
 
-    print(f"Fetching L{config['lookback_days']}D search terms...")
-    search_terms = fetch_search_terms(client, customer_id, config["lookback_days"])
+    lookback_days = account.get("lookback_days", config["lookback_days"])
+    print(f"Fetching L{lookback_days}D search terms...")
+    search_terms = fetch_search_terms(client, customer_id, lookback_days)
     print(f"  Found {len(search_terms)} search term entries")
 
     if not search_terms:
@@ -435,7 +436,7 @@ def cmd_mine(args):
 
     lines = [
         f":mag: *N-Gram Negative KW Report — {label}*",
-        f"_L{config['lookback_days']}D | {len(search_terms)} search terms | {len(candidates)} candidates_",
+        f"_L{lookback_days}D | {len(search_terms)} search terms | {len(candidates)} candidates_",
         f"_Reply in thread: `approve 1,3,5` or `approve all` | `disapprove 2,4`_",
     ]
     if notify_str:

@@ -2,7 +2,7 @@
 name: seo-audit
 description: When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO audit," "technical SEO," "why am I not ranking," "SEO issues," "on-page SEO," "meta tags review," "SEO health check," "my traffic dropped," "lost rankings," "not showing up in Google," "site isn't ranking," "Google update hit me," "page speed," "core web vitals," "crawl errors," or "indexing issues." Use this even if the user just says something vague like "my SEO is bad" or "help with SEO" — start with an audit. For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema-markup. For AI search optimization, see ai-seo.
 metadata:
-  version: 1.2.0
+  version: 1.3.0
 ---
 
 # SEO Audit
@@ -73,7 +73,8 @@ Reporting "no schema found" based solely on `web_fetch` or `curl` leads to false
 
 3. **Try the platform's alternate URL patterns:**
    - Shopify: `/products/<slug>` ↔ `/pages/<slug>` ↔ `/collections/<slug>`
-   - WordPress: `/<slug>/` ↔ `/product/<slug>/` ↔ `/shop/<slug>/`
+   - Statamic: `/<collection>/<slug>` ↔ `/<slug>` (collections often mount at root; check `statamic-structures` for the actual route mount)
+   - WordPress (legacy client sites): `/<slug>/` ↔ `/product/<slug>/` ↔ `/shop/<slug>/`
    - Framer/Webflow: trailing slash and case variants
 
 **Shopify-specific rule:** If a brand sells through retailers and not DTC, their "product pages" will usually live at `/pages/<slug>` (CMS page) rather than `/products/<slug>` (Shopify product with checkout). Don't flag the `/products/` 404 — find the `/pages/` equivalent and audit *that* for Product/Offer schema depth. Example: `hamptonwaterwine.com` puts Hampton Water Rosé at `/pages/rose-wine`, not `/products/hampton-water-rose`.
@@ -431,6 +432,58 @@ Same format as above
 3. Any recent changes or migrations?
 4. Who are your top organic competitors?
 5. What's your current organic traffic baseline?
+
+---
+
+## Jetfuel Field Playbook
+
+How Jetfuel actually runs SEO audits and what has won for our clients. Apply this on top of the framework above. (Distilled from completed client audits, SEO call transcripts, and reporting docs: Hampton Water, Backyard Zip Line / Zip Line Gear, Grip Studs, Flora Fine Foods, Jinx, Aletha Health, Tate's Bake Shop, plus the "SEO Action Items" and ZLG SOW process docs in Drive.)
+
+### Deliverable: the 5-section audit + 30/60/90 plan
+Every JF audit converges on one structure. Fill all five sections before delivering, and model the format on the client audit docs above:
+1. **Site Traffic Overview** — real GSC/GA4 baseline (clicks, impressions, CTR, avg position, sessions, YoY). Pull data, never estimate.
+2. **Technical SEO Status** — crawlability, indexed-vs-expected count, 404/403, canonical issues, meta coverage.
+3. **User Experience & Site Speed** — Core Web Vitals (LCP/INP/CLS), mobile.
+4. **AI & GEO Overview** — schema coverage, FAQ schema, AI-bot access, brand citation presence, E-E-A-T signals.
+5. **High-Level Action Plan** — phased 30/60/90 deliverables, then pitch a 120–190 day AIO phase as the retention layer.
+
+Lead with an executive summary and an "Estimated Impact in 90 Days" stated as ranges and clearly labeled projections (e.g. "+20–40% organic impressions, first-ever AI citations"). Open with what is already working. Output is a Google Doc, often converted to a deck.
+
+### Data discipline (hard rules)
+- Pull real GSC + Ahrefs first. Use `[NEEDS REAL DATA]` placeholders rather than fabricate any metric, even anonymized.
+- Verify every claim with primary evidence before it ships: raw HTML grep for tracking IDs, Ahrefs `is_spam` link-level flags, `curl -sIL` redirect traces for URL existence. The Hampton Water `/products/` 404 false-positive and the "no Pixel anywhere" false-negative are the canonical failure modes.
+- Never recommend pausing existing paid spend in a proposal; frame foundation work as "in parallel."
+- No em-dashes in any client-facing copy (top AI tell). See `references/ai-writing-detection.md`.
+
+### Keyword & content diagnostics
+- **Striking distance:** pull GSC positions 5–20 with impressions ≥ 20; prioritize by `impressions × (30 − position) / 30`.
+- **Quick wins:** position 1–5 with CTR below 50% of expected (pos1≈30%, pos2≈15%, pos3≈10%) → title/meta rewrite.
+- **Intent + cluster quality (Jinx model):** classify keywords transactional/informational/navigational and flag each content cluster HIGH / MIXED / LOW. High impressions + near-zero clicks = People Also Ask dead weight, not real traffic. Do not celebrate vanity impressions.
+- **Keyword map in two tiers:** head terms (6–15 month marathon vs. major brands) separated from long-tail (visible jumps in weeks, higher intent). Each page gets exactly one job.
+- **Content refresh triage (Orbit Media 22-pt):** Light (title/meta) / Medium (add 500–1,000 words + FAQ + tables) / Heavy (full rewrite at the same URL to preserve backlinks). Add a visible "last updated" date and `dateModified` in Article schema.
+
+### AIO / GEO — a current diagnostic, not a future phase
+- **FAQ schema is the #1 confirmed AIO lever.** ZLG went from zero ChatGPT mentions to being named 2–3× per response, with 93 AI-referred sessions and 4 conversions, after adding FAQPage schema to the homepage + FAQ page. Recommend FAQPage schema on homepage and key PDPs in every audit.
+- **AI-bot access audit:** confirm robots.txt allows GPTBot, ChatGPT-User, OAI-SearchBot, PerplexityBot, ClaudeBot, anthropic-ai, Google-Extended, Bingbot. Blocking any = that engine cannot cite the brand. CCBot is training-only (safe to block). Cloudflare's "block AI bots" default silently blocks all of these.
+- **Money prompts, not keywords:** test 30–50 conversational prompts written the way a frustrated buyer types them into ChatGPT (problem-first, with context and emotion), across the buyer funnel: Problem/Symptom → Buyer-Intent → Comparison/Validation → Authority. For each, record who gets cited and the content gap.
+- **Dark SEO Funnel framing** for recommendations: Ingestion (schema, entity, original data) → Recommendation (surround-sound: G2/Capterra/Healthgrades/Trustpilot, Reddit/Quora, third-party press) → Verification (brand-SERP cleanup).
+- **AIO readiness score (0–10) per priority page:** direct answer in opening paragraph (0–3), independently extractable H2 sections (0–2), FAQ with H3 question headings (0–2), comparison tables (0–1), Article + FAQPage schema (0–1), cited stats with source links (0–1). Below 5 = needs an AIO upgrade. Princeton GEO lifts: cite sources +40%, statistics +37%, quotations +30%, authoritative tone +25%; keyword stuffing −10%.
+- **E-E-A-T for citations:** on-site press/media section with all PR linked, author bios with credentials, consistent brand facts, and direct "What is [Brand]?" / "Where to buy [Brand]?" answers in body copy. Usefulness beats volume: one calculator/quiz/tool (SoftwareApplication + FAQPage schema, placed outside any iframe) can outperform ten generic posts.
+- **Track AI referral traffic** as its own GA4 segment and report AI-source conversions separately.
+
+### Shopify / platform specifics
+- **Dual-URL canonical trap:** post-migration sites keep both `/product/<slug>` (old) and `/products/<slug>` (new) live with no canonical, splitting equity. 301 the old, set canonical. Confirmed on Flora and ZLG.
+- **Collection pages = programmatic SEO:** collection tags + dynamic H1/meta templates spin up long-tail purchase-intent pages ("100ft Zip Line Kits with Harness", "Kits under $200"). Manage crawl budget + canonical.
+- **Reviews app schema:** wire Loox / Judge.me / Yotpo / Okendo star ratings into Product schema for SERP stars. Missing reviews = no rich result = CTR penalty.
+- **Schema injection:** dynamic fields (price, stock) via GTM or Shopify metafields; validate with Rich Results Test (renders JS), never web_fetch.
+- **Merchant Center:** submit YouTube videos as a supplemental feed for Shopping thumbnail visibility.
+- **Indexation bloat:** filter/sort/tag pages inflate crawl; control via robots.txt + canonical.
+
+### Recurring findings to always check
+Unindexed pages at scale, 404s (GSC export → 301), 403 crawl waste, missing or over-160-char meta, canonical issues from migrations, duplicate content, stale sitemap (resubmit to GSC), toxic backlinks (`is_spam` → disavow), missing Open Graph, absent FAQ/Product/Article/Breadcrumb/Organization schema, no reviews app, no press section.
+
+### Calibration (real JF results — for setting expectations, not for client decks without pulling the source)
+ZLG: 61% YoY lift in top-3 keywords, 31% clicks / 35% impressions, AI citations from zero. Tate's: "gluten free cookies near me" 31 → top 10. These compounded over ~12 months; set the head-term timeline honestly.
 
 ---
 

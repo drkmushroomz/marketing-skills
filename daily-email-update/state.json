@@ -1,0 +1,6 @@
+{
+  "last_history_id": "19ce4b59db778eeb",
+  "last_run_at": "2026-03-12T18:27:00-07:00",
+  "counters": {"needs_response": 1, "needs_action": 1},
+  "retrieval_stats": {"expected": 18, "retrieved": 18, "failed_ids": []}
+}

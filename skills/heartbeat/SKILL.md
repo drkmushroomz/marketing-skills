@@ -20,7 +20,7 @@ Do not re-query `schtasks`, re-check auth, crawl Slack history, or post to Slack
   "today": "YYYY-MM-DD",
   "yesterday": "YYYY-MM-DD",
   "crew_version": "abc1234",
-  "auth": {"google_oauth_gsc": {...}, "google_sheets": {...}, "wordpress": {...}, "slack": {...}, "ahrefs_mcp": {...}},
+  "auth": {"google_oauth_gsc": {...}, "google_sheets": {...}, "statamic_mcp": {...}, "slack": {...}, "ahrefs_mcp": {...}},
   "tasks": [{"name": "\\Jetfuel\\X", "state": "Enabled"|"Disabled", "last_result": "0"|other, "last_run": "...", "next_run": "...", "task_to_run": "..."}, ...],
   "slack_evidence": {"daily_blog_upgrade": {"when": "...", "preview": "..."}|null, "heartbeat": {...}|null, "ngram": {...}|null},
   "offboarded_hints": [{"file": "project_X.md", "title": "...", "snippet": "..."}]
@@ -59,7 +59,7 @@ If any task is `FAIL`, add a one-line hypothesis based on the exit code:
 - `1` → generic script failure; point at `task_to_run` path
 - `-2147024894` / `0x80070002` → file not found; interpreter path probably bare — recommend `schtasks /Change /TN "..." /TR "<absolute-path>"`
 - `267011` → never run (often fine for new or future-scheduled tasks)
-- Slack/Sheets/WordPress/OAuth `ok:false` → include the short error string from the auth block
+- Slack/Sheets/Statamic-MCP/OAuth `ok:false` → include the short error string from the auth block
 
 Do NOT apply fixes automatically in this run — just report. (The prior self-fix behavior was a liability; we'd rather surface and have a human approve.)
 
@@ -70,7 +70,7 @@ Use Slack `mrkdwn`. Keep it scannable. Template:
 ```
 *:heartbeat: Heartbeat Report — {today}*
 
-*Auth:* {one line of emoji per service, e.g. :white_check_mark: OAuth | :white_check_mark: Sheets | :white_check_mark: WP | :white_check_mark: Slack | :white_check_mark: Ahrefs}
+*Auth:* {one line of emoji per service, e.g. :white_check_mark: OAuth | :white_check_mark: Sheets | :white_check_mark: Statamic | :white_check_mark: Slack | :white_check_mark: Ahrefs}
 
 *Tasks:*
 :white_check_mark: `\Jetfuel\DailyBlogUpgrade` — last run {last_run}, evidence OK

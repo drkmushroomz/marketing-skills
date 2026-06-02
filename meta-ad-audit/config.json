@@ -1,0 +1,65 @@
+{
+  "verticals": {
+    "wellness": {
+      "leaders": ["Athletic Greens", "Liquid I.V.", "Olipop"],
+      "common_competitors": []
+    },
+    "fashion": {
+      "leaders": ["Gymshark", "SKIMS", "Alo Yoga"],
+      "common_competitors": []
+    },
+    "food-beverage": {
+      "leaders": ["Magic Spoon", "Graza", "Chamberlain Coffee"],
+      "common_competitors": []
+    },
+    "home-goods": {
+      "leaders": ["Caraway", "Our Place", "Brooklinen"],
+      "common_competitors": []
+    },
+    "beauty": {
+      "leaders": ["Glossier", "The Ordinary", "Drunk Elephant"],
+      "common_competitors": []
+    },
+    "fitness": {
+      "leaders": ["Peloton", "Tonal", "Future"],
+      "common_competitors": []
+    },
+    "pet": {
+      "leaders": ["Farmer's Dog", "Bark", "Chewy"],
+      "common_competitors": []
+    }
+  },
+  "best_practice_leaders": [
+    "Grüns", "Ro", "Glossier", "Peloton", "AG1 by Athletic Greens",
+    "Ancestral Supplements", "Pique", "ARMRA", "Oats Overnight", "MASA Chips",
+    "Lumin", "Norse Organics", "Laura Geller Beauty", "FabFitFun", "MeUndies",
+    "Huel", "Eight", "The Ridge", "Jones Road Beauty", "just.jueit",
+    "Dr. Squatch", "HexClad", "Obvi Health", "Loop", "RYZE Superfoods",
+    "Gymshark", "ŌURA", "Trifecta", "Sheet Society", "Unicorn Superfoods",
+    "Kizik", "Hollow Alpaca Socks", "PetLab Co"
+  ],
+  "clients": {
+    "barker-wellness": {
+      "vertical": "wellness",
+      "competitors": ["Beam Organics", "Ned", "Charlotte's Web"],
+      "meta_page_name": "Barker Wellness"
+    },
+    "train-with-dave": {
+      "vertical": "fitness",
+      "competitors": [],
+      "meta_page_name": "Train with Dave"
+    },
+    "delille": {
+      "vertical": "food-beverage",
+      "competitors": [],
+      "meta_page_name": "DeLille Cellars"
+    },
+    "joyride-sweets": {
+      "vertical": "food-beverage",
+      "competitors": ["SmartSweets", "Behave"],
+      "meta_page_name": "JOYRIDE Sweets",
+      "parent_company": "Project 7",
+      "status": "lead"
+    }
+  }
+}

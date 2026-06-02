@@ -124,7 +124,7 @@ Generated: {date}
 
 ## Important Notes
 
-- Always use `marketing@jetfuel.agency` for Google API calls
+- Always use `edwin@jetfuel.agency` for Google API calls
 - Display times in PST
 - Focus on **commercial intent** keywords (people looking for an agency/service)
 - Ignore informational-only queries unless they have very high volume

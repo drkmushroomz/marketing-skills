@@ -1,11 +1,11 @@
 {
-  "gsc_property": "sc-domain:jetfuel.agency",
+  "gsc_property": "https://jetfuel.agency/",
   "site_domain": "jetfuel.agency",
-  "google_email": "marketing@jetfuel.agency",
+  "google_email": "edwin@jetfuel.agency",
   "lookback_days": 90,
   "oauth": {
-    "client_id": "YOUR_GOOGLE_CLIENT_ID",
-    "client_secret": "YOUR_GOOGLE_CLIENT_SECRET",
+    "client_id": "REDACTED-set-via-env-GOOGLE_OAUTH_CLIENT_ID",
+    "client_secret": "REDACTED-set-via-env-GOOGLE_OAUTH_CLIENT_SECRET",
     "tokens_file": "scripts/gads_tokens.json"
   },
   "target_niches": {

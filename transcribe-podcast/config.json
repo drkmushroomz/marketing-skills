@@ -1,0 +1,9 @@
+{
+  "model_size": "medium",
+  "compute_type": "int8",
+  "device": "cpu",
+  "beam_size": 5,
+  "language": "en",
+  "default_folder_id": "1uNFJIULl-1Z_cNR82sRP24ziq3spJwPr",
+  "output_format": "markdown"
+}

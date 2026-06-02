@@ -9,8 +9,6 @@ metadata:
 
 Multi-source trend detection for Jetfuel's target niches. Scans Reddit, Hacker News, Google Trends, and optionally X/Twitter for trending topics, scores them for relevance, and suggests content angles.
 
-Inspired by Eric Siu's trend_scout.py architecture, adapted for Jetfuel's MCP-based workflow.
-
 ## Prerequisites
 
 - `.env` with `AHREFS_TOKEN` (optional, for keyword validation)

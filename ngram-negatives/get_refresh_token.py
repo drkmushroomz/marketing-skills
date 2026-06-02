@@ -20,8 +20,9 @@ SCRIPT_DIR = Path(__file__).parent
 ENV_PATH = SCRIPT_DIR.parent.parent.parent / ".env"
 
 # Use the same OAuth client as workspace-mcp
-CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID"
-CLIENT_SECRET = "YOUR_GOOGLE_CLIENT_SECRET"
+import os
+CLIENT_ID = os.environ.get("GOOGLE_OAUTH_CLIENT_ID", "")
+CLIENT_SECRET = os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET", "")
 REDIRECT_URI = "http://localhost:8765/oauth2callback"
 SCOPE = "https://www.googleapis.com/auth/adwords"
 

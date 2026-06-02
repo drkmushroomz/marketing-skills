@@ -1,0 +1,18 @@
+{
+  "email_settings": {
+    "user_email": "READ_FROM_.claude/me.md",
+    "digest_subject_template": "Daily Email Update - {date}",
+    "use_work_account_links": true,
+    "gmail_auth_param": "/u/0/",
+    "send_only_to_user": true,
+    "never_cc_or_forward": true,
+    "email_format": "plain_text",
+    "convert_markdown_to_html": false
+  },
+  "gmail_search_query": {
+    "org_exclusions": "-to:aaas@jetfuel.agency -from:agencyaccountant@jetfuel.agency -to:accountingdept@jetfuel.agency -to:agencyaccountant@jetfuel.agency -from:notification.intuit.com -from:gusto.com",
+    "noise_exclusions": "-from:*noreply* -from:*no-reply* -from:*notification* -from:noreply-apps-scripts-notifications@google.com",
+    "user_exclusions": null
+  },
+  "_readme": "Per-user overrides go in .claude/me.json. Skills read me.json first, fall back here."
+}

@@ -1,0 +1,41 @@
+{
+  "gsc_property": "https://jetfuel.agency/",
+  "site_domain": "jetfuel.agency",
+  "blog_base_url": "https://jetfuel.agency/blog/",
+  "google_email": "edwin@jetfuel.agency",
+  "lookback_days": 90,
+  "oauth": {
+    "client_id": "REDACTED-set-via-env-GOOGLE_OAUTH_CLIENT_ID",
+    "client_secret": "REDACTED-set-via-env-GOOGLE_OAUTH_CLIENT_SECRET",
+    "tokens_file": "scripts/gads_tokens.json"
+  },
+  "statamic": {
+    "mcp_endpoint": "https://hq.jetfuel.agency/mcp/cms",
+    "collection": "blog"
+  },
+  "output_sheet_name": "Jetfuel Content Gap Analysis",
+  "seo_opportunities_sheet_id": "1-qOYW-5nzcKI7WTGLPiMLxRG99UxcCqax_aNe9TDLsQ",
+  "topic_clusters": [
+    "paid social",
+    "meta ads",
+    "google ads",
+    "ppc",
+    "seo",
+    "email marketing",
+    "ecommerce",
+    "cpg",
+    "food and beverage",
+    "health and wellness",
+    "dtc",
+    "shopify",
+    "conversion rate optimization",
+    "content marketing",
+    "influencer marketing",
+    "amazon marketing",
+    "tiktok ads",
+    "retargeting",
+    "attribution",
+    "creative strategy"
+  ],
+  "_readme": "Config for the content gap analysis skill. topic_clusters define the keyword universe to analyze."
+}

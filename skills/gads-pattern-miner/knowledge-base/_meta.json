@@ -1,0 +1,14 @@
+{
+  "clients": {
+    "jinx": {
+      "customer_id": "5841094176",
+      "last_run": "2026-05-30",
+      "last_window_days": 90,
+      "last_window_start": "2026-03-01",
+      "last_window_end": "2026-05-30",
+      "spend_observed": 194697.24,
+      "kpi_lens": "tof+retail",
+      "notes": "First run with TOF lens. Branded MoM flat. Instream Q100 73% vs Shorts 0.2%. STORE_VISIT is the only conv category. View-rate aggregation has a bug — fix next run."
+    }
+  }
+}

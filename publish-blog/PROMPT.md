@@ -1,18 +1,22 @@
-# Publish Blog Post to WordPress
+# Publish Blog Post to Statamic
 
 <role>
-You publish blog content from Google Docs to jetfuel.agency as WordPress draft posts — with rich media, infographic-style visualizations, and a strong editorial structure.
+You publish blog content from Google Docs to jetfuel.agency as Statamic draft entries — with rich media, infographic-style visualizations, and a strong editorial structure.
 </role>
 
 <task>
-Given a Google Doc (URL, ID, or name), read the content, transform it to a premium WordPress blog post with embedded rich media, custom visual elements, and a table-of-contents-driven structure, then publish as a draft via the WordPress REST API.
+Given a Google Doc (URL, ID, or name), read the content, transform it to a premium blog post with embedded rich media, custom visual elements, and a table-of-contents-driven structure, then publish as a draft via the Statamic MCP.
 </task>
 
 ## Setup
 
 1. Read config from `.claude/ops/publish-blog/config.json`
-2. WordPress app password from `.claude/me.json` under `wordpress.app_password`
+2. Publishing uses the `statamic` MCP server (`https://hq.jetfuel.agency/mcp/cms`). Auth is handled by the MCP — do not read passwords from `.claude/me.json`.
 3. Google Docs access via `edwin@jetfuel.agency`
+
+## Migration note (WordPress → Statamic)
+
+jetfuel.agency migrated off WordPress. The old WP REST API, `scripts/wp_publish.py`, and app-password flow are deprecated. Before publishing, list the `statamic` MCP's tools to discover the correct names for: creating a draft entry, uploading an asset/image, setting featured image, setting taxonomy (categories/tags), and setting SEO metadata. Map the steps below to whatever the server actually exposes.
 
 ## Step 1: Read the Google Doc
 
@@ -20,7 +24,9 @@ Use `get_doc_as_markdown` MCP tool to pull the document content. If user provide
 
 ## Step 2: Build the Post Structure
 
-Every post follows this editorial template (inspired by Single Grain's long-form structure):
+**Prefer native Bard sets over inline-HTML blocks.** The `blog` collection's `content` field is a Bard with typed sets: `key_takeaways`, `toc`, `callout`, `stat_grid`, `comparison_table`, `faq_list`, `playbook_steps`, `pull_quote`, `cta_box`, `image`, `inline_stat`, `checklist`, `code_block`. Use these — they serialize to clean markdown for agent fetches, are token-cheaper than inline-styled HTML, and render consistently across the site theme. Inline-HTML templates below are a fallback for concepts Bard can't express.
+
+Every post follows this editorial template:
 
 ### Post Template (top to bottom)
 
@@ -36,7 +42,7 @@ Every post follows this editorial template (inspired by Single Grain's long-form
    - Section takeaway or transition
 6. EXPERT TIP / CALLOUT BOXES — scattered throughout where relevant
 7. FAQ SECTION — 3-5 questions with schema markup
-8. CONCLUSION with CTA (link to https://jetfuel.agency/contact-us/ — NOT /contact/)
+8. CONCLUSION with CTA
 9. RELATED POSTS suggestion
 ```
 
@@ -73,7 +79,7 @@ Place at the top, before the TOC:
 
 ## Step 3: Rich Media Embedding
 
-For every major section (H2), include at least ONE visual element. Choose the best format based on content:
+**Rule:** every H2 earns ONE structured element an agent can extract as data. Use the matching native Bard set first (stat_grid, comparison_table, callout, playbook_steps, pull_quote, faq_list, image, inline_stat). Only drop to the inline-HTML templates below when the Bard schema can't represent what you need.
 
 ### A. Stat Highlight Cards
 
@@ -185,10 +191,10 @@ For how-to content with numbered steps:
 
 ### G. Embedded Rich Media
 
-For external content, use WordPress embed blocks:
-- **YouTube**: `<figure class="wp-block-embed is-type-video"><div class="wp-block-embed__wrapper"><iframe src="https://www.youtube.com/embed/VIDEO_ID" width="100%" height="400" frameborder="0" allowfullscreen></iframe></div></figure>`
-- **Twitter/X**: Use the tweet URL in a WordPress embed block
-- **Images**: `<figure class="wp-block-image size-large"><img src="URL" alt="descriptive alt text" /><figcaption>Caption text</figcaption></figure>`
+For external content, prefer Bard's native `image` set or, for YouTube/Twitter, drop to inline HTML inside a paragraph node:
+- **YouTube**: `<figure><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"><iframe src="https://www.youtube.com/embed/VIDEO_ID" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen></iframe></div></figure>`
+- **Twitter/X**: paste the tweet URL on its own line — Statamic's renderer auto-embeds where the theme supports it; otherwise use the official Twitter embed script
+- **Images**: use the native Bard `image` set (uploads via `mcp__statamic__statamic-assets`) or `<figure><img src="URL" alt="descriptive alt text" /><figcaption>Caption text</figcaption></figure>`
 - **Podcast clips**: Embed Spotify/Apple podcast player iframes
 
 ## Step 4: Visual Element Selection Rules
@@ -205,7 +211,7 @@ Choose visual elements based on content type:
 | How-to, tutorials, processes | Step-by-Step Visualization |
 | Related video/audio content | Embedded Rich Media |
 
-**Minimum requirement: at least 3 visual elements per 1,500-word post.**
+**Minimum requirement: every H2 has one structured element (native Bard set preferred).**
 
 ## Step 5: FAQ Schema Section
 
@@ -233,22 +239,22 @@ Add a FAQ section before the conclusion with proper schema markup:
 - **Author**: default to Edwin Choi (ID 1) unless specified
 - **Status**: always `draft` unless user explicitly says publish
 
-## Step 7: Publish via WordPress REST API
+## Step 7: Publish via Statamic MCP
 
-Use `scripts/wp_publish.py` with the app password from `.claude/me.json`:
+**MANDATORY: All CMS operations go through the native `mcp__statamic__*` tools available in Claude Code.** Do not write Python scripts that POST to `hq.jetfuel.agency/mcp/cms` with a bearer token — that bypasses the audited MCP path, hardcodes credentials in the working tree, and produced the 5/2 backlinks-post submission we have to clean up. If a step feels easier in a Python script, it's still wrong: invoke the MCP tool directly.
 
-```bash
-python3 scripts/wp_publish.py \
-  --title "Post Title" \
-  --content-file content.html \
-  --slug "post-slug" \
-  --categories "68,155" \
-  --tags "ecommerce,food-beverage" \
-  --excerpt "Meta description here" \
-  --status draft \
-  --author 1 \
-  --password "from me.json"
-```
+Workflow:
+
+1. Read the `blog_post` blueprint first via `mcp__statamic__statamic-blueprints` (action=get) to confirm field handles and the Bard content schema.
+2. **The `content` field is a Bard field (ProseMirror tree), not an HTML string.** Passing raw HTML wraps the whole payload as a single text node inside one paragraph — it renders as escaped markup. You must pass `content` as an array of ProseMirror nodes. Reuse `scripts/build_gemini_bard.py` as a *reference for the node shape only* — copy its helper functions into your in-conversation reasoning to assemble the JSON, then pass the resulting array directly to the MCP tool. Do not execute a script that performs the MCP call itself.
+3. Create the entry as a **draft** (`published: false`) via `mcp__statamic__statamic-entries` (action=create) with: title, date (required — see caveat below), author (entry ID reference, looked up from `authors` collection), categories (term slug array), tags (term slug array), seo_title, seo_description, and the Bard `content` array.
+
+   **Date timezone caveat (critical — gets entries 404ing if wrong):** The Statamic server runs on `America/Los_Angeles` (PDT = UTC-7). The MCP tool strips any timezone offset you pass and treats the time component as local Pacific time, then adds 7 hours when writing to disk. Passing a UTC timestamp with a `Z` suffix or `-07:00` offset does NOT work — the offset is ignored. To guarantee the entry is live-datable (never scheduled into the future), always format the date as `YYYY-MM-DDT00:00:00` with no timezone suffix, using today's Pacific date obtained from `date`. Midnight Pacific stores as `07:00:00Z` (7 AM UTC), which is always in the past during business hours. Example: `2026-05-11T00:00:00`. Do NOT pass a UTC wall-clock time — on a PDT server, `T15:00:00Z` becomes `T22:00:00Z` (10 PM Pacific), which is in the future until late evening.
+4. Create missing taxonomy terms first via `mcp__statamic__statamic-terms` (action=create) if the category/tag you want doesn't exist. Term IDs are formatted `taxonomies::slug` but the entry's term field takes just the slug (`"ai-seo"`, not `"categories::ai-seo"`).
+5. **Slug caveat:** Statamic derives the slug from the title on create and appears to ignore slug on update. If you want a short SEO slug, rename in the CP after create.
+6. Capture the returned entry ID for Step 9.
+
+Never hardcode credentials — auth is carried by the MCP connection. If you find yourself reaching for `urllib`, `requests`, or `Bearer` headers, stop and use the MCP tool.
 
 ## Step 8: Generate Featured Image
 
@@ -272,31 +278,31 @@ Optional: pass `--bg path/to/photo.jpg` for a custom background photo. Without i
 - The blog grid crops images to ~3:4 from center, so keep title and logo within the center 70% vertically
 
 ### Upload and set as featured:
-```python
-import requests, base64
 
-creds = base64.b64encode(b'edwin:<app_password>').decode()
+**Use the carve-out helper `scripts/upload_blog_featured_image.py`.** Tested 2026-05-12: the Statamic MCP truncates inline tool-call `content` arguments around ~14 KB, so the native `mcp__statamic__statamic-assets` (action=upload) path silently produces corrupt assets for full-size featured images (~485 KB PNG = ~647 KB base64). The helper script POSTs directly to the MCP HTTP endpoint with the bearer from env, then performs the move/update/cache-clear via the same JSON-RPC channel. This is an explicit carve-out from `feedback_no_mcp_http_scripts.md` — limited to featured-image upload only. Entry create/update, taxonomy, blueprints all still go through native `mcp__statamic__*` tools.
 
-# Upload to media library
-with open('scripts/featured_image.png', 'rb') as f:
-    resp = requests.post('https://jetfuel.agency/wp-json/wp/v2/media',
-        headers={'Authorization': f'Basic {creds}',
-                 'Content-Disposition': 'attachment; filename="slug-name-cover.png"',
-                 'Content-Type': 'image/png'},
-        data=f.read())
-media_id = resp.json()['id']
+Steps:
+1. Generate the PNG locally with `scripts/generate_blog_image.py --title "..." --subtitle "..." --output scripts/featured_<slug>.png`.
+2. Source the bearer into the env from `.mcp.json` and invoke the helper. From PowerShell:
+   ```powershell
+   $env:STATAMIC_MCP_BEARER = ((Get-Content .mcp.json | ConvertFrom-Json).mcpServers.statamic.headers.Authorization -replace '^Bearer ','')
+   python scripts/upload_blog_featured_image.py `
+     --entry-id <ENTRY_ID_FROM_STEP_7> `
+     --image scripts/featured_<slug>.png `
+     --slug <slug> `
+     --entry-date <DATE_FROM_STEP_7_READBACK>
+   ```
+   From bash: same with `STATAMIC_MCP_BEARER=$(python -c "import json; print(json.load(open('.mcp.json'))['mcpServers']['statamic']['headers']['Authorization'].replace('Bearer ',''))")`.
+3. The helper does upload → move to `blog/featured/` → entry update (auto-retries with `assets::` prefix) → `cache_clear stache`. It prints a JSON result with `"ok": true` on success and the final asset URL.
+4. Delete the local PNG (`scripts/featured_<slug>.png`) after the helper succeeds.
 
-# Set on post
-requests.post(f'https://jetfuel.agency/wp-json/wp/v2/posts/{post_id}',
-    headers={'Authorization': f'Basic {creds}', 'Content-Type': 'application/json'},
-    json={'featured_media': media_id})
-```
+If the helper exits non-zero, surface the error and stop. Do not fall back to "tell the user to upload via the CP." If the user hasn't run `/publish-blog` interactively (i.e. the auto-classifier blocks the Bash call), the nightly `JetfuelDailyFeaturedImageSweep` task at 3am PT will catch the missing image automatically.
 
 ## Step 9: Return Results
 
 After publishing, return:
-- Post ID
-- Edit link: `https://jetfuel.agency/wp-admin/post.php?post={id}&action=edit`
+- Entry ID / slug
+- Edit link (returned by the Statamic MCP, or constructed from the Statamic control panel URL)
 - Preview link
 - Categories and tags assigned
 - Visual elements included (count and types)
@@ -334,8 +340,20 @@ Jetfuel manages real accounts at scale. Competitors write guides from policy doc
 
 ### Content Length Benchmark:
 - Competitor average: 2,000-4,000 words
-- Target: 4,000-7,000 words (comprehensive but not bloated)
+- Target: 1,800-3,500 words (comprehensive but token-fit for agents)
+- Hard ceiling: ~20,000 tokens (~15,000 words). Agents truncate longer sources mid-fetch.
 - Every section must earn its place with unique insight, data, or actionable steps
+- If the topic genuinely requires more depth, split into a series rather than one mega-post
+
+## Step 11: AI-Fetch Hygiene
+
+AI agents (ChatGPT, Claude, Perplexity, Gemini, Copilot) fetch posts as raw text in single HTTP requests. After publishing, verify:
+
+- **Raw markdown reachable.** The post should be fetchable as clean markdown (e.g., `https://jetfuel.agency/blog/{slug}.md` or via a `?format=md` query param). If Statamic doesn't expose this, flag it as a platform gap in the return output — don't silently pass.
+- **Token count surfaced.** The entry's word count (and rough token estimate — words × 1.35) should appear in a meta field or frontmatter so agents can budget. If the blueprint doesn't have a field for this, note it for a future blueprint update.
+- **Listed in `/llms.txt`.** The site root `llms.txt` should include the new post with its one-line description and token count. If `llms.txt` doesn't exist yet or isn't auto-updated, flag it.
+- **Heading levels unbroken.** H1 → H2 → H3 with no skipped levels. Agents rely on hierarchy to chunk.
+- **No navigation chrome in the body.** The Bard content field should contain only article content — headers, sidebars, footers are theme-level and shouldn't leak into the fetched text.
 
 ## Important Notes
 
@@ -345,7 +363,7 @@ Jetfuel manages real accounts at scale. Competitors write guides from policy doc
 - Preserve all formatting from the original Google Doc
 - Every H2 section must have at least one visual element
 - Use Jetfuel's brand orange (#ff6b35) as the accent color throughout
-- All inline styles must be included (WordPress strips external CSS classes)
+- All inline styles must be included (safer across CMS renderers; Statamic's Bard/markdown fields may strip class-based CSS)
 - **MANDATORY: Dark-on-dark prevention audit.** Before publishing, run a final pass on ALL HTML to enforce these rules. This is not optional.
   - Every `<th>` MUST have both `background:#1a1a1a;` AND `color:#ffffff;` explicitly on the element
   - Every `<td>` MUST have both `background:#ffffff;` (or `background:#f9f9f9;` for alternating rows) AND `color:#1a1a1a;` explicitly on the element
@@ -356,6 +374,5 @@ Jetfuel manages real accounts at scale. Competitors write guides from policy doc
   - Callout boxes: explicit `color:#1a1a1a` on body text (not inherited)
   - Step descriptions: `color:#333333` (not `color:#555`)
   - FAQ answers: `color:#333333` (not `color:#555`)
-  - The Jetfuel WordPress theme has dark section backgrounds that WILL make low-contrast text invisible. Every single text element must specify its own color. Never rely on inheritance.
-- Flag any images that need to be uploaded to WordPress media library separately
-- The app password should be read from `.claude/me.json` — never hardcode it
+  - The Jetfuel theme has dark section backgrounds that WILL make low-contrast text invisible. Every single text element must specify its own color. Never rely on inheritance.
+- Flag any images that need to be uploaded to the Statamic asset library separately

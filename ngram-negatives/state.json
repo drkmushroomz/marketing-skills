@@ -1,227 +1,298 @@
 {
-  "last_run": "2026-03-23T09:15:09.787268",
+  "last_run": "2026-06-01T09:17:28.499098",
   "pending_approvals": {
-    "thread_ts": "1774282509.650759",
+    "thread_ts": "1780330649.919159",
     "candidates": {
       "1": {
-        "ngram": "people",
-        "cost": 71.61,
+        "ngram": "dog",
+        "cost": 15502.78,
         "campaign_ids": [
-          23403993828,
-          23472336395,
-          23612214861
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - Conquesting, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "2": {
-        "ngram": "reviews",
-        "cost": 58.79,
+        "ngram": "near",
+        "cost": 4802.81,
         "campaign_ids": [
-          23472336395,
-          23575383776,
-          23403993828,
-          23413316638
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "3": {
-        "ngram": "auri",
-        "cost": 47.12,
+        "ngram": "pet",
+        "cost": 2435.1,
         "campaign_ids": [
-          23403993828,
-          23472336395,
-          23612214861
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - Conquesting, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "4": {
-        "ngram": "therawolf",
-        "cost": 25.52,
+        "ngram": "cat",
+        "cost": 2415.5,
         "campaign_ids": [
-          23472336395,
-          23403993828
+          22939041483,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "5": {
-        "ngram": "best",
-        "cost": 23.69,
+        "ngram": "walmart",
+        "cost": 2081.17,
         "campaign_ids": [
-          23472336395,
-          23575383776,
-          23403993828,
-          23413316638
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "6": {
-        "ngram": "hustle",
-        "cost": 22.31,
+        "ngram": "store",
+        "cost": 2047.35,
         "campaign_ids": [
-          23575383776,
-          23413316638
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "7": {
-        "ngram": "nearby",
-        "cost": 22.31,
+        "ngram": "treats",
+        "cost": 1441.28,
         "campaign_ids": [
-          23472336395,
-          23403993828,
-          23413316638
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "8": {
-        "ngram": "cbn",
-        "cost": 18.28,
+        "ngram": "best",
+        "cost": 1074.55,
         "campaign_ids": [
-          23472336395,
-          23575383776,
-          23403993828
+          22939041483,
+          22041661349,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "9": {
-        "ngram": "brand",
-        "cost": 14.77,
+        "ngram": "kibble",
+        "cost": 1034.28,
         "campaign_ids": [
-          23403993828,
-          23472336395,
-          23413316638,
-          23575383776,
-          23612214861
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - Conquesting, [JF] - [ROI] - [S] - Branded Keywords, [JF] - [ROI] - [S] - DSA, [JF] - [AW] - [S] - [PR] - Non Branded Keywords",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "10": {
-        "ngram": "k2",
-        "cost": 14.28,
+        "ngram": "ingredients",
+        "cost": 959.49,
         "campaign_ids": [
-          23575383776,
-          23403993828
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad",
         "status": "pending"
       },
       "11": {
-        "ngram": "energy",
-        "cost": 12.88,
+        "ngram": "foods",
+        "cost": 849.83,
         "campaign_ids": [
-          23472336395,
-          23575383776,
-          23403993828
+          22939041483,
+          22041661349,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "12": {
-        "ngram": "nutrition",
-        "cost": 11.8,
+        "ngram": "give",
+        "cost": 785.35,
         "campaign_ids": [
-          23403993828,
-          23472336395,
-          23575383776,
-          23612214861
+          22939041483,
+          22041661349,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - Conquesting, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "13": {
-        "ngram": "elo",
-        "cost": 11.53,
+        "ngram": "never",
+        "cost": 764.84,
         "campaign_ids": [
-          23403993828
+          22939041483,
+          22041661349,
+          22785901199,
+          23571161466,
+          20531159460
         ],
-        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "14": {
-        "ngram": "arnica",
-        "cost": 10.75,
+        "ngram": "these",
+        "cost": 762.99,
         "campaign_ids": [
-          23472336395,
-          23575383776,
-          23403993828
+          23571161466,
+          20531159460,
+          22785901199
         ],
-        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "15": {
-        "ngram": "getsnoozy",
-        "cost": 10.62,
+        "ngram": "good",
+        "cost": 551.58,
         "campaign_ids": [
-          23403993828
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "16": {
-        "ngram": "oil",
-        "cost": 10.32,
+        "ngram": "puppy",
+        "cost": 427.15,
         "campaign_ids": [
-          23472336395,
-          23575383776,
-          23403993828,
-          23413316638
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "17": {
-        "ngram": "pure",
-        "cost": 10.29,
+        "ngram": "shop",
+        "cost": 404.49,
         "campaign_ids": [
-          23472336395,
-          23575383776,
-          23403993828
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "18": {
-        "ngram": "shilajit",
-        "cost": 10.2,
+        "ngram": "stores",
+        "cost": 378.47,
         "campaign_ids": [
-          23472336395,
-          23403993828
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "19": {
-        "ngram": "para",
-        "cost": 10.16,
+        "ngram": "fresh",
+        "cost": 372.52,
         "campaign_ids": [
-          23472336395,
-          23575383776,
-          23403993828,
-          23413316638
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - Branded Keywords, [JF] - [AW] - [S] - [PR] - Non Branded Keywords, [JF] - [ROI] - [MIX] - Standard Shopping, [JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       },
       "20": {
-        "ngram": "cruise",
-        "cost": 9.54,
+        "ngram": "pets",
+        "cost": 368.22,
         "campaign_ids": [
-          23575383776
+          22939041483,
+          22041661349,
+          21413849697,
+          22785901199,
+          23571161466,
+          20531159460,
+          23595782293
         ],
-        "campaigns": "[JF] - [ROI] - [S] - DSA",
+        "campaigns": "[JF] - [AW] - [S] - [PR] - Fresh Walmart Campaign, [JF] - [AW] - [S] - [PR] - Prospecting - P/E, [JF] - [AW] - [Y] - [PR] - YouTube Instream - Awareness - CPM, [JF] - [AW] - [S] - [PR] - Prospecting - CAT PR/B, [JF] - [AW] - [S] - [PR] - Prospecting - Broad, [JF] - [AW] - [S] - [MIX] - Branded - Phrase/Exact/Broad, [JF] - [AW] - [Y] - [PR] - Instream - Cat - Launch",
         "status": "pending"
       }
     },
-    "posted_at": "2026-03-23T09:15:09.787290"
+    "posted_at": "2026-06-01T09:17:28.499098"
   },
   "applied": [
     "near",
@@ -239,7 +310,23 @@
     "best",
     "hustle",
     "nearby",
-    "cbn"
+    "cbn",
+    "people",
+    "reviews",
+    "auri",
+    "therawolf",
+    "cbn",
+    "brand",
+    "arnica",
+    "getsnoozy",
+    "pure",
+    "shilajit",
+    "para",
+    "cruise",
+    "never",
+    "these",
+    "puppy",
+    "deadly"
   ],
   "dismissed": [
     "butter",

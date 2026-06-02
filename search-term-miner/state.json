@@ -1,0 +1,36 @@
+{
+  "last_run": {
+    "train-with-dave": "2026-06-01T09:01:21.065871",
+    "barker-wellness": "2026-04-04T14:20:35.847464",
+    "delille": "2026-06-01T09:00:50.834966",
+    "grip-studs": "2026-05-18T09:00:21.213960",
+    "zip-line-gear": "2026-06-01T09:00:38.571740",
+    "jinx": "2026-04-04T14:32:50.643142",
+    "hampton-water": "2026-05-04T09:00:58.114121"
+  },
+  "added": {
+    "train-with-dave": [
+      {
+        "term": "gym to lose fat",
+        "date": "2026-03-25",
+        "conversions": 1.0,
+        "score": 56,
+        "classification": "strong"
+      },
+      {
+        "term": "gym to lose fat",
+        "date": "2026-03-25",
+        "conversions": 1.0,
+        "score": 56,
+        "classification": "strong"
+      },
+      {
+        "term": "one on one training near me",
+        "date": "2026-03-25",
+        "conversions": 0.333333,
+        "score": 53,
+        "classification": "review"
+      }
+    ]
+  }
+}
