@@ -133,19 +133,21 @@ Apply the following taxonomy to EVERY ad (client and competitor). An ad can have
 | **MOFU (Consideration)** | Comparison, testimonials, product demos, ingredients |
 | **BOFU (Conversion)** | Offer, urgency, retargeting copy ("Still thinking about..."), strong CTA |
 
-#### 4C. Creative Format
+#### 4C. Creative Format (2026 Andromeda-Optimized)
 
-| Format | What to tag |
-|--------|-------------|
-| Static image | Single image |
-| Carousel | Multi-image swipe |
-| Video (short) | Under 15 seconds |
-| Video (medium) | 15-60 seconds |
-| Video (long) | Over 60 seconds |
-| UGC video | User/creator-filmed |
-| Polished video | Studio/professional |
-| Collection / Instant Experience | Full-screen mobile format |
-| GIF / animation | Animated static |
+In 2026, Meta's Andromeda algorithm targets through creative, not audience settings. Format diversity is critical — Andromeda can evaluate 10,000x more ad variants simultaneously. Vertical, raw, social-native content is what Meta explicitly rewards.
+
+| Format | What to tag | Andromeda Priority |
+|--------|-------------|-------------------|
+| Reel / vertical video (short) | Under 15 seconds, 9:16 | HIGH — Meta's preferred format |
+| Reel / vertical video (medium) | 15-60 seconds, 9:16 | HIGH |
+| UGC video | User/creator-filmed, raw feel | HIGH — outperforms polished 2-3x |
+| Founder-led video | Founder speaking to camera | HIGH — 2-3x ROAS vs traditional |
+| Carousel | Multi-image swipe | MEDIUM |
+| Collection / Instant Experience | Full-screen mobile format | MEDIUM |
+| Static image | Single image | MEDIUM — still needed for variety |
+| Polished video | Studio/professional | LOW — underperforms native content |
+| GIF / animation | Animated static | LOW |
 
 #### 4D. Offer Type
 
@@ -239,22 +241,24 @@ Score the client's Meta ad program against these e-commerce best practices:
 
 | Best Practice | Pass/Fail | Notes |
 |--------------|-----------|-------|
-| **Creative diversity** — at least 3 format types active | | |
+| **Creative volume** — at least 15-20 active creatives in ASC | | |
+| **Creative diversity** — at least 4 format types (Reel, UGC, static, carousel) | | |
+| **Founder-led content** — founder/brand story video in the mix (2-3x ROAS in 2026) | | |
+| **UGC in the mix** — at least 30% of ads are UGC/creator/founder content | | |
+| **Vertical video** — at least 50% of video is 9:16 Reels/Stories format | | |
 | **Messaging variety** — at least 4 themes represented | | |
-| **Full-funnel coverage** — TOFU + MOFU + BOFU all present | | |
-| **UGC in the mix** — at least 20% of ads are UGC/testimonial | | |
-| **Video-first** — at least 30% of ads are video | | |
-| **Offer rotation** — at least 2 offer types tested in last 90 days | | |
-| **Hook variety** — first 3 words vary across ads (not same opener) | | |
-| **Persona coverage** — each target persona has dedicated creative | | |
-| **Social proof density** — star ratings, review counts, or customer numbers in >25% of ads | | |
-| **Retargeting layer** — BOFU ads with "still thinking" or "come back" messaging | | |
+| **Full-funnel coverage** — ASC (broad) + manual retargeting both present | | |
+| **Hook variety** — first 3 words vary across ads (structural, not surface variation) | | |
+| **Persona coverage** — each target persona has creative that self-selects them | | |
+| **Social proof density** — press, reviews, or customer numbers in >25% of ads | | |
+| **Retargeting layer** — manual campaign with funnel-stage messaging (15-20% budget) | | |
+| **Campaign consolidation** — budget not fragmented across 5+ campaigns | | |
+| **Learning phase health** — 50+ optimization events/week per ad set | | |
+| **Ad refresh cadence** — 3+ new concepts launched per month | | |
 | **Seasonal/timely creative** — ads reference current season, holiday, or trend | | |
 | **Landing page variety** — ads link to different pages (not all to homepage) | | |
-| **Ad refresh cadence** — new creative launched in last 30 days | | |
-| **Mobile-first design** — creative is legible and impactful at mobile sizes | | |
 
-**Score: X/14.** Below 8 = significant gaps. Below 5 = program needs rebuilding.
+**Score: X/16.** Below 10 = significant gaps. Below 6 = program needs rebuilding.
 
 ### 7. Generate recommendations
 

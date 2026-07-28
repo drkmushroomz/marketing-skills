@@ -113,8 +113,8 @@ Complete setup checklists for major ad platforms.
   - Video viewers (25%, 50%, 75%, 95%)
   - Page/Instagram engagers
   - Customer list uploaded
-- [ ] Advantage+ Audience configured with customer list as suggestions
-- [ ] Creative library: 15-20 diverse assets (founder, UGC, lifestyle, product, social proof)
+- [ ] Lookalike audiences created (1%, 1-3%)
+- [ ] Saved audiences for common targeting
 
 ### Catalog (E-commerce)
 

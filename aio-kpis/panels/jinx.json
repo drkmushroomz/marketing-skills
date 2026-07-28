@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "client": "Jinx",
+    "domain": "thinkjinx.com",
+    "ga4_property_id": "290814011",
+    "gsc_property": "sc-domain:thinkjinx.com",
+    "panel_version": 1,
+    "created": "2026-07-24",
+    "frozen": true,
+    "note": "Frozen Qualified AI Visibility panel for the AIO KPI framework. Built from real GSC queries (thinkjinx.com), Ahrefs keyword volumes, live AI-retrieval research, and reconciled against Jinx client history (HQ id 47, meeting recaps, launch briefs). Do not edit prompts without bumping panel_version; measurement continuity depends on a stable panel.",
+    "hq_client_id": 47,
+    "client_context": {
+      "account_lens": "AWARENESS-FIRST by design (HQ directive learning 5775). Paid is deliberately weighted to awareness/engagement/traffic; near-zero purchases and ROAS are intentional. This reframes AI-Referred Conversions (KPI 5) as a directional/secondary metric for Jinx, not a scorecard headline; branded-search lift and store visits are the truer outcome signals.",
+      "live_client_ask": "Caitlyn requested an 'AI visibility score' with graphs and prompt examples (HQ context 11778, 2026-07-20); client floated an off-page AI/SEO package (PR, Reddit ads, Quora, YouTube SEO). This framework maps directly onto that ask.",
+      "positioning": "Simple high-quality ingredients, clean label + probiotics, named proteins, digestion/firmer-stool, bone-broth hydration (cat). Leaning into VALUE given the economy. Female founder Terri; Dr. Nitido vet voice; celebrity face is Chris Evans (NOT Will Smith).",
+      "tentpole": "Build the Best Bowl (BBB) spans kibble + homemades + toppers; toppers/kibble sauce are the strategic wedge.",
+      "seo_theme_pivot": "As of 2026-06-23/24 client moved AWAY from broad 'can my dog eat X' content TOWARD allergies/sensitivities, protein & picky eaters, senior dog, and cat. Panel reflects this (dropped the cucumbers content-magnet prompt, added senior).",
+      "audience_skew": "70% female target on Meta/TikTok/YouTube (HQ learning 5778); millennial-women skew on cat. Personas tagged accordingly.",
+      "initiatives": ["Fresh", "Cat", "Attentional", "BtBB (Build the Best Bowl)"]
+    },
+    "intent_weights": {
+      "comparison_recommendation": 3.0,
+      "category_evaluation": 2.0,
+      "problem_solution": 1.5,
+      "informational": 1.0,
+      "branded_navigational": 0.25
+    },
+    "sov_competitor_set": {
+      "head_to_head": ["Purina Pro Plan", "Blue Buffalo", "Open Farm", "Stella & Chewy's", "Nulo"],
+      "fresh_benchmark_context_only": ["The Farmer's Dog", "Ollie"],
+      "rationale": "Research 2026-07-24: LLMs place Jinx in the premium-kibble + toppers + retail space (picky eaters, meal toppers, best-at-Walmart), never in fresh-subscription answers. The Farmer's Dog/Ollie/Spot & Tango are a different niche; track as aspirational context, not head-to-head. Added Stella & Chewy's (dominates picky-eater + topper answers) and Nulo. Client-history check (HQ context/learnings + all meeting recaps + 4 launch briefs) names NO specific competitor, so this set is research-derived, not client-dictated; Matthew's focus on 'competitive switching signals' makes the comparison prompts (weight 3.0) especially high-value."
+    },
+    "winnable_battleground": ["picky eaters", "meal toppers / kibble sauce", "premium dog food at Walmart / retail", "sensitive stomach", "high-protein clean-label"],
+    "personas": ["picky-eater parent", "premium-value / retail shopper", "new puppy owner", "sensitive-stomach / health-conscious", "small-breed owner", "topper / enhancement seeker", "cat parent"]
+  },
+  "prompts": [
+    {"id": "tof-01", "prompt": "My dog suddenly won't touch his kibble anymore, how do I get a picky eater to actually eat?", "intent_bucket": "problem_solution", "weight": 1.5, "funnel": "TOF", "persona": "picky-eater parent", "qualified": true, "evidence": "GSC + Ahrefs 'best dog food for picky eaters' 2000/mo; WildChat problem-first pattern"},
+    {"id": "tof-02", "prompt": "My dog has a sensitive stomach and keeps getting loose stools, what food is easiest to digest?", "intent_bucket": "problem_solution", "weight": 1.5, "funnel": "TOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "evidence": "Ahrefs 'dog food for sensitive stomach' 4700/mo"},
+    {"id": "tof-03", "prompt": "What can I add on top of my dog's food to get him to eat it?", "intent_bucket": "problem_solution", "weight": 1.5, "funnel": "TOF", "persona": "topper / enhancement seeker", "qualified": true, "evidence": "Meal-topper JTBD; research pattern; Jinx Kibble Sauce wedge"},
+    {"id": "tof-04", "prompt": "I just got a puppy, what should I start feeding him?", "intent_bucket": "problem_solution", "weight": 1.5, "funnel": "TOF", "persona": "new puppy owner", "qualified": true, "evidence": "Ahrefs 'best puppy food' 12000/mo; GSC 'jinx puppy food'"},
+    {"id": "tof-05", "prompt": "How do I switch my dog to a new food without upsetting his stomach?", "intent_bucket": "informational", "weight": 1.0, "funnel": "TOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "evidence": "WildChat post-purchase transition pattern"},
+    {"id": "tof-06", "prompt": "Is chicken a common allergy for dogs, and what protein should I switch to?", "intent_bucket": "informational", "weight": 1.0, "funnel": "TOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "evidence": "GSC 'are dogs allergic to chicken' 4524 impr"},
+    {"id": "tof-07", "prompt": "Are grains and fillers in dog food actually bad for my dog?", "intent_bucket": "informational", "weight": 1.0, "funnel": "TOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "evidence": "Ingredient-quality screen; Jinx clean-label positioning"},
+    {"id": "tof-08", "prompt": "What superfoods or ingredients should a really good dog food have?", "intent_bucket": "informational", "weight": 1.0, "funnel": "TOF", "persona": "premium-value / retail shopper", "qualified": true, "evidence": "Jinx '20+ superfoods' claim; authority-building"},
+    {"id": "tof-09", "prompt": "What's the best food for a senior dog with a sensitive stomach?", "intent_bucket": "problem_solution", "weight": 1.5, "funnel": "TOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "evidence": "Client SEO pivot 2026-06-23/24 toward senior + allergies/sensitivities themes (HQ context 10806/10965), away from broad 'can my dog eat' content"},
+    {"id": "tof-10", "prompt": "My dog is a picky eater, is adding a food topper better than switching foods entirely?", "intent_bucket": "problem_solution", "weight": 1.5, "funnel": "TOF", "persona": "topper / enhancement seeker", "qualified": true, "evidence": "Research pattern #7; topper-vs-switch JTBD"},
+
+    {"id": "mof-01", "prompt": "I'm looking for a high-protein dry dog food, what are the best options?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "premium-value / retail shopper", "qualified": true, "evidence": "Ahrefs 'high protein dog food' 7900/mo"},
+    {"id": "mof-02", "prompt": "What's the best dog food for a picky eater that isn't super expensive?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "picky-eater parent", "qualified": true, "evidence": "Ahrefs picky 2000/mo; Jinx absent from these answers today"},
+    {"id": "mof-03", "prompt": "What's the best meal topper or kibble sauce to make dry food more appealing?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "topper / enhancement seeker", "qualified": true, "evidence": "Strategic wedge; low search vol but a full LLM answer space Jinx is absent from (Open Farm, Stella & Chewy's, Native Pet dominate)"},
+    {"id": "mof-04", "prompt": "What's a good premium dog food I can actually buy at Walmart?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "premium-value / retail shopper", "qualified": true, "evidence": "Ahrefs 'best dog food at walmart' 600/mo; Jinx sold at Walmart but absent from listicles (Purina/Blue Buffalo dominate)"},
+    {"id": "mof-05", "prompt": "Best dog food for a small breed dog?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "small-breed owner", "qualified": true, "evidence": "Ahrefs 'best dog food for small breeds' 600/mo; GSC 'jinx small breed dog food'"},
+    {"id": "mof-06", "prompt": "What's the best puppy food if I'm on a budget?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "new puppy owner", "qualified": true, "evidence": "Ahrefs puppy 12000/mo + value framing"},
+    {"id": "mof-07", "prompt": "I want a human-grade, clean-label dog food without fillers, what brands are good?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "evidence": "Ahrefs 'human grade dog food' 4200/mo"},
+    {"id": "mof-08", "prompt": "Best dog food for a sensitive stomach that won't cause diarrhea?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "evidence": "Ahrefs sensitive stomach 4700/mo"},
+    {"id": "mof-09", "prompt": "Best salmon or fish-based dog food for a dog's skin and coat?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "premium-value / retail shopper", "qualified": true, "evidence": "GSC 'jinx salmon dog food'; Jinx omega-3 claim"},
+    {"id": "mof-10", "prompt": "What's a good affordable alternative to The Farmer's Dog that I can buy in a store?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "premium-value / retail shopper", "qualified": true, "evidence": "Fresh-alternative framing; positions Jinx against the fresh category without competing head-to-head"},
+    {"id": "mof-11", "prompt": "What dog food has probiotics for digestion?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "evidence": "Jinx probiotic + '81% improved digestion' claim"},
+    {"id": "mof-12", "prompt": "Best dog food brands you can order on Chewy or Amazon?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "premium-value / retail shopper", "qualified": true, "evidence": "Jinx retail channels; Chewy 4.6/5"},
+    {"id": "mof-13", "prompt": "Best cat food for a picky indoor cat?", "intent_bucket": "category_evaluation", "weight": 2.0, "funnel": "MOF", "persona": "cat parent", "qualified": true, "evidence": "GSC 'jinx cat food' 10061 impr; Jinx cat line"},
+
+    {"id": "bof-01", "prompt": "Is Jinx dog food good?", "intent_bucket": "branded_evaluation", "weight": 2.0, "funnel": "BOF", "persona": "premium-value / retail shopper", "qualified": true, "branded": true, "evidence": "GSC + Ahrefs 'is jinx dog food good' 1300/mo"},
+    {"id": "bof-02", "prompt": "Jinx dog food reviews, is it actually worth the price?", "intent_bucket": "branded_evaluation", "weight": 2.0, "funnel": "BOF", "persona": "premium-value / retail shopper", "qualified": true, "branded": true, "evidence": "GSC 'jinx dog food reviews' 9080 impr"},
+    {"id": "bof-03", "prompt": "How does Jinx compare to Blue Buffalo?", "intent_bucket": "comparison_recommendation", "weight": 3.0, "funnel": "BOF", "persona": "premium-value / retail shopper", "qualified": true, "branded": true, "evidence": "Blue Buffalo = closest premium-retail-kibble rival (Walmart/Chewy)"},
+    {"id": "bof-04", "prompt": "Jinx vs Purina Pro Plan, which is better for my dog?", "intent_bucket": "comparison_recommendation", "weight": 3.0, "funnel": "BOF", "persona": "premium-value / retail shopper", "qualified": true, "branded": true, "evidence": "Purina = the true retail-shelf rival"},
+    {"id": "bof-05", "prompt": "The Farmer's Dog vs Jinx, which should I choose?", "intent_bucket": "comparison_recommendation", "weight": 3.0, "funnel": "BOF", "persona": "premium-value / retail shopper", "qualified": true, "branded": true, "evidence": "GSC 'the farmers dog vs jinx'; fresh benchmark comparison"},
+    {"id": "bof-06", "prompt": "How does Jinx compare to Open Farm for quality and toppers?", "intent_bucket": "comparison_recommendation", "weight": 3.0, "funnel": "BOF", "persona": "topper / enhancement seeker", "qualified": true, "branded": true, "evidence": "Open Farm = real topper competitor, retail-available"},
+    {"id": "bof-07", "prompt": "Jinx vs Stella & Chewy's for a picky eater?", "intent_bucket": "comparison_recommendation", "weight": 3.0, "funnel": "BOF", "persona": "picky-eater parent", "qualified": true, "branded": true, "evidence": "Stella & Chewy's dominates picky-eater + topper answers"},
+    {"id": "bof-08", "prompt": "Is Jinx kibble sauce worth buying?", "intent_bucket": "branded_evaluation", "weight": 2.0, "funnel": "BOF", "persona": "topper / enhancement seeker", "qualified": true, "branded": true, "evidence": "GSC 'jinx kibble sauce' / 'kibble sauce'; signature product"},
+    {"id": "bof-09", "prompt": "Where is Jinx dog food made and is it safe?", "intent_bucket": "branded_evaluation", "weight": 2.0, "funnel": "BOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "branded": true, "evidence": "GSC 'where is jinx dog food made'; made in USA, zero recalls (winnable trust)"},
+    {"id": "bof-10", "prompt": "Has Jinx dog food ever been recalled?", "intent_bucket": "branded_evaluation", "weight": 2.0, "funnel": "BOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "branded": true, "evidence": "GSC 'jinx dog food recall'; zero recalls to date"},
+    {"id": "bof-11", "prompt": "What are the ingredients in Jinx dog food?", "intent_bucket": "branded_evaluation", "weight": 2.0, "funnel": "BOF", "persona": "sensitive-stomach / health-conscious", "qualified": true, "branded": true, "evidence": "GSC 'jinx dog food ingredients'"},
+    {"id": "bof-12", "prompt": "Is Jinx cat food any good?", "intent_bucket": "branded_evaluation", "weight": 2.0, "funnel": "BOF", "persona": "cat parent", "qualified": true, "branded": true, "evidence": "GSC 'jinx cat food review' 2132 impr"},
+
+    {"id": "nav-01", "prompt": "Jinx", "intent_bucket": "branded_navigational", "weight": 0.25, "funnel": "navigational", "persona": "existing customer", "qualified": false, "branded": true, "evidence": "GSC 'jinx' 431006 impr, pos 6.5 - pure navigational, excluded from Qualified AI Visibility"},
+    {"id": "nav-02", "prompt": "Jinx pet food website", "intent_bucket": "branded_navigational", "weight": 0.25, "funnel": "navigational", "persona": "existing customer", "qualified": false, "branded": true, "evidence": "GSC 'jinx website' / 'jinx pet food' - navigational, excluded"}
+  ]
+}
